@@ -75,25 +75,23 @@ On suppose que le module `etree` de `lxml` est importé.
   Cela peut évidemment varier selon les cas, mais dans notre cas,
   on veut des informations sur un PDV qui est ni routier, ni autoroutier.
 
+> **Explication**:  
+> Ici, on utilise une expression XPATH afin de filtrer nos résultats
+> Le crochet nous permet d'émettre une expression de filtrage à 
+> l'élement sur lequel on travaille, en l'occurence /pdv_liste/pdv.  
+> Le "@" devant pop signifie que l'on veut un attribut de l'élement
+> au lieu de chercher dans ses enfants, XPATH regardera alors sur la
+> même ligne au lieu de regarder sur les lignes plus en bas.  
+> On utilise donc une condition à la négative:  
+> A ce niveau, on reste sur une expression très littérale.
+> "Je veux tous les éléments pdv, enfant de pdv_liste, n'ayant pas
+> comme valeur d'attribut pop 'R' ou 'A'".  
+> Il nous sortira donc tous les éléments pdv ayant pour valeur
+> autre chose que 'A' ou 'R'.
+
   On peut donc avoir comme code:
 
   ```py
-  ### Ici, on utilise une expression XPATH afin de filtrer nos résultats
-  ### Le crochet nous permet d'émettre une expression de filtrage à l'élement
-  ### sur lequel on travaille, en l'occurence /pdv_liste/pdv.
-  ###
-  ### Le "@" devant pop signifie que l'on veut un attribut de l'élement
-  ### au lieu de chercher dans ses enfants. XPATH regardera alors sur la
-  ### même ligne au lieu de regarder sur les lignes plus en bas.
-  ###
-  ### On utilise donc une condition à la négative:
-  ### A ce niveau, on reste sur une expression très littérale.
-  ### "Je veux tous les éléments pdv, enfant de pdv_liste, n'ayant pas
-  ### comme valeur d'attribut pop 'R' ou 'A'"
-  ###
-  ### Il nous sortira donc tous les éléments pdv ayant pour valeur
-  ### autre chose que 'A' ou 'R'.
-
   autres_pdv = tree.xpath("/pdv_liste/pdv[not(@pop='R') and not(@pop='A')]")
 
   ### Dans ce cas précis, nous n'avions pas besoin d'utiliser une
@@ -115,19 +113,19 @@ puis les stations qui servent du SP98.
 
 Le mieux est d'utiliser une expression XPATH, à nouveau.
 
+> **Explication**:  
+> On va utiliser la fonction `starts-with` afin de filtrer pour l'Hérault.
+> On l'utilise de la même manière que nos conditions `not` précédentes
+> Elle fonctionne avec deux paramètres, le premier est la variable
+> que l'on va chercher, en l'occurence c'est un attribut donc on met `@cp`
+> puis on met entre guillemets ce par quoi on veut filtrer.
+> C'est la même utilisation que la méthode `startswith()` de Python.
+> 
+> Après que l'on ait filtré sur les PDVs, on filtre les éléments `prix`.
+> Vu que c'est une valeur fixe, il y a soit `SP98`, soit autre chose, on
+> peut faire une simple condition, on écrit alors `@nom='SP98'`.
+
 ```py
-
-### On va utiliser la fonction `starts-with` afin de filtrer pour l'Hérault.
-### On l'utilise de la même manière que nos conditions `not` précédentes
-### Elle fonctionne avec deux paramètres, le premier est la variable
-### que l'on va chercher, en l'occurence c'est un attribut donc on met `@cp`
-### puis on met entre guillemets ce par quoi on veut filtrer.
-### C'est la même utilisation que la méthode `startswith()` de Python.
-###
-### Après que l'on ait filtré sur les PDVs, on filtre les éléments `prix`.
-### Vu que c'est une valeur fixe, il y a soit `SP98`, soit autre chose, on
-### peut faire une simple condition, on écrit alors `@nom='SP98'`.
-
 nbr = len(tree.xpath("/pdv_liste/pdv[starts-with(@cp, '34')]/prix[@nom='SP98']"))
 
 ### Pour le total, on a juste besoin de ne pas mettre l'élement prix
