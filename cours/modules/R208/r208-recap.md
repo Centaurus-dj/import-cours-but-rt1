@@ -225,6 +225,43 @@ with open("eve.json", "rt") as fin: ### Fin comme Fichier entrant (File in)
 ```
 
 > **Explication**:  
-> 
+> On utilise le block `with` car il nous permet de ne pas nous préoccuper
+> de la fermeture du fichier après coup.  
+> On boucle ensuite dans notre fichier, c'est à dire
+> que l'on itère à chaque ligne.  
+> Ensuite, on attribue à la variable `enregistrement` la ligne
+> actuelle sous forme de dictionnaire en utilisant la
+> librairie `json`.  
+> Puis on ajoute à notre liste `records` notre enregistrement.
+
+Après avoir construit notre liste contenant ainsi tous nos
+enregistrements, on peut les afficher.  
+Deux choix s'offrent à nous:
+
+- On affiche que les trois directement avec un print, on fera
+  cela en une ligne.  
+  Point négatif, on ne pourra faire que cette action.
+
+  ```py
+  print(records[:3])
+  ```
+
+  > **Note**:  
+  > Il est possible de substituer la valeur `3`
+  > par une variable de son choix.
+
+- On affiche une ligne par une ligne dans une boucle.  
+  Point positif, on peut ajouter d'autres actions lors de l'affichage.  
+  Point négatif, ça risque de prendre plus de temps vu que l'on affiche
+  notre liste un par un.
+
+  ```py
+  for record in record[:3]:
+    print(record)
+  ```
+
+  > **Note**:  
+  > Il est possible de substituer la valeur `3`
+  > par une variable de son choix.
 
 ## Copyright &copy; 2023 Alexis Opolka - All Rights Reserved
