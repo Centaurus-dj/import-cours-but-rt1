@@ -1,0 +1,29 @@
+[http.middlewares.simpleAuth.basicAuth]
+  users = [
+    "admin:$apr1$..QI.Lsl$MWLpkfS026zCDTU6NOB9x0"
+  ]
+
+[http.routers]
+  [http.routers.api]
+    rule = "Host(`10.202.0.175.nip.io`)"
+    entrypoints = ["websecure", "web"]
+    middlewares = ["simpleAuth"]
+    service = "api@internal"
+
+    [http.routers.api.tls]
+
+    [http.routers.api.whoami]
+      rule = "Host(`whoami.10.202.0.175.nip.io`)"
+      entrypoints = ["websecure", "web"]
+      [http.routers.api.whoami.tls]
+
+    [http.routers.flaskapp]
+      entrypoints = ["websecure", "web"]
+      rule = "Host(`flaskapp.10.202.0.175.nip.io`)"
+      port = 5000
+
+
+
+[[tls.certificates]]
+  certFile = "/certs/10.202.0.175.nip.io+2.pem"
+  keyFile = "/certs/10.202.0.175.nip.io+2-key.pem"

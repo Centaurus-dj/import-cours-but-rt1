@@ -1,0 +1,34 @@
+[http.middlewares.simpleAuth.basicAuth]
+  users = [
+    "admin:$apr1$..QI.Lsl$MWLpkfS026zCDTU6NOB9x0"
+  ]
+
+[http.routers]
+  [http.routers.api]
+    rule = "Host(`192.168.1.236.nip.io`) && PathPrefix(`/dashboard/`)"
+    entrypoints = ["websecure", "web"]
+    middlewares = ["simpleAuth"]
+    service = "api@internal"
+
+    [http.routers.api.tls]
+
+
+  [http.routers.to-whoami]
+    rule = "Host(`whoami.192.168.1.236.nip.io`)"
+    service = "whoami@docker"
+    entrypoints = ["websecure", "web"]
+    # middlewares = ["simpleAuth"]
+
+    [http.routers.to-whoami.tls]
+
+  [http.routers.to-flaskapp]
+    rule = "Host(`flaskapp.192.168.1.236.nip.io`)"
+    service = "flaskapp@docker"
+    entrypoints = ["websecure", "web"]
+    # middlewares = ["simpleAuth"]
+
+    [http.routers.to-flaskapp.tls]
+
+[[tls.certificates]]
+  certFile = "/certs/192.168.1.236.nip.io+2.pem"
+  keyFile = "/certs/192.168.1.236.nip.io+2-key.pem"
