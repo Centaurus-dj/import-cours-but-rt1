@@ -301,7 +301,7 @@ StPushou\
 ## <center> CRON </center>
 
 1. ...
-   1. /var/spool/cron/crontabs
+   1. `/var/spool/cron/`, `/etc/cron.d` et `/etc/anacrontab`
    1. ...
 
       | donnée   | répertoire        |
@@ -316,6 +316,17 @@ StPushou\
    1. run-parts execute les scripts se situant dans le dossier.
 
 1. ...
+   1. Dans quelle variable d’environnement peut-on spécifier l’éditeur par défaut ?
+
+      ```sh
+      EDITOR
+      ```
+
+   1. ...
+
+      ```sh
+      export EDITOR=/usr/bin/vim.basic
+      ```
 
 ## TD 3
 
