@@ -1,0 +1,9 @@
+
+playbook: apache-prof.yml
+
+  play #1 (debian): debian	TAGS: []
+    tasks:
+      Installer Apache	TAGS: []
+      Installer Php7	TAGS: []
+      Démarrer le service Apache	TAGS: []
+      Copier le fichier phpinfo	TAGS: []

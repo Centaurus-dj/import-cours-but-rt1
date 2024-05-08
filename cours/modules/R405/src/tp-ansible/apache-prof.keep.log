@@ -1,0 +1,27 @@
+
+PLAY [debian] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [debian-0]
+ok: [debian-3]
+ok: [debian-2]
+ok: [debian-4]
+ok: [debian-1]
+
+TASK [Installer Apache] ********************************************************
+fatal: [debian-3]: FAILED! => {"changed": false, "msg": "python3-apt must be installed to use check mode. If run normally this module can auto-install it."}
+fatal: [debian-2]: FAILED! => {"changed": false, "msg": "python3-apt must be installed to use check mode. If run normally this module can auto-install it."}
+fatal: [debian-4]: FAILED! => {"changed": false, "msg": "python3-apt must be installed to use check mode. If run normally this module can auto-install it."}
+fatal: [debian-1]: FAILED! => {"changed": false, "msg": "python3-apt must be installed to use check mode. If run normally this module can auto-install it."}
+ok: [debian-0]
+
+TASK [Installer Php7] **********************************************************
+fatal: [debian-0]: FAILED! => {"changed": false, "msg": "No package matching 'libapache2-mod-php7.4' is available"}
+
+PLAY RECAP *********************************************************************
+debian-0                   : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+debian-1                   : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+debian-2                   : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+debian-3                   : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+debian-4                   : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+

@@ -1,0 +1,25 @@
+---
+- hosts: debian-0
+  tasks:
+    - name: Apache Installation
+      ansible.builtin.apt:
+        name=apache2
+        state=present
+
+    - name: Enabling and starting Apache daemon
+      ansible.builtin.service:
+        name=apache2
+        state=started
+        enabled=true
+
+- hosts: rocky-0
+  tasks:
+    - name: Apache (httpd) Installation
+      ansible.builtin.dnf:
+        name=httpd
+        state=present
+    - name: Enabling and starting Apache daemon
+      ansible.builtin.service:
+        name=httpd
+        state=started
+        enabled=true

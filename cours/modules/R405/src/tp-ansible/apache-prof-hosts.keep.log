@@ -1,0 +1,11 @@
+
+playbook: apache-prof.yml
+
+  play #1 (debian): debian	TAGS: []
+    pattern: ['debian']
+    hosts (5):
+      debian-3
+      debian-4
+      debian-1
+      debian-0
+      debian-2

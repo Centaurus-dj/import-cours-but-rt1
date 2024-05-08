@@ -1,0 +1,123 @@
+effacement des containers existants
+################################
+66750eb22f30
+61fb107f86ac
+2d12f313051e
+831e55a271c0
+81c8cd9b73f0
+e18d0912211b
+f64bca7dd992
+1b1cc89d97b4
+ecdf326ed46f
+b45fe4c2a669
+851a5b79dffc
+fd9723fb5fd8
+4924f55bd746
+66750eb22f30
+61fb107f86ac
+2d12f313051e
+831e55a271c0
+81c8cd9b73f0
+e18d0912211b
+f64bca7dd992
+1b1cc89d97b4
+ecdf326ed46f
+b45fe4c2a669
+851a5b79dffc
+fd9723fb5fd8
+4924f55bd746
+effacement des network dockers existants
+################################
+1ca62e4dbc47
+2fca35d2f015
+abbeba436bd8
+1b6a5383f395
+58c66f611e7e
+e46d6e9c7120
+05c4538fbc51
+d8eacfce71ef
+bfe35a70179b
+734155aa4eac
+f16dea07d3b5
+b430f9170f07
+eb2c83907f7d
+eabe787f2bd6
+3c9448b2e43b
+831a3b94b965
+8000156aaadc
+ad6c44adfa17
+e6bfb3f4f13d
+6e29ef62dd2f
+c7d4830d5087
+################################
+Creation des network dockers pour le TP
+################################
+23ac425100e2c022e783b20714208a68a5e8b29d1e9613a081d9459bcfbaf789
+89cf58120d14471f2c63949e2223535253e2fbe293dd59c62395b61a99861648
+ced51af8ed98b5ddfbdb50ee451d3471abcfbd2d490fd85821501fd7cdd8c8ba
+68036ed110f6adde78184fcc242f05c96437d6b61051355a62e69d090089d4cf
+e4810db11e7278be4f50099fe15061533f089cd81be94b38e2e4195738d39645
+7518a53017d83407125c5642d6734d0f868de17cf4ab4eb02c61cc8e0e1d7dbd
+f544ef0396eaa1709e4ea411aa70c9e25d0b10797fafd5bf88160a4ba65cb2d2
+9aaad809aaaf399a2aefea3c4ac3c672841633ad7049b8e3f3bc24466fb166d5
+59195650f6d6f3164ebcaa43c6f1f89c308797f3c3d5eb8b890078fa20637f10
+0dd1f694da660c1c4ee31b85b8751832229ae16358a108e36b6ce06cddc3af6d
+36a657645e47faeaf5ec54cd3c38201847bda3243f40ed0a71bfc50d653d520c
+d2a77b66291cc2664a1630d663dfab4955ffa0c05caae83b57cb44cc16a5cf0a
+d857573dedd5475bf9bd2f7ec93234ea2e430ae57b5c267e0be2e080ad58d97b
+b5e52226f6570c942ffb1bcf49311f963925a07fcb20058329fd96cbae32c272
+118a5b1750b7ee6e22565941c802e06f83d49fe32c065374e9ccd0dc0a513ef2
+81154d49eb2d755e9892f60937d1def414e81a20a8ae9ef3bf8a8253bb410b8d
+582f2e5d33ddfc3123981dd5ca0d93790e0450945a3ede6332008c70322f3fe7
+aea2b046552cff0e56c6212e6576a5887416c64f40ec405fa0097ec13760818f
+24a71ddfc971e0fb269fdf4bbe276e66d69e642b009cc5aad489320e7d0a0665
+3b3b6b6de5db8991fd321e6f0a06e27cb1338fdd16df5073750f443facacd528
+remise à zero de  /root/.ssh/known_hosts
+################################
+supression des adresses des containers existants dans /etc/hosts
+################################
+Création des containers Debian et rocky 
+################################
+9766ff5c65ac62040b045d0a653c3c8a8ec1e201a83a80db7e4babd56b59cf4c
+c5866279c3825c3f47c9325b56ee96fc4117e94f3c39fb8531cb0323a74d8687
+82164891c1d017a9dbedf890a6a3475895b34f044439f2023106c7c6250972db
+8fb1a0e491c2547d832a9321a43d0b812c1d14b83108aa34ea28cfb077732fda
+a010daf191da961d45fc1f4def023d71d55f34f5ea02c3769d6db90b1b2710c7
+a19c78b4f4036b29618f23eccd9b74587757a5753bd939ad1a3a5868841dbfb0
+b8a3115729487ab37b3132d31fa3f78faa3d8223e842f8de99f7e2ecd2cd108c
+3129ab6e4485f5b36b3369ff8ea98305624b768083c392e12f8812561f9265f1
+e38b88b44fb5da2ba018e5cd29e1e2770098236efc4571c7772f0da48f139ef7
+0404a0ea51f7b0df059a8706a7596a6ac18e057ee787929491199cfea0ed7984
+creation des ip des containers dans /etc/hosts
+################################
+installation depuis galaxy de la collection arista
+installation de l'image ceos & aliasing routeur
+Starting galaxy collection install process
+Nothing to do. All requested collections are already installed. If you want to reinstall them, consider using `--force`.
+4.29.02F: Pulling from ceosimage
+Digest: sha256:6b147e735fc2b10820af7bc54e9da5a2490469ea327d76ca112037b9494ee637
+Status: Image is up to date for registry.iutbeziers.fr/ceosimage:4.29.02F
+registry.iutbeziers.fr/ceosimage:4.29.02F
+création des containers routers Arista ceos
++---+----------------------+--------------+-------------------------------------------+-------------+---------+------------------+--------------+
+| # |         Name         | Container ID |                   Image                   |    Kind     |  State  |   IPv4 Address   | IPv6 Address |
++---+----------------------+--------------+-------------------------------------------+-------------+---------+------------------+--------------+
+| 1 | clab-srlceos01-ceos1 | 8f398d03f42c | registry.iutbeziers.fr/ceosimage:4.29.02F | arista_ceos | running | 172.100.100.2/24 | N/A          |
+| 2 | clab-srlceos01-ceos2 | add7843f8576 | registry.iutbeziers.fr/ceosimage:4.29.02F | arista_ceos | running | 172.100.100.3/24 | N/A          |
+| 3 | clab-srlceos01-ceos3 | 20474239a17d | registry.iutbeziers.fr/ceosimage:4.29.02F | arista_ceos | running | 172.100.100.4/24 | N/A          |
++---+----------------------+--------------+-------------------------------------------+-------------+---------+------------------+--------------+
+voila le boulot
+CONTAINER ID   IMAGE                                       COMMAND                  CREATED          STATUS          PORTS                                                                                                        NAMES
+8f398d03f42c   registry.iutbeziers.fr/ceosimage:4.29.02F   "bash -c '/mnt/flash…"   42 seconds ago   Up 41 seconds                                                                                                                clab-srlceos01-ceos1
+add7843f8576   registry.iutbeziers.fr/ceosimage:4.29.02F   "bash -c '/mnt/flash…"   42 seconds ago   Up 41 seconds                                                                                                                clab-srlceos01-ceos2
+20474239a17d   registry.iutbeziers.fr/ceosimage:4.29.02F   "bash -c '/mnt/flash…"   42 seconds ago   Up 41 seconds                                                                                                                clab-srlceos01-ceos3
+0404a0ea51f7   registry.iutbeziers.fr/debian12:ssh         "/lib/systemd/systemd"   45 seconds ago   Up 45 seconds   161/udp, 88/tcp, 749-750/tcp, 464/udp, 2049/udp, 2049/tcp, 4444/udp, 0.0.0.0:2224->22/tcp, :::2224->22/tcp   debian-4
+e38b88b44fb5   registry.iutbeziers.fr/debian12:ssh         "/lib/systemd/systemd"   45 seconds ago   Up 45 seconds   161/udp, 88/tcp, 749-750/tcp, 464/udp, 2049/udp, 2049/tcp, 4444/udp, 0.0.0.0:2223->22/tcp, :::2223->22/tcp   debian-3
+3129ab6e4485   registry.iutbeziers.fr/debian12:ssh         "/lib/systemd/systemd"   46 seconds ago   Up 45 seconds   161/udp, 88/tcp, 749-750/tcp, 464/udp, 2049/udp, 2049/tcp, 4444/udp, 0.0.0.0:2222->22/tcp, :::2222->22/tcp   debian-2
+b8a311572948   registry.iutbeziers.fr/debian12:ssh         "/lib/systemd/systemd"   46 seconds ago   Up 46 seconds   161/udp, 88/tcp, 749-750/tcp, 464/udp, 2049/udp, 2049/tcp, 4444/udp, 0.0.0.0:2221->22/tcp, :::2221->22/tcp   debian-1
+a19c78b4f403   registry.iutbeziers.fr/debian12:ssh         "/lib/systemd/systemd"   47 seconds ago   Up 46 seconds   161/udp, 88/tcp, 749-750/tcp, 464/udp, 2049/udp, 2049/tcp, 4444/udp, 0.0.0.0:2220->22/tcp, :::2220->22/tcp   debian-0
+a010daf191da   registry.iutbeziers.fr/rocky9:ssh           "/usr/sbin/init"         47 seconds ago   Up 46 seconds   0.0.0.0:3224->22/tcp, :::3224->22/tcp                                                                        rocky-4
+8fb1a0e491c2   registry.iutbeziers.fr/rocky9:ssh           "/usr/sbin/init"         47 seconds ago   Up 47 seconds   0.0.0.0:3223->22/tcp, :::3223->22/tcp                                                                        rocky-3
+82164891c1d0   registry.iutbeziers.fr/rocky9:ssh           "/usr/sbin/init"         47 seconds ago   Up 47 seconds   0.0.0.0:3222->22/tcp, :::3222->22/tcp                                                                        rocky-2
+c5866279c382   registry.iutbeziers.fr/rocky9:ssh           "/usr/sbin/init"         48 seconds ago   Up 47 seconds   0.0.0.0:3221->22/tcp, :::3221->22/tcp                                                                        rocky-1
+9766ff5c65ac   registry.iutbeziers.fr/rocky9:ssh           "/usr/sbin/init"         48 seconds ago   Up 47 seconds   0.0.0.0:3220->22/tcp, :::3220->22/tcp                                                                        rocky-0
