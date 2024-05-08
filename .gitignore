@@ -13,6 +13,7 @@ __pycache__
 .~lock.*.*
 *.save
 *.log
+!*.keep.log
 save*-*-*.txt
 *.out
 *.lock
