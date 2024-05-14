@@ -335,7 +335,3 @@ Montrer que les codes $C_1$ et $C_2$ sont orthogonaux.
    - $e(t)$ signal numérique initial;
    - $s_e(t)$ signal étalé;
    - $s_m(t)$ signal modulé;
-
-## TP 1 - OFDM
-
-
