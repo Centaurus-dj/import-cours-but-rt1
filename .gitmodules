@@ -31,6 +31,11 @@
 [submodule "cours/modules/R308/R308-TP/R308-TP4/tp4-final-alexis-opolka"]
 	path = cours/modules/R308/R308-TP/R308-TP4/tp4-final-alexis-opolka
 	url = git@github.com:IUT-Beziers/tp4-final-alexis-opolka.git
+
+[submodule "cours/modules/Cloud/src/TD1/ec2.shop"]
+	path = cours/modules/Cloud/src/TD1/ec2.shop
+	url = git@github.com:yeo/ec2.shop.git
+
 [submodule "cours/modules/Cloud/TD1/ec2.shop"]
 	path = cours/modules/Cloud/TD1/ec2.shop
 	url = git@github.com:yeo/ec2.shop.git
@@ -49,12 +54,12 @@
 	path = cours/sae/sae-12/SAE12
 	url = git@github.com:alexis-opolka/SAE12.git
 
-[submodule "cours/sae/sae-21/"]
-	path = cours/sae/sae-21/
+[submodule "cours/sae/sae-21"]
+	path = cours/sae/sae-21
 	url = git@github.com:alexis-opolka/sae-21.git
 
-[submodule "cours/sae/sae-23/mon-banzaii"]
-	path = cours/sae/sae-23/mon-banzaii
+[submodule "cours/sae/sae-23/Mon-Banzaii"]
+	path = cours/sae/sae-23/Mon-Banzaii
 	url = git@github.com:alexis-opolka/mon-banzaii.git
 
 [submodule "cours/sae/sae-24"]
@@ -80,6 +85,7 @@
 [submodule "cours/sae/sae-33"]
 	path = cours/sae/sae-33
 	url = git@github.com:alexis-opolka/muvirt.git
+
 [submodule "cours/modules/R409/src/tpdocker"]
 	path = cours/modules/R409/src/tpdocker
 	url = git@github.com:pushou/tpdocker.git
