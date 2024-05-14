@@ -388,7 +388,7 @@ Copyright: All Rights Reserved
           > docker run --rm -it caps
           > ```
 
-          > [!INFO]
+          > [!TIP]
           > `caps` est le nom donné lors du build de l'image Docker pour cette question.
 
           - `capsh`

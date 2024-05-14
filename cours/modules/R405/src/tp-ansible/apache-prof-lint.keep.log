@@ -1,0 +1,9 @@
+]8;id=165535;https://ansible.readthedocs.io/projects/lint/rules/name/\[1;91mname[play][0m]8;;\[2m:[0m [91mAll plays should be named.[0m
+[34mapache-prof.yml[0m:2
+
+]8;id=342551;https://ansible.readthedocs.io/projects/lint/rules/yaml/\[1;91myaml[indentation][0m]8;;\[2m:[0m [91mWrong indentation: expected 0 but found 2[0m
+[34mapache-prof.yml[0m:2
+
+]8;id=88727;https://ansible.readthedocs.io/projects/lint/rules/yaml/\[1;91myaml[octal-values][0m]8;;\[2m:[0m [91mForbidden implicit octal value "0664"[0m
+[34mapache-prof.yml[0m:24
+

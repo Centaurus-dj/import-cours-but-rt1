@@ -1,0 +1,144 @@
+debian-1 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if58        UP             172.29.0.2/16 fe80::42:acff:fe1d:2/64 
+debian-0 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if56        UP             172.28.0.2/16 fe80::42:acff:fe1c:2/64 
+clab-srlceos01-ceos2 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             192.168.1.211/24 metric 100 
+docker0          DOWN           172.17.0.1/16 
+br-23ac425100e2  UP             172.18.0.1/16 fe80::42:42ff:fecb:a5b7/64 
+br-89cf58120d14  UP             172.19.0.1/16 fe80::42:d2ff:fe20:c410/64 
+br-ced51af8ed98  UP             172.20.0.1/16 fe80::42:1bff:fea3:989b/64 
+br-68036ed110f6  UP             172.21.0.1/16 fe80::42:fbff:fe43:9f6e/64 
+br-e4810db11e72  UP             172.22.0.1/16 fe80::42:27ff:fe1f:5527/64 
+br-7518a53017d8  DOWN           172.23.0.1/16 
+br-f544ef0396ea  DOWN           172.24.0.1/16 
+br-9aaad809aaaf  DOWN           172.25.0.1/16 
+br-59195650f6d6  DOWN           172.26.0.1/16 
+br-0dd1f694da66  DOWN           172.27.0.1/16 
+br-36a657645e47  UP             172.28.0.1/16 fe80::42:e2ff:fe01:ecd3/64 
+br-d2a77b66291c  UP             172.29.0.1/16 fe80::42:3bff:fef1:5602/64 
+br-d857573dedd5  UP             172.30.0.1/16 fe80::42:baff:fef8:cb/64 
+br-b5e52226f657  UP             172.31.0.1/16 fe80::42:8ff:feb0:9965/64 
+br-118a5b1750b7  UP             192.168.16.1/20 fe80::42:4dff:fefd:5041/64 
+br-81154d49eb2d  DOWN           192.168.32.1/20 
+br-582f2e5d33dd  DOWN           192.168.48.1/20 
+br-aea2b046552c  DOWN           192.168.64.1/20 
+br-24a71ddfc971  DOWN           192.168.80.1/20 
+br-3b3b6b6de5db  DOWN           192.168.96.1/20 
+vethdc8db0c@if45 UP             fe80::d0ff:92ff:fe61:c82a/64 
+veth0370a6f@if47 UP             fe80::e83b:b1ff:fe60:b299/64 
+veth639b2db@if49 UP             fe80::f4a2:85ff:fe1a:e611/64 
+vethef49fb9@if51 UP             fe80::a8a7:46ff:fe16:5672/64 
+vethd3e7e41@if53 UP             fe80::b4e7:5bff:fe29:edc4/64 
+vethe4675f2@if55 UP             fe80::b87c:9ff:fe1f:1956/64 
+veth08217d6@if57 UP             fe80::600d:e4ff:fe0e:7f5b/64 
+veth7442831@if59 UP             fe80::c465:f5ff:fe20:aa79/64 
+vethd5f8d31@if61 UP             fe80::54e4:2dff:fe35:a3be/64 
+veth5fc5681@if63 UP             fe80::8c0:d8ff:fe13:3da9/64 
+br-548907c2ffc4  UP             172.100.100.1/24 fe80::42:74ff:fe79:befa/64 
+veth1a80c59@if66 UP             fe80::d4b5:9fff:fe88:d747/64 
+vethc555d76@if68 UP             fe80::4893:abff:fef7:4e5/64 
+veth93a3bde@if70 UP             fe80::a881:daff:fe7b:3fcf/64 
+clab-srlceos01-ceos1 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             192.168.1.211/24 metric 100 
+docker0          DOWN           172.17.0.1/16 
+br-23ac425100e2  UP             172.18.0.1/16 fe80::42:42ff:fecb:a5b7/64 
+br-89cf58120d14  UP             172.19.0.1/16 fe80::42:d2ff:fe20:c410/64 
+br-ced51af8ed98  UP             172.20.0.1/16 fe80::42:1bff:fea3:989b/64 
+br-68036ed110f6  UP             172.21.0.1/16 fe80::42:fbff:fe43:9f6e/64 
+br-e4810db11e72  UP             172.22.0.1/16 fe80::42:27ff:fe1f:5527/64 
+br-7518a53017d8  DOWN           172.23.0.1/16 
+br-f544ef0396ea  DOWN           172.24.0.1/16 
+br-9aaad809aaaf  DOWN           172.25.0.1/16 
+br-59195650f6d6  DOWN           172.26.0.1/16 
+br-0dd1f694da66  DOWN           172.27.0.1/16 
+br-36a657645e47  UP             172.28.0.1/16 fe80::42:e2ff:fe01:ecd3/64 
+br-d2a77b66291c  UP             172.29.0.1/16 fe80::42:3bff:fef1:5602/64 
+br-d857573dedd5  UP             172.30.0.1/16 fe80::42:baff:fef8:cb/64 
+br-b5e52226f657  UP             172.31.0.1/16 fe80::42:8ff:feb0:9965/64 
+br-118a5b1750b7  UP             192.168.16.1/20 fe80::42:4dff:fefd:5041/64 
+br-81154d49eb2d  DOWN           192.168.32.1/20 
+br-582f2e5d33dd  DOWN           192.168.48.1/20 
+br-aea2b046552c  DOWN           192.168.64.1/20 
+br-24a71ddfc971  DOWN           192.168.80.1/20 
+br-3b3b6b6de5db  DOWN           192.168.96.1/20 
+vethdc8db0c@if45 UP             fe80::d0ff:92ff:fe61:c82a/64 
+veth0370a6f@if47 UP             fe80::e83b:b1ff:fe60:b299/64 
+veth639b2db@if49 UP             fe80::f4a2:85ff:fe1a:e611/64 
+vethef49fb9@if51 UP             fe80::a8a7:46ff:fe16:5672/64 
+vethd3e7e41@if53 UP             fe80::b4e7:5bff:fe29:edc4/64 
+vethe4675f2@if55 UP             fe80::b87c:9ff:fe1f:1956/64 
+veth08217d6@if57 UP             fe80::600d:e4ff:fe0e:7f5b/64 
+veth7442831@if59 UP             fe80::c465:f5ff:fe20:aa79/64 
+vethd5f8d31@if61 UP             fe80::54e4:2dff:fe35:a3be/64 
+veth5fc5681@if63 UP             fe80::8c0:d8ff:fe13:3da9/64 
+br-548907c2ffc4  UP             172.100.100.1/24 fe80::42:74ff:fe79:befa/64 
+veth1a80c59@if66 UP             fe80::d4b5:9fff:fe88:d747/64 
+vethc555d76@if68 UP             fe80::4893:abff:fef7:4e5/64 
+veth93a3bde@if70 UP             fe80::a881:daff:fe7b:3fcf/64 
+clab-srlceos01-ceos3 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             192.168.1.211/24 metric 100 
+docker0          DOWN           172.17.0.1/16 
+br-23ac425100e2  UP             172.18.0.1/16 fe80::42:42ff:fecb:a5b7/64 
+br-89cf58120d14  UP             172.19.0.1/16 fe80::42:d2ff:fe20:c410/64 
+br-ced51af8ed98  UP             172.20.0.1/16 fe80::42:1bff:fea3:989b/64 
+br-68036ed110f6  UP             172.21.0.1/16 fe80::42:fbff:fe43:9f6e/64 
+br-e4810db11e72  UP             172.22.0.1/16 fe80::42:27ff:fe1f:5527/64 
+br-7518a53017d8  DOWN           172.23.0.1/16 
+br-f544ef0396ea  DOWN           172.24.0.1/16 
+br-9aaad809aaaf  DOWN           172.25.0.1/16 
+br-59195650f6d6  DOWN           172.26.0.1/16 
+br-0dd1f694da66  DOWN           172.27.0.1/16 
+br-36a657645e47  UP             172.28.0.1/16 fe80::42:e2ff:fe01:ecd3/64 
+br-d2a77b66291c  UP             172.29.0.1/16 fe80::42:3bff:fef1:5602/64 
+br-d857573dedd5  UP             172.30.0.1/16 fe80::42:baff:fef8:cb/64 
+br-b5e52226f657  UP             172.31.0.1/16 fe80::42:8ff:feb0:9965/64 
+br-118a5b1750b7  UP             192.168.16.1/20 fe80::42:4dff:fefd:5041/64 
+br-81154d49eb2d  DOWN           192.168.32.1/20 
+br-582f2e5d33dd  DOWN           192.168.48.1/20 
+br-aea2b046552c  DOWN           192.168.64.1/20 
+br-24a71ddfc971  DOWN           192.168.80.1/20 
+br-3b3b6b6de5db  DOWN           192.168.96.1/20 
+vethdc8db0c@if45 UP             fe80::d0ff:92ff:fe61:c82a/64 
+veth0370a6f@if47 UP             fe80::e83b:b1ff:fe60:b299/64 
+veth639b2db@if49 UP             fe80::f4a2:85ff:fe1a:e611/64 
+vethef49fb9@if51 UP             fe80::a8a7:46ff:fe16:5672/64 
+vethd3e7e41@if53 UP             fe80::b4e7:5bff:fe29:edc4/64 
+vethe4675f2@if55 UP             fe80::b87c:9ff:fe1f:1956/64 
+veth08217d6@if57 UP             fe80::600d:e4ff:fe0e:7f5b/64 
+veth7442831@if59 UP             fe80::c465:f5ff:fe20:aa79/64 
+vethd5f8d31@if61 UP             fe80::54e4:2dff:fe35:a3be/64 
+veth5fc5681@if63 UP             fe80::8c0:d8ff:fe13:3da9/64 
+br-548907c2ffc4  UP             172.100.100.1/24 fe80::42:74ff:fe79:befa/64 
+veth1a80c59@if66 UP             fe80::d4b5:9fff:fe88:d747/64 
+vethc555d76@if68 UP             fe80::4893:abff:fef7:4e5/64 
+veth93a3bde@if70 UP             fe80::a881:daff:fe7b:3fcf/64 
+debian-2 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if60        UP             172.30.0.2/16 fe80::42:acff:fe1e:2/64 
+debian-3 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if62        UP             172.31.0.2/16 fe80::42:acff:fe1f:2/64 
+debian-4 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if64        UP             192.168.16.2/20 fe80::42:c0ff:fea8:1002/64 
+rocky-0 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if46        UP             172.18.0.2/16 fe80::42:acff:fe12:2/64 
+rocky-1 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if48        UP             172.19.0.2/16 fe80::42:acff:fe13:2/64 
+rocky-2 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if50        UP             172.20.0.2/16 fe80::42:acff:fe14:2/64 
+rocky-3 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if52        UP             172.21.0.2/16 fe80::42:acff:fe15:2/64 
+rocky-4 | CHANGED | rc=0 >>
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0@if54        UP             172.22.0.2/16 fe80::42:acff:fe16:2/64 
