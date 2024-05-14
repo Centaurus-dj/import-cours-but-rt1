@@ -36,10 +36,6 @@
 	path = cours/modules/Cloud/src/TD1/ec2.shop
 	url = git@github.com:yeo/ec2.shop.git
 
-[submodule "cours/modules/Cloud/TD1/ec2.shop"]
-	path = cours/modules/Cloud/TD1/ec2.shop
-	url = git@github.com:yeo/ec2.shop.git
-
 [submodule "cours/modules/R309/R309-TP2"]
 	path = cours/modules/R309/R309-TP2
 	url = git@github.com:IUT-Beziers/r309-tp2-alexis-opolka.git
