@@ -56,7 +56,7 @@ Antennes 5G: FUll Dimension MIMO
       > [!NOTE]
       > Où $20 \log(20 * 1.7) + 20 + \frac{1827.2}{40} + 0.18 * \frac{1827.2}{40} + 0.18 * \frac{80}{100} - 0.34(20 - 1.7)$ = $28.972$ dB
 
-      ![reponse-question-6](./src/src/reponse-question-6.jpg)
+      ![reponse-question-6](./src/img/reponse-question-6.jpg)
 
    7. En utilisant le modèle anglais (cf. annexe), estimer la distance entre le mobile et la BTS ($h_e = 20$ m et $h_r = 1.7$ m).
 
@@ -74,7 +74,7 @@ Antennes 5G: FUll Dimension MIMO
 
       $P_{R_3} = -102 dBm$
 
-      ![reponse-question-9](./src/src/reponse-question-9.jpg)
+      ![reponse-question-9](./src/img/reponse-question-9.jpg)
 
 </details>
 <details>
