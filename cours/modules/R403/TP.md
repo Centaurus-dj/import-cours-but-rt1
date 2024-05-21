@@ -29,9 +29,18 @@ $$
 
 $$
 
-
-
 ## Déterminer RC pour $F_e \approx 10 \text{ khz}$
+
+$$
+
+  \omega_0 = \frac{1}{RC} \\
+  2 \times 10 \times 10^3 \times \Pi = \frac{1}{RC} \\
+  RC = \frac{1}{2 \times 10 \times 10^3 \times \Pi} \\
+  RC = 1.59 \times 10^{-5} \\
+  C = \frac{1.59 \times 10^{-5}}{10 \times 10^3} \\
+  = 1.5 \textbf{ nF}
+
+$$
 
 ## GBF Oscillo
 
