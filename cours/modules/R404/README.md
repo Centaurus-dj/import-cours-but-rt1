@@ -103,3 +103,13 @@ $$
 $$
 
 </details>
+
+<summary>
+
+## TD 3
+
+</summary>
+
+```sci
+H4=[H2 H2; H2 -H2]
+```
