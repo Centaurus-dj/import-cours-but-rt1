@@ -1,0 +1,19 @@
+.title circuit Test 1
+
+c1      1       2       10u
+r1      2       3       3.8k
+r2      3       0       7k
+c2      3       0       12u
+
+v1  1 0 PULSE(0 5 1u 1u 1u 1 1 )
+
+.control
+
+  tran 0.5m 1.5
+
+  plot v(1)
+  plot v(3)
+
+.endc
+
+.end
