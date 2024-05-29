@@ -1,0 +1,122 @@
+        1. #### Configurations des interfaces réseau
+
+            La machine hôte du LVS contient deux interfaces:
+
+            | Nom Interface | Adresse IP   |
+            | ------------- | ------------ |
+            | enp2s0        | 10.202.0.175 |
+            | enp5s0f4u2    |              |
+
+            > [!NOTE]
+            > Nous installons l'utilitaire [`keepalived`](https://keepalived.readthedocs.io) afin de configurer et utiliser
+            > le module kernel `LVS` sous linux.
+
+            - Configuration de l'interface publique:
+
+              > [!TIP]
+              > Cette configuration se situe dans le fichier suviant: `/etc/sysconfig/network-scripts/enp2s0`
+
+              ```txt
+              DEVICE=enp2s0
+              BOOTPROTO=static
+              ONBOOT=yes
+              IPADDR=10.202.0.175
+              NETMASK=255.255.0.0
+              GATEWAY=10.202.255.254
+              ```
+
+            - Configuration de l'interface privée en NAT:
+
+              > [!TIP]
+              > Cette configuration se situe dans le fichier suviant: `/etc/sysconfig/network-scripts/enp5s0f4u2`
+
+              ```txt
+              DEVICE=enp5s0f4u2
+              BOOTPROTO=static
+              ONBOOT=yes
+              IPADDR=192.168.200.254
+              NETMASK=255.255.255.0
+              ```
+
+
+     1. ### Configuration des VMs sur un hôte
+
+     Nous avons créer deux VM ubuntu server qui seront les serveurs web. Elles seront configurées sur le subnet `192.168.200.x` avec les adresses IP `192.168.200.1` et `192.168.200.2`, avec comme hostname `VM01` et `VM02`.
+     La VM01 est configuré avec un serveur web apache2 tandis que la VM02 est configuré avec un serveur web nginx (cela nous permettra de facilement les différencier).
+     | Nom Interface | Adresse IP     | Hostname |
+     | ------------- | -------------- | -------- |
+     | ens37        | 192.168.200.1/24 | VM01     |
+     | ens37        | 192.168.200.2/24 | VM02     |
+
+     Test de ping entre les VMs:
+
+     ```bash
+       eca@vm01:~$ ping 192.168.200.2
+       PING 192.168.200.2 (192.168.200.2) 56(84) bytes of data.
+       64 bytes from 192.168.200.2: icmp_seq=1 ttl=64 time=2.72 ms
+       64 bytes from 192.168.200.2: icmp_seq=2 ttl=64 time=0.672 ms
+       64 bytes from 192.168.200.2: icmp_seq=3 ttl=64 time=0.535 ms
+       ^C
+       --- 192.168.200.2 ping statistics ---
+       3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+       rtt min/avg/max/mdev = 0.535/1.308/2.719/0.998 ms
+     ```
+
+     ```bash
+       eca@vm02:~$ ping 192.168.200.1
+       PING 192.168.200.1 (192.168.200.1) 56(84) bytes of data.
+       64 bytes from 192.168.200.1: icmp_seq=1 ttl=64 time=0.759 ms
+       64 bytes from 192.168.200.1: icmp_seq=2 ttl=64 time=0.576 ms
+       64 bytes from 192.168.200.1: icmp_seq=3 ttl=64 time=0.717 ms
+       ^C
+       --- 192.168.200.1 ping statistics ---
+       4 packets transmitted, 4 received, 0% packet loss, time 3048ms
+       rtt min/avg/max/mdev = 0.576/0.674/0.759/0.069 ms
+     ```
+
+        1. #### Configuration du daemon Keepalived
+
+            On crée notre configuration basique de Keepalived:
+
+            > [!TIP]
+            > Cette configuration se situe dans le fichier suivant: `/etc/keepalived/keepalived.conf`
+
+            ```conf
+            global_defs {
+
+              notification_email {
+              contact@alexis-opolka.dev
+              }
+              notification_email_from contact@alexis-opolka.dev
+              smtp_server 127.0.0.1
+              smtp_connect_timeout 60
+            }
+
+            vrrp_instance VI_1 {
+                state MASTER
+                interface enp2s0
+                virtual_router_id 51
+                priority 100
+                advert_int 1
+            }
+
+            virtual_server 10.202.0.175 80 {
+              delay_loop 6
+              lb_algo rr
+              lb_kind NAT
+              protocol TCP
+
+              real_server 192.168.200.1 {
+                TCP_CHECK {
+                  connect_timeout 10
+                  connect_port 80
+                }
+              }
+              real_server 192.168.200.2 {
+                TCP_CHECK {
+                  connect_timeout 10
+                  connect_port 80
+                }
+              }
+            }
+            ```
