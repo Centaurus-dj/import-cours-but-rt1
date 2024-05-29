@@ -40,6 +40,10 @@
 	path = cours/modules/R309/R309-TP2
 	url = git@github.com:IUT-Beziers/r309-tp2-alexis-opolka.git
 
+[submodule "cours/modules/R409/src/tpdocker"]
+	path = cours/modules/R409/src/tpdocker
+	url = git@github.com:pushou/tpdocker.git
+
 ### SAE-related submodules
 
 [submodule "cours/sae/sae-12/sae12-full-admin-right-alexis-opolka"]
@@ -82,9 +86,6 @@
 	path = cours/sae/sae-33
 	url = git@github.com:alexis-opolka/muvirt.git
 
-[submodule "cours/modules/R409/src/tpdocker"]
-	path = cours/modules/R409/src/tpdocker
-	url = git@github.com:pushou/tpdocker.git
 [submodule "cours/sae/sae-41"]
 	path = cours/sae/sae-41
 	url = git@github.com:alexis-opolka/sae-401.git
