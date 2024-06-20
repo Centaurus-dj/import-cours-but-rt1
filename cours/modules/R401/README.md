@@ -669,11 +669,45 @@ Ce compte rendu comprend tous les TP de R401 en un seul fichier.
 
         ![thunderbird-encrypted-signed-email](./src/img/thunderbird-encrypted-signed-email.png)
 
-## TP 2: VPN
+## TP 2 - VPN
 
+1. ### 1 - Questions Préliminaires
 
+    1. Configurer la passerelle de sorte que le client interne ait accès à la partie internet.
+        Il s'agira de mettre du NAT en place.
 
-## TP 3: Proxy
+    1. Donner la configuration (`adresses`, `masques`, `routes`, `iptables`) de chacun des équipements.
+
+    1. Installer OpenVPN et la librairie `Izo` sur la passerelle et sur le client.
+
+1. ### 2 - Premiers tests
+
+    1. Vérifier dans un premier temps la liste des interfaces réseau sur votre machine. \
+        Ensuite, on cherchje à vérifier si OpenVPN peut être lancé à la main. \
+        Sur la passerelle, exécuter la commande suivante:
+
+        ```sh
+        openvpn --dev tun0 --ifconfig 192.168.10.1 192.168.10.2
+        ```
+
+        Et sur le client OpenVPN celle indiquée ci-dessous:
+
+        ```sh
+        openvpn --remote <ip-gateway> --dev tun0 --ifconfig 192.168.10.2
+        ```
+
+    1. Vérifier que la connexion est correctement effectuée en réalisant un ping judicieux.
+
+    1. Lister les interfaces présentes sur vos machines. Que constatez-vous ?
+
+    1. Pendant que le ping fonctionne, capturez une trame à l'aide de wireshark sur chacune des deux \
+        interfaces du client openvpn. Que constatez-vous ? \
+        Expliquez et détaillez l'encapsulation du paquet capturé sur l'interface réseau ethernet de votre machine.
+
+    1. Démarrer un service non chiffré quelconque sur la passerelle ( `telnet`, `ftp`, etc.) \
+        Capturer les paquets échangés sur l'interface ethernet. Sont-ils chiffrés ?
+
+## TP 3 - Proxy
 
 ### 1 - Questions Préliminaires
 

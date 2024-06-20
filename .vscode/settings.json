@@ -1,8 +1,8 @@
 {
   "editor.tabSize": 2,
-  "editor.fontSize": 25,
+  "editor.fontSize": 18,
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Alt Catppuccin Mocha",
+  "workbench.colorTheme": "Alt Catppuccin Macchiato",
   "workbench.iconTheme": "vs-seti",
   "keyboard.layout": "fr",
   "dateTime.timeZone": "Europe/Paris",
