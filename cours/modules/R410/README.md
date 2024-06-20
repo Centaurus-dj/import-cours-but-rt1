@@ -690,8 +690,6 @@ Copyright: All Rights Reserved
 
     1. Lancez un container et donnez un port d’écoute inférieur à 1024.
 
-        TODO: Lancer le docker
-
         ```bash
         docker run -d -p 80:80 --name=web registry.iutbeziers.fr/debianiut
         ```
