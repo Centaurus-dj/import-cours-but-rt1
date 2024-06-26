@@ -4,8 +4,7 @@ imports/
 */imports/*
 cours/modules/R111/R111-TD/out/test/*
 test/*
-temp/*
-*/temp/*
+**/temp/**
 __pycache__
 
 ## Files
