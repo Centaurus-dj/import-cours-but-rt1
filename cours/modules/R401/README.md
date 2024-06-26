@@ -42,6 +42,13 @@ Ce compte rendu comprend tous les TP de R401 en un seul fichier.
         - [nginx.conf](#nginxconf)
         - [proxy\_params](#proxy_params)
   - [TP 4 - NAT et filtrage](#tp-4---nat-et-filtrage)
+    - [1 - Le NAT](#1---le-nat)
+      - [1.1 - Le SNAT](#11---le-snat)
+      - [1.2 - Masquerade](#12---masquerade)
+      - [1.3 - DNAT](#13---dnat)
+    - [2 - Filtrage](#2---filtrage)
+      - [2.1 - Sans état: Stateless](#21---sans-état-stateless)
+      - [2.2 - Avec état: Stateful](#22---avec-état-stateful)
 
 ## TP 1 - Cryptographie
 
@@ -2015,4 +2022,256 @@ proxy_set_header X-Forwarded-Proto $scheme;
 
 ## TP 4 - NAT et filtrage
 
+### 1 - Le NAT
 
+#### 1.1 - Le SNAT
+
+1. Sur quel hook doit se placer la règle de SNAT ?
+
+    La règle de SNAT doit sur se placer sur le hook de `POSTROUTING`.
+
+1. Configurer les tables, chaînes et règles pour faire du SNAT afin de changer l’adresse IP du PC1 lorsqu’il essaie de s’adresser au PC2 et ainsi rendre la communication possible.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    Nous activons temporairement le routage sous linux:
+
+    ```sh
+    echo "1" > /proc/sys/net/ipv4/ip_forward
+    ```
+
+    Afin de faire du SNAT entre le PC1 et le PC2, nous faisons:
+
+    ```sh
+    nft add table nat
+    nft -- add chain nat prerouting { type nat hook prerouting priority -100 \; }
+    nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
+    nft add rule nat postrouting ip saddr 192.168.1.0/24 oif "eth1" snat to 10.202.255.254
+    ```
+
+1. Proposer une méthode pour tester votre configuration et effectuer les relevés nécessaires pour illustrer le bon fonctionnement de votre configuration.
+
+    Nous pouvons faire un ping entre le PC1 et le PC2, si le premier ping fonctionne et que sur le réseau
+    du PC1 nous avons comme IP source/destination l'IP que l'on ping alors que sur le réseau du PC2, nous avons
+    l'IP du routeur, on sait alors que notre configuration est fonctionnelle.
+
+    - ![snat-client-passerelle](./src/img/snat-pc1-pc2-client-passerelle.png)
+    - ![snat-iut-passerelle](./src/img/snat-pc1-pc2-iut-passerelle.png)
+
+    Comme l'on peut voir ci-dessus, la configuration est bien fonctionnelle.
+
+#### 1.2 - Masquerade
+
+1. Supprimer la règle précédente et la remplacer par une règle de type MASQUERADE. \
+    Proposer une méthode pour tester votre configuration et faire les relevés pour illustrer son bon fonctionnement.
+
+    On fait:
+
+    ```sh
+    nft flush ruleset
+    nft add table nat
+    nft -- add chain nat prerouting { type nat hook prerouting priority -100 \; }
+    nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
+    nft add rule nat postrouting oifname "eth1" masquerade
+    ```
+
+    Comme à la question précédente, nous pouvons faire un ping entre le PC1 et le PC2, si le premier ping fonctionne et que sur le réseau
+    du PC1 nous avons comme IP source/destination l'IP que l'on ping alors que sur le réseau du PC2, nous avons
+    l'IP du routeur, on sait alors que notre configuration est fonctionnelle.
+
+    - ![snat-client-passerelle](./src/img/masquerade-pc1-pc2-client-passerelle.png)
+    - ![snat-iut-passerelle](./src/img/masquerade-pc1-pc2-iut-passerelle.png)
+
+    Comme l'on peut voir ci-dessus, la configuration est bien fonctionnelle.
+
+#### 1.3 - DNAT
+
+1. Sur quel hook doit se placer la règle de DNAT ?
+
+    La règle de DNAT doit se placer sur le hook de `PREROUTING`.
+
+1. Configurer les tables, chaînes et règles pour faire du DNAT afin de permettre au PC2 d’accéder au serveur web interne.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    On fait:
+
+    ```sh
+    nft flush ruleset
+    nft add table nat
+    nft -- add chain nat prerouting { type nat hook prerouting priority -100 \; }
+    nft add rule nat prerouting iif eth1 tcp dport { 80, 443 } dnat 192.168.1.92;
+    ```
+
+1. Proposer une méthode pour tester votre configuration et effectuer les relevés nécessaires pour illustrer le bon fonctionnement de votre configuration.
+
+    On peut modifier la page HTML du serveur web afin de s'assurer que l'on tombe bien sur le serveur en question,;
+    puis faire un cURL du PC2 à l'adresse de la gateway du réseau et voir si l'on reçoit bien notre page HTML.
+
+    On fait donc:
+
+    ```sh
+    curl http://10.202.255.254
+    ```
+
+    ce qui nous donne:
+
+    ```html
+    <html>
+        <body>
+            You are indeed on the internal web server!
+        </body>
+    </html>
+    ```
+
+    Notre DNAT est alors fonctionnel.
+
+### 2 - Filtrage
+
+#### 2.1 - Sans état: Stateless
+
+1. Récupérer l’adresse IP d’un site web et proposer une règle permettant d’empêcher les consultations de ce site.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    Quel peut être la limite de cette approche (on pourra penser aux adresses IP utilisées
+    par des serveurs comme Facebook ou d’autres grosses entreprises qui gèrent beaucoup de trafic) ?
+
+    Pour filtrer une IP statique, comme par exemple notre serveur web interne, on peut faire:
+
+    ```sh
+    nft add table filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule filter output ip daddr 192.168.1.92 drop
+    ```
+
+    On voit lorsque l'on tente de ping l'IP en question, que l'on ne reçoit pas de réponse:
+
+    ```sh
+    PING 192.168.1.92 (192.168.1.92) 56(84) bytes of data.
+    --- 192.168.1.92 ping statistics ---
+    4 packets transmitted, 0 received, 100% packet loss, time 3069ms
+    ```
+
+    Dans le cas d'entreprises avec beaucoup de traffic ou de serveurs, cette approche serait limitée
+    par le nombre connu d'adresses IP répondant au service ou à l'entreprise en question.
+
+1. On activera un serveur SSH sur le routeur pour que des personnes du réseau local puissent l’administrer.
+    Le premier filtre que nous allons mettre en place est de bloquer le trafic sur le port 22 pour des messages provenant du réseau du PC2.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    On bloque le port 22 pour toutes les IP provenant du réseau du PC2, c'est à dire du réseau `10.202.0.0/16`.
+
+    ```sh
+    nft flush ruleset
+    nft add table filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule filter input tcp dport 22 ip saddr 10.202.0.0/16 drop
+    ```
+
+    Nous bloquons maintenant le traffic entrant sur le port 22 s'il provient du réseau `10.202.0.0/16`,
+    nous ne pouvons donc pas faire de session SSH sur le routeur mais pouvons le ping. \
+    Par contre, le routeur peut, lui, SSH les machines du réseau `10.202.0.0/16`.
+
+    > [!NOTE]
+    > Pour plus d'informations, j'ai utilisé la documentation de `nftables` sur le portknocking afin
+    > de bien structurer les commandes nftables, documentation accessible [ici](https://wiki.nftables.org/wiki-nftables/index.php/Port_knocking_example).
+
+1. Si on suppose que la passerelle ou le réseau interne dispose de plusieurs services, est-il raisonnable de spécifier un par un les ports
+    accessibles depuis l’intérieur, mais pas l’extérieur ? Quel est le risque d’une telle approche ? \
+    Que faudrait-il préciser dans la déclaration de la chaîne pour se simplifier la vie et assurer une meilleure sécurité ?
+
+    Il faudrait que l'on filtre par service au lieu de filtrer par ports utilisés par le service.
+
+1. Proposer une règle permettant de rejeter les paquets entrants sur l’interface de sortie du routeur (celle reliée au réseau de la salle) correspondant à des ECHO_REQUEST_ICMP.
+    Tester la différence entre les 2 actions "REJECT" et "DROP". Vous illustrerez ceci avec des captures des résultats obtenus sur vos consoles
+
+    ```sh
+    nft add rule ip filter input iifname "eth1" ip daddr 10.202.255.254 icmp type echo-request drop
+    nft add rule ip filter input iifname "eth1" ip daddr 10.202.255.254 icmp type echo-request reject
+    ```
+
+    - `drop`
+
+        Quand on drop un paquet, c'est comme si le réseau n'arrivait pas à acheminer le paquet
+        jusqu'à destination, nous n'avons donc aucun retour logiciel/visuel.
+
+        ```sh
+        PING 10.202.255.254 (10.202.255.254) 56(84) bytes of data.
+        --- 10.202.255.254 ping statistics ---
+        3 packets transmitted, 0 received, 100% packet loss, time 2047ms
+        ```
+
+    - `reject`
+
+        Quand on reject un paquet, nous affirmons que nous ne le voulons pas,
+        nous envoyons donc une réponse logicielle/visuelle.
+
+        ```sh
+        PING 10.202.255.254 (10.202.255.254) 56(84) bytes of data.
+        From 10.202.255.254 icmp_seq=1 Destination Port Unreachable
+        From 10.202.255.254 icmp_seq=2 Destination Port Unreachable
+        From 10.202.255.254 icmp_seq=3 Destination Port Unreachable
+        From 10.202.255.254 icmp_seq=4 Destination Port Unreachable
+
+        --- 10.202.255.254 ping statistics ---
+        4 packets transmitted, 0 received, +4 errors, 100% packet loss, time 3040ms
+        ```
+
+1. Donner le fichier de règles permettant de
+
+    - ▷bloquer par défaut tout le trafic sur le routeur ;
+    - ▷autoriser les ping sur le routeur
+    - ▷n’autoriser que les connexions entrantes en SSH provenant du réseau interne (gauche sur la figure 1)
+    - ▷autoriser les connexions traversant le routeur à destination de serveurs web (port destination 80)
+
+#### 2.2 - Avec état: Stateful
+
+1. Dans la documentation du site [https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes),
+    quel est le mot clef utilisé pour faire référence à du suivi de connexion ? Où s’applique-t-il ?
+
+    Selon la documentation, le mot clef `ct`, accessible [ici](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Ct),
+    fait référence au suivi de connexion, ils sont principalement utilisés pour faire des filtres, voir [ici](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Matches).
+
+1. Proposer une règle qui autorise le trafic depuis l’extérieur (partie de droite) vers l’intérieur
+    (partie de gauche) que si elles ont été initiées par le réseau interne. \
+    Vous indiquerez la commande dans votre compte-rendu ainsi que le test et son résultat pour prouver son
+    bon fonctionnement
+
+    ```sh
+    nft flush ruleset
+    nft add table ip filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule ip filter input iifname "eth2" ct original ip saddr 192.168.1.0/24 ct original ip daddr 10.202.0.0/16 ct state new,established accept
+    nft add rule ip filter input iifname "eth2" ct original ip saddr 10.202.0.0/16 ct original ip daddr 192.168.1.0/24 ct state new,established reject
+    ```
+
+1. Quelle instruction permet de bloquer les paquets entrants invalides et de les compter ?
+
+    Selon la documentation, il faudrait faire:
+
+    ```sh
+    nft add table ip filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule ip filter input ct state invalid counter drop
+    ```
+
+1. Quelle instruction permet de compter les demandes de connexion provenant de l’extérieur à destination du serveur web interne ?
+
+    ```sh
+    nft flush ruleset
+    nft add table ip filter
+    nft add counter filter web
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule ip filter input iifname "eth1" ip daddr 192.168.1.92 tcp dport 80 counter name web
+    ```
+
+1. Comment afficher la valeur du compteur précédemment défini ?
+
+    Il faudrait lister les règles NFTABLES afin d'afficher la valeur du compteur précédemment défini:
+
+    ```sh
+    nft list counter filter web
+    ```
