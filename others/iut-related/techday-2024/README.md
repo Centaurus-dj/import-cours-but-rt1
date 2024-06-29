@@ -36,7 +36,7 @@ formations en entreprise (quand une seule) ou programmées (quand plusieurs)
 
   - Applications
     - Sécurité et tracabilité (Geofencing, Tracking personnel)
-    - Automatisation (Télémetrei, Maintenance à distance)
+    - Automatisation (Télémetrie, Maintenance à distance)
     - Monitorign Environnemental (Données météo)
 
   - Enjeu de souveraineté
@@ -128,7 +128,7 @@ prototype d'antenne sur contexte metallique
 
 3cmx5cm
 
-chambre anéchoide
+chambre anéchoïque
 
 Gain supérieur à une antenne COTS
 Augmentation de 60% des messages reçus par les satellites de la constellation Kinéis
