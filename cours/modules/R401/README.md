@@ -18,15 +18,39 @@ Ce compte rendu comprend tous les TP de R401 en un seul fichier.
     - [Fonctions de Hachage](#fonctions-de-hachage)
   - [TP 2 - VPN](#tp-2---vpn)
   - [TP 3 - Proxy](#tp-3---proxy)
+  - [TP 2 - VPN](#tp-2---vpn)
+    - [1 - Questions Préliminaires](#1---questions-préliminaires)
+    - [2 - Premiers tests](#2---premiers-tests)
+    - [3 - Ajout d'une clé de chiffrement partagée](#3---ajout-dune-clé-de-chiffrement-partagée)
+    - [4 - Finalisation](#4---finalisation)
+    - [5 - Utilisation de TLS et PKI](#5---utilisation-de-tls-et-pki)
+    - [6 - Pontage (bridge)](#6---pontage-bridge)
+    - [Annexes TP 2](#annexes-tp-2)
+      - [Configurations Réseau NetworkManager](#configurations-réseau-networkmanager)
+        - [Passerelle](#passerelle)
+      - [Configurations DNSMASQ](#configurations-dnsmasq)
+        - [00-use-dnsmasq.conf](#00-use-dnsmasqconf)
+        - [01-DNS-lan.conf](#01-dns-lanconf)
+        - [02-DHCP-lan.conf](#02-dhcp-lanconf)
+        - [03-DNS-iut.conf](#03-dns-iutconf)
+        - [04-DHCP-iut.conf](#04-dhcp-iutconf)
+  - [TP 3 - Proxy](#tp-3---proxy)
     - [1 - Questions Préliminaires](#1---questions-préliminaires)
     - [2 - Proxy direct](#2---proxy-direct)
     - [3 - Proxy reverse](#3---proxy-reverse)
-      - [Annexes TP 3](#annexes-tp-3)
-        - [Configuration Squid](#configuration-squid)
-        - [Configuration Nginx Proxy Inverse](#configuration-nginx-proxy-inverse)
-          - [nginx.conf](#nginxconf)
-          - [proxy\_params](#proxy_params)
+    - [Annexes TP 3](#annexes-tp-3)
+      - [Configuration Squid](#configuration-squid)
+      - [Configuration Nginx Proxy Inverse](#configuration-nginx-proxy-inverse)
+        - [nginx.conf](#nginxconf)
+        - [proxy\_params](#proxy_params)
   - [TP 4 - NAT et filtrage](#tp-4---nat-et-filtrage)
+    - [1 - Le NAT](#1---le-nat)
+      - [1.1 - Le SNAT](#11---le-snat)
+      - [1.2 - Masquerade](#12---masquerade)
+      - [1.3 - DNAT](#13---dnat)
+    - [2 - Filtrage](#2---filtrage)
+      - [2.1 - Sans état: Stateless](#21---sans-état-stateless)
+      - [2.2 - Avec état: Stateful](#22---avec-état-stateful)
 
 ## TP 1 - Cryptographie
 
@@ -671,12 +695,862 @@ Ce compte rendu comprend tous les TP de R401 en un seul fichier.
 
 ## TP 2 - VPN
 
-1. ### 1 - Questions Préliminaires
+### 1 - Questions Préliminaires
 
-    1. Configurer la passerelle de sorte que le client interne ait accès à la partie internet.
-        Il s'agira de mettre du NAT en place.
+1. Configurer la passerelle de sorte que le client interne ait accès à la partie Internet.
+    Il s'agira de mettre du NAT en place.
 
-    1. Donner la configuration (`adresses`, `masques`, `routes`, `iptables`) de chacun des équipements.
+    En premiers lieux, on configure la passerelle afin de pouvoir avoir un schéma fonctionnel. \
+    On installe `dnsmasq` et `firewalld` afin de permettre à notre routeur de faire DNS et DHCP.
+
+    - On configure les interfaces réseaux afin que le service `NetworkManager-wait-online.service` ne tourne pas en essayant d'alimenter une
+        adresse IP sur nos trois interfaces.
+
+        - On change d'abord leur nom:
+
+            Vu que l'on a ajouté deux interfaces en plus, elles sont nommées par défaut en `Wired connection X` où X correspond à l'interface. \
+            Cela ne nous permet pas de distinguer facilement leur attaches via `nmcli`, nous les renommons alors:
+
+            ```sh
+            nmcli con modify "Wired connection 1" connection.id "iut-net eth1"
+            nmcli con modify "Wired connection 2" connection.id "internal-net eth2"
+            ```
+
+        Nous allons ensuite dans le répertoire `/etc/NetworkManager/system-connections/` afin de configurer "en dur" la configuration:
+
+        - Pour `eth1`:
+
+            ```ini
+            [connection]
+            id=iut-net eth1
+            uuid=c1682d93-6910-3916-a30f-71675e5d0508
+            type=ethernet
+            autoconnect-priority=-999
+            interface-name=eth1
+            timestamp=1719335741
+
+            [ethernet]
+
+            [ipv4]
+            address1=10.202.255.254/16
+            method=manual
+
+            [ipv6]
+            addr-gen-mode=default
+            method=auto
+
+            [proxy]
+            ```
+
+        - Pour `eth2`:
+
+            ```ini
+            [connection]
+            id=internal-net eth2
+            uuid=6e55c895-cba4-358e-9932-eba3fb9c3c8f
+            type=ethernet
+            autoconnect-priority=-999
+            interface-name=eth2
+            timestamp=1719335741
+
+            [ethernet]
+
+            [ipv4]
+            address1=192.168.1.254/24
+            method=manual
+
+            [ipv6]
+            addr-gen-mode=default
+            method=auto
+
+            [proxy]
+            ```
+
+    - On installe les paquets:
+
+        ```sh
+        dnf install dnsmasq firewalld
+        ```
+
+    - Nous devons dire à NetworkManager d'utiliser dnsmasq, pour cela on crée le fichier [`00-use-dnsmasq.conf`](#00-use-dnsmasqconf) avec le contenu suivant:
+
+        ```ini
+        [main]
+        dns=dnsmasq
+        ```
+
+    - Nous avons deux réseaux qu'il va falloir définir, le réseau IUT et le réseau interne
+
+        Nous configurons alors `dnsmasq` en créant les fichiers suivants: [`01-DNS-lan.conf`](#01-dns-lanconf), [`02-DHCP-lan.conf`](#02-dhcp-lanconf),
+        [`03-DNS-iut.conf`](#03-dns-iutconf) et [`04-DHCP-iut.conf`](#04-dhcp-iutconf).
+
+    - Nous devons maintenant ouvrir le firewall, pour cela nous faisons:
+
+        ```sh
+        firewall-cmd --set-default-zone FedoraServer
+        firewall-cmd --get-services
+        firewall-cmd --zone=FedoraServer --permanent --add-service=dhcp
+        firewall-cmd --zone=FedoraServer --permanent --add-service=dns
+        firewall-cmd --reload
+        ```
+
+    - Coté clients, nous devons modifier le fichier de connections NetworkManager
+
+        Sur le client IUT et le client réseau interne, nous modifions le fichier `cloud-init-eth0.nmconnection`
+        pour que la ligne:
+
+        ```ini
+        [ipv4]
+        may-fail=false
+        method=link-local
+        ```
+
+        devienne:
+
+        ```ini
+        [ipv4]
+        may-fail=false
+        method=auto
+        ```
+
+    Après cela, nous configurons le NAT afin de pouvoir accéder à Internet:
+
+    > [!NOTE]
+    > Dans le cas où `nft` renverrait une erreur de commande inconnue, veuillez installer `nftables` comme ci-dessous:
+    >
+    > ```sh
+    > dnf install nftables
+    > ```
+
+    ```sh
+    nft add table nat
+    nft -- add chain nat prerouting { type nat hook prerouting priority -100 \; }
+    nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
+    nft add rule nat postrouting oifname "eth0" masquerade
+    nft add rule nat postrouting oifname "eth1" snat to 10.202.255.254
+    ```
+
+    N'oublions pas d'activer temporairement le routage IPv4:
+
+    ```sh
+    sudo echo "1" > /proc/sys/net/ipv4/ip_forward
+    ```
+
+    Comme l'on peut le voir, cela nous permet d'accéder à Internet:
+
+    - Du client IUT
+
+        - ![client-passerelle](./src/img/interne-internet-client-passerelle.png)
+        - ![passerelle-internet](./src/img/interne-internet-passerelle-internet.png)
+
+    On peut aussi accéder du réseau interne au réseau de l'IUT:
+
+    - Du client interne
+
+        - ![client-passerelle](./src/img/interne-iut-client-passerelle.png)
+        - ![passerelle-iut](./src/img/interne-iut-iut-passerelle.png)
+
+1. Donner la configuration (adresses, masques, routes, iptables) de chacun des équipements.
+
+    | Machine                          | IP                                  |
+    | -------------------------------- | ----------------------------------- |
+    | Client IUT                       | 10.202.1.1/16 (Bail DHCP Statique)  |
+    | Passerelle - Pate réseau IUT     | 10.202.255.254/16                   |
+    | Passerelle - Pate Internet       | 192.168.124.130                     |
+    | Passerelle - Pate Réseau Interne | 192.168.1.254/24                    |
+    | Client Réseau Interne            | 192.168.1.1/24 (Bail DHCP Statique) |
+
+    Voir les fichiers de configuration en [annexes](#annexes-tp-2) afin de voir en détail la configuration.
+
+1. Installer OpenVPN et la librairie `lzo` sur la passerellle et sur le client
+
+    Nous installons OpenVPN sur la passerelle et sur le client:
+
+        On fait:
+
+        ```sh
+        dnf install openvpn lzo
+        ```
+
+### 2 - Premiers tests
+
+1. Vérifier dans un premier temps la liste des interfaces réseau sur votre machine.
+    Ensuite, on cherche à vérifier si OpenVPN peut être lancé à la main. \
+    Sur la passerelle, exécuter la commande suivante:
+
+    ```sh
+    openvpn --dev tun0 --ifconfig 192.168.10.1 192.168.10.2
+    ```
+
+    Et sur le client OpenVPN celle indiquée ci-dessous:
+
+    ```sh
+    openvpn --remote <ip-passerelle> --dev tun0 --ifconfig 192.168.10.2 192.168.10.1
+    ```
+
+    ---
+
+    Avant tout, nous devons ouvrir les ports du firewall afin que le port `1194` soit ouvert à la communication
+    entre les deux machines:
+
+    Sur le client:
+
+    ```sh
+    firewall-cmd --add-port=1194/udp
+    ```
+
+    et sur la passerelle:
+
+    ```sh
+    firewall-cmd --zone FedoraServer --add-port=1194/udp
+    ```
+
+    > [!NOTE]
+    > Il semblerait que sur Fedora, ce port ne soit pas ouvert par défaut, d'où le besoin
+    > de l'ouvrir manuellement.
+
+    Sur la passerelle, nous faisons:
+
+    ```sh
+    openvpn --dev tun0 --ifconfig 192.168.10.1 192.168.10.2 --proto udp4
+    ```
+
+    > [!NOTE]
+    > Sur Fedora, il semblerait être nécessaire d'ajouter `--proto udp4` afin qu'ils puissent communiquer ensembles.
+    > Sinon, la passerelle ne semblait pas vouloir communiquer en IPV4.
+
+    et sur le client nous faisons:
+
+    ```sh
+    openvpn --remote 192.168.1.254 --dev tun0 --ifconfig 192.168.10.2 192.168.10.1
+    ```
+
+    Ce qui nous donne:
+
+    - Pour le client:
+
+        ```sh
+        2024-06-25 19:48:08 DEPRECATION: No tls-client or tls-server option in configuration detected. OpenVPN 2.7 will remove the functionality to run a VPN without TLS. See the examples section in the manual page for examples of a similar quick setup with peer-fingerprint.
+        2024-06-25 19:48:08 OpenVPN 2.6.9 x86_64-redhat-linux-gnu [SSL (OpenSSL)] [LZO] [LZ4] [EPOLL] [PKCS11] [MH/PKTINFO] [AEAD] [DCO]
+        2024-06-25 19:48:08 library versions: OpenSSL 3.1.1 30 May 2023, LZO 2.10
+        2024-06-25 19:48:08 DCO version: N/A
+        2024-06-25 19:48:08 ******* WARNING *******: '--cipher none' was specified. This means NO encryption will be performed and tunnelled data WILL be transmitted in clear text over the network! PLEASE DO RECONSIDER THIS SETTING!
+        2024-06-25 19:48:08 ******* WARNING *******: '--auth none' was specified. This means no authentication will be performed on received packets, meaning you CANNOT trust that the data received by the remote side have NOT been manipulated. PLEASE DO RECONSIDER THIS SETTING!
+        2024-06-25 19:48:08 ******* WARNING *******: All encryption and authentication features disabled -- All data will be tunnelled as clear text and will not be protected against man-in-the-middle changes. PLEASE DO RECONSIDER THIS CONFIGURATION!
+        2024-06-25 19:48:08 TUN/TAP device tun0 opened
+        2024-06-25 19:48:08 net_iface_mtu_set: mtu 1500 for tun0
+        2024-06-25 19:48:08 net_iface_up: set tun0 up
+        2024-06-25 19:48:08 net_addr_ptp_v4_add: 192.168.10.2 peer 192.168.10.1 dev tun0
+        2024-06-25 19:48:08 TCP/UDP: Preserving recently used remote address: [AF_INET]192.168.1.254:1194
+        2024-06-25 19:48:08 UDPv4 link local (bound): [AF_INET][undef]:1194
+        2024-06-25 19:48:08 UDPv4 link remote: [AF_INET]192.168.1.254:1194
+        2024-06-25 19:48:12 Peer Connection Initiated with [AF_INET]192.168.1.254:1194
+        2024-06-25 19:48:13 Initialization Sequence Completed
+        ```
+
+    - Pour le serveur:
+
+        ```sh
+        2024-06-25 19:47:52 DEPRECATION: No tls-client or tls-server option in configuration detected. OpenVPN 2.7 will remove the functionality to run a VPN without TLS. See the examples section in the manual page for examples of a similar quick setup with peer-fingerprint.
+        2024-06-25 19:47:52 OpenVPN 2.6.9 x86_64-redhat-linux-gnu [SSL (OpenSSL)] [LZO] [LZ4] [EPOLL] [PKCS11] [MH/PKTINFO] [AEAD] [DCO]
+        2024-06-25 19:47:52 library versions: OpenSSL 3.1.1 30 May 2023, LZO 2.10
+        2024-06-25 19:47:52 DCO version: N/A
+        2024-06-25 19:47:52 ******* WARNING *******: '--cipher none' was specified. This means NO encryption will be performed and tunnelled data WILL be transmitted in clear text over the network! PLEASE DO RECONSIDER THIS SETTING!
+        2024-06-25 19:47:52 ******* WARNING *******: '--auth none' was specified. This means no authentication will be performed on received packets, meaning you CANNOT trust that the data received by the remote side have NOT been manipulated. PLEASE DO RECONSIDER THIS SETTING!
+        2024-06-25 19:47:52 ******* WARNING *******: All encryption and authentication features disabled -- All data will be tunnelled as clear text and will not be protected against man-in-the-middle changes. PLEASE DO RECONSIDER THIS CONFIGURATION!
+        2024-06-25 19:47:52 TUN/TAP device tun0 opened
+        2024-06-25 19:47:52 net_iface_mtu_set: mtu 1500 for tun0
+        2024-06-25 19:47:52 net_iface_up: set tun0 up
+        2024-06-25 19:47:52 net_addr_ptp_v4_add: 192.168.10.1 peer 192.168.10.2 dev tun0
+        2024-06-25 19:47:52 UDPv4 link local (bound): [AF_INET][undef]:1194
+        2024-06-25 19:47:52 UDPv4 link remote: [AF_UNSPEC]
+        2024-06-25 19:48:08 Peer Connection Initiated with [AF_INET]192.168.1.24:1194
+        2024-06-25 19:48:10 Initialization Sequence Completed
+        ```
+
+1. Vérifiez que la connexion est correctement effectuée en réalisant un ping judicieux.
+
+    Vu que l'on a établi une connexion VPN en Peer to Peer, nous pouvons simplement ping notre pair et voir s'il répond.
+
+    Du client, on fait:
+
+    ```sh
+    ping 192.168.10.1
+    ```
+
+    ce qui nous donne:
+
+    ```sh
+    PING 192.168.10.1 (192.168.10.1) 56(84) bytes of data.
+    64 bytes from 192.168.10.1: icmp_seq=1 ttl=64 time=1.85 ms
+    64 bytes from 192.168.10.1: icmp_seq=2 ttl=64 time=2.01 ms
+    64 bytes from 192.168.10.1: icmp_seq=3 ttl=64 time=1.39 ms
+    64 bytes from 192.168.10.1: icmp_seq=4 ttl=64 time=6.80 ms
+    64 bytes from 192.168.10.1: icmp_seq=5 ttl=64 time=1.28 ms
+    --- 192.168.10.1 ping statistics ---
+    5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+    rtt min/avg/max/mdev = 1.280/2.665/6.801/2.085 ms
+    ```
+
+1. Lister les interfaces présentes sur vos machines. Que constatez-vous ?
+
+    Lorsque l'on liste les interfaces, on peut voir l'arrivée d'une interface `tun0`:
+
+    ```sh
+    lo               UNKNOWN        127.0.0.1/8 ::1/128
+    eth0             UP             192.168.1.24/16
+    tun0             UNKNOWN        192.168.10.2 peer 192.168.10.1/32 fe80::3dab:715a:2dbd:9b8b/64
+    ```
+
+    Cette interface correspond bien au nom que l'on a donné lors de la commande openvpn et est
+    bien sur une connection P2P.
+
+1. Pendant que le ping fonctionne, capturez une trame à l'aide de wireshark sur chacune des deux interfaces du client openvpn. \
+    Que constatez-vous ? Expliquez et détaillez l'encapsulation du paquet capturé sur l'interface réseau ethernet de votre machine.
+
+    - ![openvpn-capture-1](./src/img/openvpn-capture-1.png)
+
+    Comme l'on peut le voir au dessus, une transmission VPN avec notre configuration actuelle fait apparaitre
+    des paquets `P_CONTROL_HARD_RESET_SERVER_V2`, toute fois, la stack d'une communication VPN avec OpenVPN
+    est:
+
+    - ![openvpn-net-stack](./src/img/openvpn-net-stack.png)
+
+    Donc avec l'encapsulation suivante:
+
+    - Ethernet
+    - IP
+    - UDP/TCP
+    - OpenVPN
+
+    où UDP peut être interchangé avec TCP selon la configuration et OpenVPN étant de la couche applicative permettant de
+    transmettre les informations propres à la discussion VPN, dans notre cas, notre ping.
+
+1. Démarrez un service non chiffré quelconque sur la passerelle (telnet, ftp, etc.). \
+    Capturer les paquets échangés sur l'interface ethernet. Sont-ils chiffrés ?
+
+    Nous devons tout d'abord installer un serveur FTP sur la passerelle:
+
+    ```sh
+    dnf install vsftpd
+    ```
+
+    puis nous le démarrons et configurons le firewall:
+
+    ```sh
+    systemctl start vsftpd
+    firewall-cmd --add-service=ftp
+    ```
+
+    Du client, nous essayons d'accéder au serveur FTP:
+
+    ```sh
+    ftp -p 192.168.10.1 21
+    ```
+
+    ce qui nous donne:
+
+    ```sh
+    Connected to 192.168.10.1 (192.168.10.1).
+    220 (vsFTPd 3.0.5)
+    Name (192.168.10.1:root): fedora
+    331 Please specify the password.
+    Password:
+    230 Login successful.
+    Remote system type is UNIX.
+    Using binary mode to transfer files.
+    ftp>
+    ```
+
+    Et comme l'on peut le voir ci-dessous, les paquets sont transmis en clair sur le réseau:
+
+    - ![openvpn-ftp-clear](./src/img/openvpn-ftp-clear-communication.png)
+
+### 3 - Ajout d'une clé de chiffrement partagée
+
+Créer une clée partagée sur le serveur à l'aide de la commande suivante:
+
+```sh
+openvpn --genkey --secret static.key
+```
+
+ >[!NOTE]
+ > Au vu d'une note de `deprecation`, nous faisons la commande suivante:
+ >
+ > ```sh
+ > openvpn --genkey secret static.key
+ > ```
+
+1. Que contient le fichier `static.key` ?
+
+    Le fichier contient une clé statique OpenVPN:
+
+    ```txt
+    #
+    # 2048 bit OpenVPN static key
+    #
+
+    -----BEGIN OpenVPN Static key V1-----
+    8f4b73735fd63db512ef282c706b6aab
+    0dc024fdc78e5927f75bde1d1cdc632a
+    7940362235bcf7fdb67af0ee4979543b
+    079a95e8f988c6f1c9170b02a5647e9e
+    74a5e4dbaefeee7aab4516d18c9f4514
+    051773c056b6f492d06aa8d62481dcc5
+    03d3e22fee5852a8b6e3d628f265c1a7
+    e6111edcefba8ee584f642ebeb642d68
+    21190b702b256d80cdd767b5f3dfb823
+    8ec031081dfc307b572585d7d8c24267
+    9f85c20b3bb4f5167dbd60960e434ade
+    5ccfe9705ce7ac8eaa32052b4a0f3de7
+    358de9e39eb63c4ec607e185c10cd105
+    86cb23b81bbbc396606bca790cb609d6
+    9073105e4e0e5770ea01f3a3bf4c8e67
+    61cbe953e0f307312a39d611dd31fe1e
+    -----END OpenVPN Static key V1-----
+    ```
+
+1. De quel type de clé s'agit-il ?
+
+    Selon la documentation de openvpn, accessible [ici](https://openvpn.net/community-resources/openvpn-cryptographic-layer/),
+    la clé static est composée de quatres clés indépendantes: `HMAC send`, `HMAC receive`, `encrypt` et `decrypt`.
+
+1. Quelle est sa longueur ?
+
+    Elle fait 2048 bits de longueur.
+
+1. Il faut maintenant transférer cette clé de façon sécurisée sur le client. Comment procéder ?
+
+    Relancez le VPN entre les deux machines en concaténant aux commandes précédentes la directive suivante:
+
+    ```sh
+    --secret /chemin/vers/votre/clef
+    ```
+
+    ---
+
+    On peut transmettre de façon sécurisée la clef symmétrique via SFTP.
+
+    On se connecte maintenant, en faisant:
+
+    - Sur le client:
+
+        ```sh
+        openvpn --remote 192.168.1.254 --dev tun0 --ifconfig 192.168.10.2 192.168.10.1 --proto udp4 --secret static.key --cipher AES-256-CBC
+        ```
+
+    - Sur la passerelle:
+
+        ```sh
+        openvpn --dev tun0 --ifconfig 192.168.10.1 192.168.10.2 --proto udp4 --secret static.key --cipher AES-256-CBC
+        ```
+
+    > [!NOTE]
+    > Nous devons préciser l'option `cipher` avec la valeur `AES-256-CBC` car par défaut, OpenVPN essaie d'utiliser `BF-CBC` qui est
+    > déprécié pour des raisons de sécurité sur les versions 3.X+ de OpenSSL.
+
+1. Vérifier le bon fonctionnement du réseau.
+
+    On peut toujours ping notre pair:
+
+    ```sh
+    ping -c 4 192.168.10.1
+    ```
+
+    ce qui nous donne:
+
+    ```sh
+    PING 192.168.10.1 (192.168.10.1) 56(84) bytes of data.
+    64 bytes from 192.168.10.1: icmp_seq=1 ttl=64 time=1.17 ms
+    64 bytes from 192.168.10.1: icmp_seq=2 ttl=64 time=1.13 ms
+    64 bytes from 192.168.10.1: icmp_seq=3 ttl=64 time=1.71 ms
+    64 bytes from 192.168.10.1: icmp_seq=4 ttl=64 time=1.85 ms
+
+    --- 192.168.10.1 ping statistics ---
+    4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+    rtt min/avg/max/mdev = 1.132/1.465/1.853/0.321 ms
+    ```
+
+1. Montrez que vos communications au travers du vpn sont maintenant chiffrés.
+
+    Pour gagner de la bande passante, vous pouvez également ajouter la directive suivante aux commandes précédentes.
+
+    ```sh
+    --comp-lzo --keepalive 10 60 --float
+    ```
+
+    ---
+
+    - ![openvpn-symmetric-key-network-encrypted](./src/img/openvpn-symmetric-key-network-crypted.png)
+
+    On peut voir que notre traffic est bien chiffré.
+
+1. Tester et expliquer
+
+### 4 - Finalisation
+
+Pour se simplifier la vie, il est préférable de mettre au point un fichier de configuration.
+Le démarrage d’openvpn se fera alors de la façon suivante:
+
+```sh
+openvpn /path/to/pc.conf
+```
+
+Avec le fichier de configuration suivante (pour le client):
+
+```ini
+dev tun
+remote ip_passerelle
+ifconfig 192.168.10.2 192.168.10.1
+secret /etc/openvpn/static.key
+comp-lzo
+keepalive 10 60
+float
+```
+
+1. Créer le fichier de configuration du serveur, et tester le bon fonctionnement du tout.
+
+    On crée le fichier de confiuuration serveur:
+
+    ```ini
+    dev tun
+    ifconfig 192.168.10.1 192.168.10.2
+    secret /etc/openvpn/static.key
+    comp-lzo
+    keepalive 10 60
+    float
+    cipher AES-256-CBC
+    ```
+
+    Comme on peut le voir des logs vpn clients, nous accédons bien à initialiser
+    la connexion VPN avec le serveur:
+
+    ```sh
+    2024-06-26 12:04:50 DEPRECATED OPTION: The option --secret is deprecated.
+    2024-06-26 12:04:50 WARNING: Compression for receiving enabled. Compression has been used in the past to break encryption. Sent packets are not compressed unless "allow-compression yes" is also set.
+    2024-06-26 12:04:50 DEPRECATION: No tls-client or tls-server option in configuration detected. OpenVPN 2.7 will remove the functionality to run a VPN without TLS. See the examples section in the manual page for examples of a similar quick setup with peer-fingerprint.
+    2024-06-26 12:04:50 OpenVPN 2.6.9 x86_64-redhat-linux-gnu [SSL (OpenSSL)] [LZO] [LZ4] [EPOLL] [PKCS11] [MH/PKTINFO] [AEAD] [DCO]
+    2024-06-26 12:04:50 library versions: OpenSSL 3.1.1 30 May 2023, LZO 2.10
+    2024-06-26 12:04:50 DCO version: N/A
+    2024-06-26 12:04:50 TUN/TAP device tun0 opened
+    2024-06-26 12:04:50 net_iface_mtu_set: mtu 1500 for tun0
+    2024-06-26 12:04:50 net_iface_up: set tun0 up
+    2024-06-26 12:04:50 net_addr_ptp_v4_add: 192.168.10.2 peer 192.168.10.1 dev tun0
+    2024-06-26 12:04:50 TCP/UDP: Preserving recently used remote address: [AF_INET]192.168.1.254:1194
+    2024-06-26 12:04:50 UDPv4 link local (bound): [AF_INET][undef]:1194
+    2024-06-26 12:04:50 UDPv4 link remote: [AF_INET]192.168.1.254:1194
+    2024-06-26 12:04:52 Peer Connection Initiated with [AF_INET]192.168.1.254:1194
+    2024-06-26 12:04:52 Initialization Sequence Completed
+    ```
+
+### 5 - Utilisation de TLS et PKI
+
+1. À l’aide de votre moteur de recherche préféré, expliquez en quelques phrases ce qu’est TLS.
+
+    La première étape pour obtenir une véritable configuration est de construire une PKI (public key infrastructure), qui consiste en :
+
+    - ▷Un certificat séparé (clef publique) et une clé privée pour le serveur et pour chaque client.
+    - ▷Une autorité de certification qui signe les certificats précédents.
+
+    On construit d’abord l’autorité de certification (CA) au moyen des scripts fournis et distribués dans le paquet : **easy-rsa**
+
+    ---
+
+    Selon la définition de Cloudflare, accessible [ici](https://www.cloudflare.com/learning/ssl/transport-layer-security-tls/),
+    le protocole TLS a été développé par l'IETF et est dérivé du protocole SSL version 3.1 développé par Netscape.
+
+    TLS est principalement utilisé pour garantir la confidentialité et la sécurité des communications sur Internet. \
+    On connait principalement TLS avec son implémentation dans le protocole HTTPS afin de garantir la sécurité des
+    communications web.
+
+    On installe le paquet `easy-rsa`:
+
+    ```sh
+    dnf install easy-rsa
+    ```
+
+1. Que signifie X509 ? Suivre la procédure pour générer les clefs, les certificats et les procédures d’échange de clefs indiquée
+    à l’adresse suivante [community.openvpn.net](https://community.openvpn.net/openvpn/wiki/EasyRSA3-OpenVPN-Howto)
+
+    X509 est un standard utilisé pour définir les clés publiques, notamment des protocoles SSL/TLS.
+
+1. Vous pouvez copier le fichier "vars.exemple" dans un fichier nommé "vars".
+    Ensuite, mettez à jour les informations du certificat X509 (fichier vars).
+
+    Réaliser l’initialisation de la PKI sur le CA : générer les paires de clefs ainsi que le certificat à l’aide les commandes suivantes :
+
+    ```sh
+    /usr/share/easy-rsa/ ./easyrsa init-pki
+    /usr/share/easy-rsa/ ./easyrsa build-ca
+    ```
+
+1. Où sont stockées les clefs ? À quoi correspondent les différents fichiers ?
+
+    Les clefs sont stockées dans le répertoire `./pki/private/`.
+
+1. Sur le client et le serveur, générer une paire de clef ainsi que la requête pour l’échange à l’aide des commandes suivantes :
+
+    ```sh
+    ./easyrsa init-pki
+    ./easyrsa gen-req PASSERELLE nopass
+    ```
+
+    ```sh
+    ./easyrsa init-pki
+    ./easyrsa gen-req CLIENTEXTERNE
+    ```
+
+1. Envoyer les requêtes du serveur et du client sur le CA, puis importez-les à l’aide de la commande:
+
+    ```sh
+    ./easyrsa import-req Chemin/vers/les/fichiers/req PASSERELLE
+    ./easyrsa import-req Chemin/vers/les/fichiers/req CLIENT
+    ```
+
+    ce qui nous donne:
+
+    ```sh
+    Notice
+    ------
+    Request successfully imported with short-name: test-client
+    This request is now ready to be signed.
+    ```
+
+1. Signer les clefs publiques pour la passerelle et le client avec les commandes
+
+    ```sh
+    ./easyrsa sign-req client CLIENT
+    ./easyrsa sign-req server PASSERELLE
+    ```
+
+    ce qui nous donne:
+
+    ```sh
+    Please check over the details shown below for accuracy. Note that this request
+    has not been cryptographically verified. Please be sure it came from a trusted
+    source or that you have verified the request checksum with the sender.
+    You are about to sign the following certificate:
+
+    Requested CN:   'test-client'
+    Requested type: 'client'
+    Valid for:      '825' days
+
+    subject=
+        commonName                = test-client
+
+    Type the word 'yes' to continue, or any other input to abort.
+    Confirm request details: yes
+
+    Using configuration from /usr/share/easy-rsa/3.2.0/pki/1d3e8354/temp.0.1
+    Enter pass phrase for /usr/share/easy-rsa/3.2.0/pki/private/ca.key:
+    Check that the request matches the signature
+    Signature ok
+    The Subject's Distinguished Name is as follows
+    commonName            :ASN.1 12:'test-client'
+    Certificate is to be certified until Sep 29 13:42:09 2026 GMT (825 days)
+
+    Write out database with 1 new entries
+    Data Base Updated
+
+    Notice
+    ------
+    Certificate created at:
+    * /usr/share/easy-rsa/3.2.0/pki/issued/test-client.crt
+    ```
+
+1. Qu’est-ce qu’un échange de Diffie-Hellman ?
+
+    Selon l'article [wikipedia](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange), un échange Diffie-Hellman est un échange
+    de clé cryptographiques sécurisé dans un espace de communication publique.
+
+1. Construire ensuite les paramètres de l’échange de clés par Diffie-Helmann avec la commande suivante :
+
+    ```sh
+    ./easyrsa gen-dh
+    ```
+
+    Après un temps d'attente, nous obtenons:
+
+    ```sh
+    DH parameters appear to be ok.
+
+    Notice
+    ------
+
+    DH parameters of size 2048 created at:
+    - /usr/share/easy-rsa/3.2.0/pki/dh.pem
+    ```
+
+1. Tester votre configuration, et faire valider par l’enseignant que cela fonctionne.
+
+### 6 - Pontage (bridge)
+
+Maintenant que votre VPN est en place, il reste à configurer votre serveur afin que :
+
+- ▷Les deux clients puissent communiquer sans problème.
+- ▷Les deux clients accèdent à internet par la passerelle
+
+Montrez comment, avec l’utilitaire bridge-utils, vous pouvez procéder
+
+1. Faites valider par l’enseignant que cela fonctionne.
+
+### Annexes TP 2
+
+#### Configurations Réseau NetworkManager
+
+##### Passerelle
+
+- `eth1`:
+
+    ```ini
+    [connection]
+    id=iut-net eth1
+    uuid=c1682d93-6910-3916-a30f-71675e5d0508
+    type=ethernet
+    autoconnect-priority=-999
+    interface-name=eth1
+    timestamp=1719335741
+
+    [ethernet]
+
+    [ipv4]
+    address1=10.202.255.254/16
+    method=manual
+
+    [ipv6]
+    addr-gen-mode=default
+    method=auto
+
+    [proxy]
+    ```
+
+- `eth2`:
+
+    ```ini
+    [connection]
+    id=internal-net eth2
+    uuid=6e55c895-cba4-358e-9932-eba3fb9c3c8f
+    type=ethernet
+    autoconnect-priority=-999
+    interface-name=eth2
+    timestamp=1719335741
+
+    [ethernet]
+
+    [ipv4]
+    address1=192.168.1.254/24
+    method=manual
+
+    [ipv6]
+    addr-gen-mode=default
+    method=auto
+
+    [proxy]
+    ```
+
+#### Configurations DNSMASQ
+
+##### 00-use-dnsmasq.conf
+
+```ini
+[main]
+dns=dnsmasq
+```
+
+##### 01-DNS-lan.conf
+
+```ini
+### local domain
+local=/centaurustasie.dev/
+
+### Hostname mapping
+addn-hosts=/etc/dnsmasq.hosts
+
+domain-needed
+bogus-priv
+
+expand-hosts
+
+### Interfaces to listen on
+interface=lo
+interface=eth2
+
+### Upstream public net DNS server
+no-poll
+server=1.1.1.1
+server=8.8.8.8
+```
+
+##### 02-DHCP-lan.conf
+
+```ini
+### The domain the DHCP is responsible for:
+### The local FQDN, the internal network and the local network
+domain=centaurustasie.dev,192.168.1.0/24
+
+### Interface to listen on
+interface=eth2
+
+### DHCP configuration
+
+dhcp-authoritative
+dhcp-option=1,255.255.255.0
+dhcp-option=3,192.168.1.254
+dhcp-option=6,192.168.1.254
+
+### Assign fixed IP addresses base on MAC address
+dhcp-host=0c:bf:be:51:00:00,InternalClient,192.168.1.1,infinite
+
+dhcp-range=tag:eth2,192.168.1.10,192.168.1.200,4h
+```
+
+##### 03-DNS-iut.conf
+
+```ini
+### local domain
+local=/iutbeziers.fr/
+
+### Hostname mapping
+addn-hosts=/etc/dnsmasq.hosts
+
+domain-needed
+bogus-priv
+
+expand-hosts
+
+### Interfaces to listen on
+interface=eth1
+
+### Upstream public net DNS server
+no-poll
+server=1.1.1.1
+server=8.8.8.8
+```
+
+##### 04-DHCP-iut.conf
+
+```ini
+### The domain the DHCP is responsible for:
+### The IUT network
+domain=iutbeziers.fr,10.202.0.0/16
+
+### Interface to listen on
+interface=eth1
+
+### DHCP configuration
+
+dhcp-authoritative
+dhcp-option=1,255.255.0.0
+dhcp-option=3,10.202.255.254
+dhcp-option=6,10.202.255.254
+
+### Assign fixed IP addresses base on MAC address
+dhcp-host=0c:40:f6:0c:00:00,IUTClient,10.202.1.1,infinite
+
+dhcp-range=tag:eth1,10.202.0.1,10.202.0.253,4h
+```
+
+## TP 3: Proxy
 
     1. Installer OpenVPN et la librairie `Izo` sur la passerelle et sur le client.
 
@@ -1046,9 +1920,9 @@ On met en place l'infrastructure nécessaire au TP:
         </html>
         ```
 
-#### Annexes TP 3
+### Annexes TP 3
 
-##### Configuration Squid
+#### Configuration Squid
 
 ```squidconf
 #
@@ -1123,9 +1997,9 @@ refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
 refresh_pattern .  0 20% 4320
 ```
 
-##### Configuration Nginx Proxy Inverse
+#### Configuration Nginx Proxy Inverse
 
-###### nginx.conf
+##### nginx.conf
 
 ```nginxconf
 # For more information on configuration, see:
@@ -1170,7 +2044,7 @@ http {
 }
 ```
 
-###### proxy_params
+##### proxy_params
 
 ```nginxconf
 proxy_set_header Host $http_host;
@@ -1180,3 +2054,257 @@ proxy_set_header X-Forwarded-Proto $scheme;
 ```
 
 ## TP 4 - NAT et filtrage
+
+### 1 - Le NAT
+
+#### 1.1 - Le SNAT
+
+1. Sur quel hook doit se placer la règle de SNAT ?
+
+    La règle de SNAT doit sur se placer sur le hook de `POSTROUTING`.
+
+1. Configurer les tables, chaînes et règles pour faire du SNAT afin de changer l’adresse IP du PC1 lorsqu’il essaie de s’adresser au PC2 et ainsi rendre la communication possible.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    Nous activons temporairement le routage sous linux:
+
+    ```sh
+    echo "1" > /proc/sys/net/ipv4/ip_forward
+    ```
+
+    Afin de faire du SNAT entre le PC1 et le PC2, nous faisons:
+
+    ```sh
+    nft add table nat
+    nft -- add chain nat prerouting { type nat hook prerouting priority -100 \; }
+    nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
+    nft add rule nat postrouting ip saddr 192.168.1.0/24 oif "eth1" snat to 10.202.255.254
+    ```
+
+1. Proposer une méthode pour tester votre configuration et effectuer les relevés nécessaires pour illustrer le bon fonctionnement de votre configuration.
+
+    Nous pouvons faire un ping entre le PC1 et le PC2, si le premier ping fonctionne et que sur le réseau
+    du PC1 nous avons comme IP source/destination l'IP que l'on ping alors que sur le réseau du PC2, nous avons
+    l'IP du routeur, on sait alors que notre configuration est fonctionnelle.
+
+    - ![snat-client-passerelle](./src/img/snat-pc1-pc2-client-passerelle.png)
+    - ![snat-iut-passerelle](./src/img/snat-pc1-pc2-iut-passerelle.png)
+
+    Comme l'on peut voir ci-dessus, la configuration est bien fonctionnelle.
+
+#### 1.2 - Masquerade
+
+1. Supprimer la règle précédente et la remplacer par une règle de type MASQUERADE. \
+    Proposer une méthode pour tester votre configuration et faire les relevés pour illustrer son bon fonctionnement.
+
+    On fait:
+
+    ```sh
+    nft flush ruleset
+    nft add table nat
+    nft -- add chain nat prerouting { type nat hook prerouting priority -100 \; }
+    nft add chain nat postrouting { type nat hook postrouting priority 100 \; }
+    nft add rule nat postrouting oifname "eth1" masquerade
+    ```
+
+    Comme à la question précédente, nous pouvons faire un ping entre le PC1 et le PC2, si le premier ping fonctionne et que sur le réseau
+    du PC1 nous avons comme IP source/destination l'IP que l'on ping alors que sur le réseau du PC2, nous avons
+    l'IP du routeur, on sait alors que notre configuration est fonctionnelle.
+
+    - ![snat-client-passerelle](./src/img/masquerade-pc1-pc2-client-passerelle.png)
+    - ![snat-iut-passerelle](./src/img/masquerade-pc1-pc2-iut-passerelle.png)
+
+    Comme l'on peut voir ci-dessus, la configuration est bien fonctionnelle.
+
+#### 1.3 - DNAT
+
+1. Sur quel hook doit se placer la règle de DNAT ?
+
+    La règle de DNAT doit se placer sur le hook de `PREROUTING`.
+
+1. Configurer les tables, chaînes et règles pour faire du DNAT afin de permettre au PC2 d’accéder au serveur web interne.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    On fait:
+
+    ```sh
+    nft flush ruleset
+    nft add table nat
+    nft -- add chain nat prerouting { type nat hook prerouting priority -100 \; }
+    nft add rule nat prerouting iif eth1 tcp dport { 80, 443 } dnat 192.168.1.92;
+    ```
+
+1. Proposer une méthode pour tester votre configuration et effectuer les relevés nécessaires pour illustrer le bon fonctionnement de votre configuration.
+
+    On peut modifier la page HTML du serveur web afin de s'assurer que l'on tombe bien sur le serveur en question,;
+    puis faire un cURL du PC2 à l'adresse de la gateway du réseau et voir si l'on reçoit bien notre page HTML.
+
+    On fait donc:
+
+    ```sh
+    curl http://10.202.255.254
+    ```
+
+    ce qui nous donne:
+
+    ```html
+    <html>
+        <body>
+            You are indeed on the internal web server!
+        </body>
+    </html>
+    ```
+
+    Notre DNAT est alors fonctionnel.
+
+### 2 - Filtrage
+
+#### 2.1 - Sans état: Stateless
+
+1. Récupérer l’adresse IP d’un site web et proposer une règle permettant d’empêcher les consultations de ce site.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    Quel peut être la limite de cette approche (on pourra penser aux adresses IP utilisées
+    par des serveurs comme Facebook ou d’autres grosses entreprises qui gèrent beaucoup de trafic) ?
+
+    Pour filtrer une IP statique, comme par exemple notre serveur web interne, on peut faire:
+
+    ```sh
+    nft add table filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule filter output ip daddr 192.168.1.92 drop
+    ```
+
+    On voit lorsque l'on tente de ping l'IP en question, que l'on ne reçoit pas de réponse:
+
+    ```sh
+    PING 192.168.1.92 (192.168.1.92) 56(84) bytes of data.
+    --- 192.168.1.92 ping statistics ---
+    4 packets transmitted, 0 received, 100% packet loss, time 3069ms
+    ```
+
+    Dans le cas d'entreprises avec beaucoup de traffic ou de serveurs, cette approche serait limitée
+    par le nombre connu d'adresses IP répondant au service ou à l'entreprise en question.
+
+1. On activera un serveur SSH sur le routeur pour que des personnes du réseau local puissent l’administrer.
+    Le premier filtre que nous allons mettre en place est de bloquer le trafic sur le port 22 pour des messages provenant du réseau du PC2.
+    Vous indiquerez dans votre compte-rendu les commandes saisies.
+
+    On bloque le port 22 pour toutes les IP provenant du réseau du PC2, c'est à dire du réseau `10.202.0.0/16`.
+
+    ```sh
+    nft flush ruleset
+    nft add table filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule filter input tcp dport 22 ip saddr 10.202.0.0/16 drop
+    ```
+
+    Nous bloquons maintenant le traffic entrant sur le port 22 s'il provient du réseau `10.202.0.0/16`,
+    nous ne pouvons donc pas faire de session SSH sur le routeur mais pouvons le ping. \
+    Par contre, le routeur peut, lui, SSH les machines du réseau `10.202.0.0/16`.
+
+    > [!NOTE]
+    > Pour plus d'informations, j'ai utilisé la documentation de `nftables` sur le portknocking afin
+    > de bien structurer les commandes nftables, documentation accessible [ici](https://wiki.nftables.org/wiki-nftables/index.php/Port_knocking_example).
+
+1. Si on suppose que la passerelle ou le réseau interne dispose de plusieurs services, est-il raisonnable de spécifier un par un les ports
+    accessibles depuis l’intérieur, mais pas l’extérieur ? Quel est le risque d’une telle approche ? \
+    Que faudrait-il préciser dans la déclaration de la chaîne pour se simplifier la vie et assurer une meilleure sécurité ?
+
+    Il faudrait que l'on filtre par service au lieu de filtrer par ports utilisés par le service.
+
+1. Proposer une règle permettant de rejeter les paquets entrants sur l’interface de sortie du routeur (celle reliée au réseau de la salle) correspondant à des ECHO_REQUEST_ICMP.
+    Tester la différence entre les 2 actions "REJECT" et "DROP". Vous illustrerez ceci avec des captures des résultats obtenus sur vos consoles
+
+    ```sh
+    nft add rule ip filter input iifname "eth1" ip daddr 10.202.255.254 icmp type echo-request drop
+    nft add rule ip filter input iifname "eth1" ip daddr 10.202.255.254 icmp type echo-request reject
+    ```
+
+    - `drop`
+
+        Quand on drop un paquet, c'est comme si le réseau n'arrivait pas à acheminer le paquet
+        jusqu'à destination, nous n'avons donc aucun retour logiciel/visuel.
+
+        ```sh
+        PING 10.202.255.254 (10.202.255.254) 56(84) bytes of data.
+        --- 10.202.255.254 ping statistics ---
+        3 packets transmitted, 0 received, 100% packet loss, time 2047ms
+        ```
+
+    - `reject`
+
+        Quand on reject un paquet, nous affirmons que nous ne le voulons pas,
+        nous envoyons donc une réponse logicielle/visuelle.
+
+        ```sh
+        PING 10.202.255.254 (10.202.255.254) 56(84) bytes of data.
+        From 10.202.255.254 icmp_seq=1 Destination Port Unreachable
+        From 10.202.255.254 icmp_seq=2 Destination Port Unreachable
+        From 10.202.255.254 icmp_seq=3 Destination Port Unreachable
+        From 10.202.255.254 icmp_seq=4 Destination Port Unreachable
+
+        --- 10.202.255.254 ping statistics ---
+        4 packets transmitted, 0 received, +4 errors, 100% packet loss, time 3040ms
+        ```
+
+1. Donner le fichier de règles permettant de
+
+    - ▷bloquer par défaut tout le trafic sur le routeur ;
+    - ▷autoriser les ping sur le routeur
+    - ▷n’autoriser que les connexions entrantes en SSH provenant du réseau interne (gauche sur la figure 1)
+    - ▷autoriser les connexions traversant le routeur à destination de serveurs web (port destination 80)
+
+#### 2.2 - Avec état: Stateful
+
+1. Dans la documentation du site [https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes),
+    quel est le mot clef utilisé pour faire référence à du suivi de connexion ? Où s’applique-t-il ?
+
+    Selon la documentation, le mot clef `ct`, accessible [ici](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Ct),
+    fait référence au suivi de connexion, ils sont principalement utilisés pour faire des filtres, voir [ici](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes#Matches).
+
+1. Proposer une règle qui autorise le trafic depuis l’extérieur (partie de droite) vers l’intérieur
+    (partie de gauche) que si elles ont été initiées par le réseau interne. \
+    Vous indiquerez la commande dans votre compte-rendu ainsi que le test et son résultat pour prouver son
+    bon fonctionnement
+
+    ```sh
+    nft flush ruleset
+    nft add table ip filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule ip filter input iifname "eth2" ct original ip saddr 192.168.1.0/24 ct original ip daddr 10.202.0.0/16 ct state new,established accept
+    nft add rule ip filter input iifname "eth2" ct original ip saddr 10.202.0.0/16 ct original ip daddr 192.168.1.0/24 ct state new,established reject
+    ```
+
+1. Quelle instruction permet de bloquer les paquets entrants invalides et de les compter ?
+
+    Selon la documentation, il faudrait faire:
+
+    ```sh
+    nft add table ip filter
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule ip filter input ct state invalid counter drop
+    ```
+
+1. Quelle instruction permet de compter les demandes de connexion provenant de l’extérieur à destination du serveur web interne ?
+
+    ```sh
+    nft flush ruleset
+    nft add table ip filter
+    nft add counter filter web
+    nft 'add chain ip filter input { type filter hook input priority 0 ; }'
+    nft 'add chain ip filter output { type filter hook output priority 0 ; }'
+    nft add rule ip filter input iifname "eth1" ip daddr 192.168.1.92 tcp dport 80 counter name web
+    ```
+
+1. Comment afficher la valeur du compteur précédemment défini ?
+
+    Il faudrait lister les règles NFTABLES afin d'afficher la valeur du compteur précédemment défini:
+
+    ```sh
+    nft list counter filter web
+    ```
