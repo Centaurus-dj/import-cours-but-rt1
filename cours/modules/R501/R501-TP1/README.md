@@ -60,7 +60,6 @@ Copyright: All Rights Reserved
         | 5                  | :white_check_mark: |
         | 6                  | :white_check_mark: |
 
-
 2. Sécurité WEP40-OPEN :
     1. Paramétrer maintenant un point d’accès CISCO (Faire un Reset pendant 3 seconde après alimentation – lumière orange,
       et utiliser le mot de passe Cisco) en WEP40 authentification OPEN, puissance d’émission au minimum (Voir annexe ou Cisco-1130AG-ios1243.pdf). \
@@ -187,8 +186,6 @@ Copyright: All Rights Reserved
         sudo systemctl stop NetworkManager
         ```
 
-        On peut accéder à la capture Wireshark [ici](./src/wireshark-ap-1.pcap).
-
         > [!NOTE]
         > Le filtre Wireshark que nous avons appliqué est:
         >
@@ -199,32 +196,87 @@ Copyright: All Rights Reserved
         > ou
         >
         > ```sh
-        > wlan.bssid == 00:19:07:34:77:90   
+        > wlan.bssid == 00:19:07:34:77:90    
         > ```
 
     7. Mettre en évidence, le chiffrement WEP dans la capture sur les trames DATA/QoS DATA et vérifier que l’on peut bien déchiffrer les trames avec wireshark, si on connaît la clé WEP.
 
-        
+        ![capture trames code](./src/img/capture_trames_code.png)  
+        ![capture trames code](./src/img/capture_trames_decode.png)
+
+        nous allons nous intérésé aux paquet 721 et 725. Sur la première image on peut voir les deux paquet qui sont codé par le protocole wep. En donnent a wireshark la clée, il arrivé a décripté les deux paquet et on peut voir sur la deuxième images que c'est deux paquet ICMP. 
+
+        Dans la section data du paquet qui n'est pas decodé on peut voir le message codé
 
     8. Sauvegarder la capture dans le fichier wep40-open.pcap.
 
-2. Sécurité WEP104-SHARED :
+        On peut accéder à la capture Wireshark [ici](./src/wep40-open.pcapng).
+
+3. Sécurité WEP104-SHARED :
     1. Configurer maintenant l’AP et le Raspberry pour avoir une clé WEP de 104 bits et une authentification SHARED. Vérifier cela avec une nouvelle capture de trames.
+
+        Nous modifions la configuration comme ceci :
+
+        ```cisco
+        authentication shared
+        no encryption mode ciphers
+        encryption mode wep mandatory
+        encryption key 1 size 128bit 11111111111111111111111111 transmit-key
+        ```
+
+        On peut voir que sans le déchiffrement avec notre clé partagée, nos données sont cryptées:
+
+        ![104-bit-trame-codée](./src/img/capture_trames_104_code.png)
+
+        Avec le déchiffrement d'activé, nos trames sont décryptées:
+
+        ![104-bit-trame-décodée](./src/img/cpature_trames_104_decode.png)
+
     2. Sauvegarder la capture dans le fichier wep104-shared.pcap
 
-3. Sécurité WPA-PSK/TKIP :
+4. Sécurité WPA-PSK/TKIP :
     1. Paramétrer maintenant le point d’accès en WPA-PSK/TKIP en mode PSK authentification OPEN avec une clé de seulement 8 digits (uniquement des chiffres) et sans doublons (soit 1814400 possibilités = 10*9*8*7*6*5*4*3).
+
+        ```cisco
+        conf t
+        dot11 ssid test-os
+        guest-mode
+        authentication open
+        authentication key-management wpa
+        wpa-psk ascii 0 98765432
+        exit
+        interface Dot11Radio0
+        encryption mode ciphers tkip
+        ssid test-os
+        channel NNNN
+        power local cck -1
+        power local ofdm -1
+        no shutdown
+        exit
+        exit
+        ```
+
     2. Réaliser la connexion depuis le Raspberry PI (ficher wpa-psk-tkip.conf avec les directives : ssid, auth_alg, proto, key_mgmt, pairwise, group, psk) et capturer les trames Wifi en parallèle sur le PC pour mettre en évidence le chiffrement TKIP et aussi les 4 trames EAPOL de l’échange de clé.
+
+        > [!NOTE]
+        > Voir la configuration dans le fichier [wpa-psk-tkip.conf](./src/wpa-psk-tkip.conf).
+
+        On fait donc:
+
+        ```sh
+        wpa_supplicant -i wlan0 -c wpa-psk-tkip.conf
+        ```
+
     3. Sauvegarder la capture dans le fichier wpa1-psk-tkip.pcap.
     4. Peut-on déchiffrer les trames avec wireshark ?
 
-4. Sécurité WPA2-PSK/CCMP :
+5. Sécurité WPA2-PSK/CCMP :
     1. Passer ensuite en WPA2-PSK/CCMP avec une autre clé (toujours de 8 digits sans doublons).
     2. Capturer les trames de connexion du Raspberry PI (fichier wpa-psk-ccmp.conf) sur ce réseau Wifi et vérifier que le chiffrement est bien en CCMP.
     3. Sauvegarder la capture dans le fichier wpa2-psk-ccmp.pcap.
     4. Peut-on déchiffrer les trames s’il n’y a pas les 4 trames EAPOL dans la capture ?
 
-5. annexe
+6. annexe
 
     1. Commandes cisco IOS WEP :
 
