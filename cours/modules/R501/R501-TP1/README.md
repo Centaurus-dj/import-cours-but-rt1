@@ -234,6 +234,9 @@ Copyright: All Rights Reserved
 
     2. Sauvegarder la capture dans le fichier wep104-shared.pcap
 
+        On peut accéder à la capture Wireshark [ici](./src/wep104-shared.pcapng).
+
+
 4. Sécurité WPA-PSK/TKIP :
     1. Paramétrer maintenant le point d’accès en WPA-PSK/TKIP en mode PSK authentification OPEN avec une clé de seulement 8 digits (uniquement des chiffres) et sans doublons (soit 1814400 possibilités = 10*9*8*7*6*5*4*3).
 
@@ -268,7 +271,12 @@ Copyright: All Rights Reserved
         ```
 
     3. Sauvegarder la capture dans le fichier wpa1-psk-tkip.pcap.
+
+        On peut accéder à la capture Wireshark [ici](./src/wpa1-psk-tkip.pcapng).
+
     4. Peut-on déchiffrer les trames avec wireshark ?
+
+        Nous n'avons pas l'impression que cela est possible, du moins en mode wpa-pwd, wpa-psk.
 
 5. Sécurité WPA2-PSK/CCMP :
     1. Passer ensuite en WPA2-PSK/CCMP avec une autre clé (toujours de 8 digits sans doublons).
