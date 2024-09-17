@@ -1,0 +1,8 @@
+image: gitpod/workspace-full
+
+# Commands that will run on workspace start
+tasks:
+  - name: Setup Git Credentials
+    command:
+      git config --global user.name "alexis-opolka"
+      git config --global user.email "53085471+alexis-opolka@users.noreply.github.com"
