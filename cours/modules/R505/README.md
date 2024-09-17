@@ -18,3 +18,12 @@ Copyright: All Rights Reserved
 ## Projet de groupe
 
 - [INSEE](https://www.insee.fr/fr/statistiques/7750004)
+
+### Problématique
+
+Sécurité Sociale + Système des Retraites
+
+Comment peut-on faire évoluer nos systèmes de sécurité sociale et de retraites afin de garantir leur viabilité
+d'un point de vue socio-économique ?
+
+How can we make our social security and retirement programs in a way that guarantees their viability in a social-economic aspect?
