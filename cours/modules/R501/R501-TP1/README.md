@@ -53,7 +53,7 @@ Copyright: All Rights Reserved
         Nous avons utilisé la carte wifi d'un ordinateur portable afin de voir tous les canaux disponibles, voir le rendu disponible : [1.3-conf.sh](./src/1.3-conf.sh).
 
         Comme on peut le voir sur le fichier, la carte réseau de l'ordinateur portable est capable d'utiliser les canaux suivants :
-       
+
         | Fréquence (en MHz) | Supporté           |
         |--------------------|--------------------|
         | 2.4                | :white_check_mark: |
@@ -147,9 +147,9 @@ Copyright: All Rights Reserved
           signal: -68 dBm
           rx bitrate: 54.0 MBit/s
 
-          bss flags:	short-preamble short-slot-time
-          dtim period:	2
-          beacon int:	100
+          bss flags: short-preamble short-slot-time
+          dtim period: 2
+          beacon int: 100
         ```
 
     5. Ajouter sur l’AP une adresse IP dans l’interface BVI1, et paramétrer votre RPI dans le même réseau. Tester la connectivité IP avec un ping.
@@ -167,13 +167,45 @@ Copyright: All Rights Reserved
         rtt min/avg/max/mdev = 4.470/5.589/6.708/1.119 ms
         ```
 
-    6. Capturer les trames Wifi de ce réseau sur le PC avec la carte Wifi USB en mode monitor (voir commande iw). Détailler la procédure (Attention au canal utilisé !).
+    6. Capturer les trames Wifi de ce réseau sur le PC avec la carte Wifi USB en mode monitor (voir commande iw).
+        Détailler la procédure (Attention au canal utilisé !).
 
         ```sh
-        iwconfig <wireless-adapter> mode monitor
+        sudo iw <wireless-adapter> mode monitor
         ```
 
+        > [!NOTE]
+        > Pour faire fonctionner le `TP-LINK TL-WN722N` sous Debian, nous devons faire:
+        >
+        > ```sh
+        > apt-get update && apt-get install firmware-atheros
+        > ```
+
+        Afin de pouvoir passer en mode monitor, on a dû arreter le service NetworkManager avec:
+
+        ```sh
+        sudo systemctl stop NetworkManager
+        ```
+
+        On peut accéder à la capture Wireshark [ici](./src/wireshark-ap-1.pcap).
+
+        > [!NOTE]
+        > Le filtre Wireshark que nous avons appliqué est:
+        >
+        > ```sh
+        > wlan.sa == b8:27:eb:8c:aa:28 || wlan.da == b8:27:eb:8c:aa:28
+        > ```
+        >
+        > ou
+        >
+        > ```sh
+        > wlan.bssid == 00:19:07:34:77:90   
+        > ```
+
     7. Mettre en évidence, le chiffrement WEP dans la capture sur les trames DATA/QoS DATA et vérifier que l’on peut bien déchiffrer les trames avec wireshark, si on connaît la clé WEP.
+
+        
+
     8. Sauvegarder la capture dans le fichier wep40-open.pcap.
 
 2. Sécurité WEP104-SHARED :
