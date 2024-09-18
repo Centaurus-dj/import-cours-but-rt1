@@ -1,5 +1,7 @@
 # import-cours-BUT-RT
 
+[![gitpod-logo](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/?autostart=true&editor=code-browser#https://github.com/alexis-opolka/import-cours-but-rt/)
+
 ## What's this repo?
 
 The repository used to store all my classes and class-related documents such as scripts and others.
