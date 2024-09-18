@@ -204,7 +204,7 @@ Copyright: All Rights Reserved
         ![capture trames code](./src/img/capture_trames_code.png)  
         ![capture trames code](./src/img/capture_trames_decode.png)
 
-        nous allons nous intérésé aux paquet 721 et 725. Sur la première image on peut voir les deux paquet qui sont codé par le protocole wep. En donnent a wireshark la clée, il arrivé a décripté les deux paquet et on peut voir sur la deuxième images que c'est deux paquet ICMP. 
+        Nous allons nous intérésser aux paquets 721 et 725. Sur la première image on peut voir les deux paquet qui sont codé par le protocole wep. En donnent a wireshark la clée, il arrivé a décripté les deux paquet et on peut voir sur la deuxième images que c'est deux paquet ICMP.
 
         Dans la section data du paquet qui n'est pas decodé on peut voir le message codé
 
@@ -235,7 +235,6 @@ Copyright: All Rights Reserved
     2. Sauvegarder la capture dans le fichier wep104-shared.pcap
 
         On peut accéder à la capture Wireshark [ici](./src/wep104-shared.pcapng).
-
 
 4. Sécurité WPA-PSK/TKIP :
     1. Paramétrer maintenant le point d’accès en WPA-PSK/TKIP en mode PSK authentification OPEN avec une clé de seulement 8 digits (uniquement des chiffres) et sans doublons (soit 1814400 possibilités = 10*9*8*7*6*5*4*3).
@@ -331,5 +330,5 @@ Copyright: All Rights Reserved
         exit
         ```
 
-        > [!NOTE] 
+        > [!NOTE]
         > Le `===>` indique un choix entre les propositions.
