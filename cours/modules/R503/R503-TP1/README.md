@@ -36,7 +36,7 @@
   de `1` symbole toutes les 1ms.
   Donner le débit d’une telle transmission.
 
-    Le débit d'une telle transmission serait de 100 bits/s car 1ms = 1*10^(-3) s.
+    Le débit d'une telle transmission serait de 1 kbits/s car 1ms = 1*10^(-3) s.
 
 5. Utiliser un bloc « Repeat » pour obtenir la bonne durée d’un symbole.
 
@@ -120,3 +120,15 @@
     ne peut pas forcément le reconnaître visuellement.
 
 13. A partir de quelle amplitude de bruit estimez-vous que la réception du signal n’est plus fiable ?
+
+    ![2-13-noise-good](./src/img/2-13-noise-but-good.png)
+    ![2-13-noise-bad](./src/img/2-13-noise-whats-that.png)
+
+    Comme l'on peut le voir sur les images ci-dessus, à partir de 0.7 d'amplitude
+    notre signal commence à devenir trop bruité pour que l'on soit capable de distinguer un
+    0 d'un 1.
+
+14. Régler l’amplitude du bruit gaussien à 0,5.
+  Nous allons traiter le signal obtenu afin d’obtenir un signal « débruité » plus facile à décoder.
+
+  s
