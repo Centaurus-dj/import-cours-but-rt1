@@ -143,27 +143,35 @@ if __name__ == "__main__":
   print(f"ICV: {icvHex}")
 
   ### TODO: NOT DONE
+  printNotFinished()
 
   printQuestion("1.6", "Equivalence de chiffrement")
 
   #### KS = KeyStream
   #### MSG = CipherTrame
-  #### KS + DecryptedTrame = 
-  ks_pdu = bytes.fromhex("0"*len(trameWEP40Key.hex()))
+  #### KS + DecryptedTrame =
+
+  msg = bytes.fromhex(trameWEP40Data)
+  ks_pdu = "0"*len(trameWEP40Data)
+  ks_pdu = bytes.fromhex(ks_pdu)
+
   ks = cipherData(ks_pdu, trameWEP40Key)
-  xor_encryption = bytesXOR(ks, trameWEP40Key)
+  xor_encryption = bytesXOR(ks, msg)
 
   print("KS PDU:", ks_pdu.hex())
-  print("Key Stream:", trameWEP40Key.hex())
+  print("KS:", ks.hex())
+  print("Ciphered:", msg.hex())
   print("Result:", xor_encryption.hex())
 
-  printNotFinished()
-
   printQuestion("1.7", "Déchiffrement de C avec KS")
+
+  printNotFinished()
 
   ### TODO: NOT DONE
 
   printQuestion("2.1", "Déterminer la valeur des 6 octets d'entête des trames 1, 2 et 4")
+
+
 
   trame1 = bytes.fromhex("010001000000")
   trame2 = bytes.fromhex("010002000000")
@@ -172,6 +180,8 @@ if __name__ == "__main__":
   print(f"La trame 1 a comme 6 octets d'entête: {trame1.hex(' ')}")
   print(f"La trame 2 a comme 6 octets d'entête: {trame2.hex(' ')}")
   print(f"La trame 4 a comme 6 octets d'entête: {trame4.hex(' ')}")
+
+  printNotFinished()
 
   printQuestion("2.2", "Déduire les 6 octets d'entête de la trame 3")
 
