@@ -44,6 +44,8 @@
 
 5. Mettre en évidence les 4 trames d’authentification SAE avant les trames EAPOL
 
-6. Pour décrypter le trafic WPA3, il faut les clés TK et/ou GTK. Utiliser à nouveau les options -d et
-  -K  de  wpa_supplicant  ou   de  hostapd  pour   obtenir   dans   les   traces,   les   clés   de
-  déchiffrement.
+6. Pour décrypter le trafic WPA3, il faut les clés TK et/ou GTK.
+  Utiliser à nouveau les options -d et -K  de  wpa_supplicant ou
+  de hostapd pour obtenir dans les traces, les clés de déchiffrement.
+
+    s
