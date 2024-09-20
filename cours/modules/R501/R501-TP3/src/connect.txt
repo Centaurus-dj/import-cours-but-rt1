@@ -1,0 +1,1165 @@
+wpa_supplicant v2.10
+random: getrandom() support available
+Successfully initialized wpa_supplicant
+Initializing interface 'wlan0' conf 'wpa_supplicant.conf' driver 'default' ctrl_interface 'N/A' bridge 'N/A'
+Configuration file 'wpa_supplicant.conf' -> '/home/pi/TP/wpa_supplicant.conf'
+Reading configuration file '/home/pi/TP/wpa_supplicant.conf'
+ctrl_interface='DIR=/var/run/wpa_supplicant GROUP=netdev'
+update_config=1
+country='US'
+Priority group 0
+   id=0 ssid='test-os'
+nl80211: Using driver-based roaming
+nl80211: Supported cipher 00-0f-ac:1
+nl80211: Supported cipher 00-0f-ac:5
+nl80211: Supported cipher 00-0f-ac:2
+nl80211: Supported cipher 00-0f-ac:4
+nl80211: Using driver-based off-channel TX
+nl80211: Supported vendor command: vendor_id=0x1018 subcmd=1
+nl80211: Use separate P2P group interface (driver advertised support)
+nl80211: Enable multi-channel concurrent (driver advertised support)
+nl80211: use P2P_DEVICE support
+nl80211: key_mgmt=0xd0f enc=0xf auth=0x7 flags=0x20000003804fac8 rrm_flags=0x0 probe_resp_offloads=0x0 max_stations=0 max_remain_on_chan=5000 max_scan_ssids=10
+nl80211: interface wlan0 in phy phy0
+nl80211: Set mode ifindex 3 iftype 2 (STATION)
+nl80211: Subscribe to mgmt frames with non-AP handle 0x556cce3f90
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0104 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 01 04
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040b multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0b
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040c multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0c
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040d multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0d
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090b multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0b
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090c multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0c
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090d multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0d
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0409506f9a09 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=6): 04 09 50 6f 9a 09
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=7f506f9a09 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=5): 7f 50 6f 9a 09
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0409506f9a1a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=6): 04 09 50 6f 9a 1a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0800 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 08 00
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0801 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 08 01
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=12 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=1): 12
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=06 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=1): 06
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a07 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 07
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a11 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 11
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a0b multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 0b
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a1a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 1a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1101 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 11 01
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1102 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 11 02
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0505 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 05 05
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0500 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 05 00
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1301 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 13 01
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1305 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 13 05
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=7e506f9a1a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=5): 7e 50 6f 9a 1a
+nl80211: Failed to register Action frame processing - ignore for now
+rfkill: initial event: idx=1 type=1 op=0 soft=0 hard=0
+netlink: Operstate: ifindex=3 linkmode=1 (userspace-control), operstate=5 (IF_OPER_DORMANT)
+Add interface wlan0 to a new radio phy0
+nl80211: Regulatory information - country=US (DFS-FCC)
+nl80211: 902-904 @ 2 MHz 30 mBm
+nl80211: 904-920 @ 16 MHz 30 mBm
+nl80211: 920-928 @ 8 MHz 30 mBm
+nl80211: 2400-2472 @ 40 MHz 30 mBm
+nl80211: 5150-5250 @ 80 MHz 23 mBm
+nl80211: 5250-5350 @ 80 MHz 24 mBm (DFS)
+nl80211: 5470-5730 @ 160 MHz 24 mBm (DFS)
+nl80211: 5730-5850 @ 80 MHz 30 mBm
+nl80211: 5850-5895 @ 40 MHz 27 mBm (no outdoor) (no IR)
+nl80211: 5925-7125 @ 320 MHz 12 mBm (no outdoor) (no IR)
+nl80211: 57240-71000 @ 2160 MHz 40 mBm
+nl80211: Added 802.11b mode based on 802.11g information
+nl80211: Mode IEEE 802.11g: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467[DISABLED] 2472[DISABLED] 2484[DISABLED]
+nl80211: Mode IEEE 802.11b: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467[DISABLED] 2472[DISABLED] 2484[DISABLED]
+wlan0: Own MAC address: b8:27:eb:b2:f2:3c
+wpa_driver_nl80211_set_key: ifindex=3 (wlan0) alg=0 addr=(nil) key_idx=0 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+nl80211: DEL_KEY
+   broadcast key
+wpa_driver_nl80211_set_key: ifindex=3 (wlan0) alg=0 addr=(nil) key_idx=1 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+nl80211: DEL_KEY
+   broadcast key
+wpa_driver_nl80211_set_key: ifindex=3 (wlan0) alg=0 addr=(nil) key_idx=2 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+nl80211: DEL_KEY
+   broadcast key
+wpa_driver_nl80211_set_key: ifindex=3 (wlan0) alg=0 addr=(nil) key_idx=3 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+nl80211: DEL_KEY
+   broadcast key
+wpa_driver_nl80211_set_key: ifindex=3 (wlan0) alg=0 addr=(nil) key_idx=4 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+nl80211: DEL_KEY
+   broadcast key
+nl80211: set_key failed; err=-22 Invalid argument
+wpa_driver_nl80211_set_key: ifindex=3 (wlan0) alg=0 addr=(nil) key_idx=5 set_tx=0 seq_len=0 key_len=0 key_flag=0x10
+nl80211: DEL_KEY
+   broadcast key
+nl80211: set_key failed; err=-22 Invalid argument
+wlan0: RSN: flushing PMKID list in the driver
+nl80211: Flush PMKIDs
+TDLS: TDLS operation not supported by driver
+TDLS: Driver uses internal link setup
+TDLS: Driver does not support TDLS channel switching
+wlan0: WPS: UUID based on MAC address: 08498fcd-fe97-5a8b-b203-c341c5f9cac3
+ENGINE: Loading builtin engines
+ENGINE: Loading builtin engines
+EAPOL: SUPP_PAE entering state DISCONNECTED
+EAPOL: Supplicant port status: Unauthorized
+nl80211: Skip set_supp_port(unauthorized) while not associated
+EAPOL: KEY_RX entering state NO_KEY_RECEIVE
+EAPOL: SUPP_BE entering state INITIALIZE
+EAP: EAP entering state DISABLED
+Using existing control interface directory.
+ctrl_interface_group=106 (from group name 'netdev')
+MBO: Update non-preferred channels, non_pref_chan=N/A
+wlan0: Added interface wlan0
+wlan0: State: DISCONNECTED -> DISCONNECTED
+nl80211: Set wlan0 operstate 0->0 (DORMANT)
+netlink: Operstate: ifindex=3 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+nl80211: Create interface iftype 10 (P2P_DEVICE)
+Failed to create interface p2p-dev-wlan0: -16 (Device or resource busy)
+nl80211: Failed to create a P2P Device interface p2p-dev-wlan0
+P2P: Failed to create P2P Device interface
+P2P: Failed to enable P2P Device interface
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 operstate=5 linkmode=0 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 operstate=5 linkmode=1 ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+wlan0: Starting delayed sched scan
+wlan0: Use normal scan instead of sched_scan for initial scans (normal_scans=0)
+wlan0: Setting scan request: 0.000000 sec
+wlan0: State: DISCONNECTED -> SCANNING
+Scan SSID - hexdump_ascii(len=7):
+     74 65 73 74 2d 6f 73                              test-os         
+wlan0: Starting AP scan for wildcard SSID
+wlan0: Add radio work 'scan'@0x556cd4eeb0
+wlan0: First radio work item in the queue - schedule start immediately
+wlan0: Starting radio work 'scan'@0x556cd4eeb0 after 0.000030 second wait
+wlan0: nl80211: scan request
+Scan requested (ret=0) - scan timeout 10 seconds
+nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+wlan0: nl80211: Scan trigger
+wlan0: Event SCAN_STARTED (47) received
+wlan0: Own scan request started a scan in 0.000120 seconds
+nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+wlan0: nl80211: New scan results available
+nl80211: Scan probed for SSID 'test-os'
+nl80211: Scan probed for SSID ''
+nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462
+wlan0: Event SCAN_RESULTS (3) received
+wlan0: Scan completed in 0.488234 seconds
+nl80211: Received scan results (23 BSSes)
+wlan0: BSS: Start scan result update 1
+wlan0: BSS: Add new id 0 BSSID 70:f0:96:d2:e0:62 SSID 'WIFI_IUTB_IOT' freq 2412
+wlan0: BSS: Add new id 1 BSSID 70:f0:96:d2:e0:60 SSID 'eduroam' freq 2412
+wlan0: BSS: Add new id 2 BSSID 00:3a:99:2b:59:b0 SSID 'ZbouZgarak' freq 2412
+wlan0: BSS: Add new id 3 BSSID 00:3a:9a:f4:2c:d0 SSID 'test-os' freq 2412
+wlan0: BSS: Add new id 4 BSSID 00:19:07:34:8c:20 SSID 'camiondeladgsi' freq 2437
+wlan0: BSS: Add new id 5 BSSID 00:1a:30:c3:22:40 SSID 'madmatetmobzie' freq 2412
+wlan0: BSS: Add new id 6 BSSID 00:19:07:34:77:90 SSID 'Wifi_R501' freq 2417
+wlan0: BSS: Add new id 7 BSSID 00:19:07:34:8a:20 SSID 'test205-7' freq 2427
+wlan0: BSS: Add new id 8 BSSID 00:3a:9a:1c:4d:20 SSID 'TRIBUNALMTP' freq 2432
+wlan0: BSS: Add new id 9 BSSID 3a:68:f8:73:e0:31 SSID 'redmoui' freq 2462
+wlan0: BSS: Add new id 10 BSSID cc:db:93:d1:06:c0 SSID 'eduroam' freq 2412
+wlan0: BSS: Add new id 11 BSSID 5c:e1:76:7d:f7:80 SSID 'eduroam' freq 2437
+wlan0: BSS: Add new id 12 BSSID 00:3a:9a:f4:11:10 SSID 'QGduFBI' freq 2437
+wlan0: BSS: Add new id 13 BSSID 5c:e1:76:7d:f7:82 SSID 'WIFI_IUTB_IOT' freq 2437
+wlan0: BSS: Add new id 14 BSSID 70:f0:96:d2:d8:00 SSID 'eduroam' freq 2462
+wlan0: BSS: Add new id 15 BSSID 54:8a:ba:6b:fc:02 SSID 'WIFI_IUTB_IOT' freq 2437
+wlan0: BSS: Add new id 16 BSSID cc:db:93:d0:f0:02 SSID 'WIFI_IUTB_IOT' freq 2462
+wlan0: BSS: Add new id 17 BSSID 54:8a:ba:6b:fc:00 SSID 'eduroam' freq 2437
+wlan0: BSS: Add new id 18 BSSID 70:f0:96:d2:e0:61 SSID 'UM-net' freq 2412
+wlan0: BSS: Add new id 19 BSSID 5c:e1:76:7d:f7:81 SSID 'UM-net' freq 2437
+wlan0: BSS: Add new id 20 BSSID 70:f0:96:d2:d8:01 SSID 'UM-net' freq 2462
+wlan0: BSS: Add new id 21 BSSID cc:db:93:d0:f0:01 SSID 'UM-net' freq 2462
+wlan0: BSS: Add new id 22 BSSID 54:8a:ba:6b:fc:01 SSID 'UM-net' freq 2437
+BSS: last_scan_res_used=23/32
+wlan0: New scan results available (own=1 ext=0)
+wlan0: Radio work 'scan'@0x556cd4eeb0 done in 0.523821 seconds
+wlan0: radio_work_free('scan'@0x556cd4eeb0): num_active_works --> 0
+wlan0: Selecting BSS from priority group 0
+wlan0: 0: 70:f0:96:d2:e0:62 ssid='WIFI_IUTB_IOT' wpa_ie_len=0 rsn_ie_len=20 caps=0x1431 level=-65 freq=2412 
+wlan0:    skip - SSID mismatch
+wlan0: 1: 70:f0:96:d2:e0:60 ssid='eduroam' wpa_ie_len=0 rsn_ie_len=20 caps=0x431 level=-70 freq=2412 
+wlan0:    skip - SSID mismatch
+wlan0: 2: 00:3a:99:2b:59:b0 ssid='ZbouZgarak' wpa_ie_len=0 rsn_ie_len=20 caps=0x431 level=-52 freq=2412 
+wlan0:    skip - SSID mismatch
+wlan0: 3: 00:3a:9a:f4:2c:d0 ssid='test-os' wpa_ie_len=0 rsn_ie_len=20 caps=0x431 level=-56 freq=2412 
+wlan0:    selected based on RSN IE
+wlan0:    selected BSS 00:3a:9a:f4:2c:d0 ssid='test-os'
+wlan0: Considering connect request: reassociate: 0  selected: 00:3a:9a:f4:2c:d0  bssid: 00:00:00:00:00:00  pending: 00:00:00:00:00:00  wpa_state: SCANNING  ssid=0x556cce4620  current_ssid=(nil)
+wlan0: Request association with 00:3a:9a:f4:2c:d0
+wlan0: No ongoing scan/p2p-scan found to abort
+wlan0: Add radio work 'connect'@0x556cd4eeb0
+wlan0: First radio work item in the queue - schedule start immediately
+RSN: Ignored PMKID candidate without preauth flag
+wlan0: Starting radio work 'connect'@0x556cd4eeb0 after 0.000101 second wait
+wlan0: WPA: clearing own WPA/RSN IE
+wlan0: RSN: clearing own RSNXE
+RSN: PMKSA cache search - network_ctx=0x556cce4620 try_opportunistic=0 akmp=0x0
+RSN: Search for BSSID 00:3a:9a:f4:2c:d0
+RSN: No PMKSA cache entry found
+wlan0: RSN: using IEEE 802.11i/D9.0
+wlan0: WPA: Selected cipher suites: group 16 pairwise 16 key_mgmt 1 proto 2
+wlan0: WPA: Selected mgmt group cipher 32
+wlan0: WPA: clearing AP WPA IE
+WPA: set AP RSN IE - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 01 28 00
+wlan0: WPA: clearing AP RSNXE
+wlan0: WPA: AP group 0x10 network profile group 0x18; available group 0x10
+wlan0: WPA: using GTK CCMP
+wlan0: WPA: AP pairwise 0x10 network profile pairwise 0x18; available pairwise 0x10
+wlan0: WPA: using PTK CCMP
+wlan0: WPA: AP key_mgmt 0x1 network profile key_mgmt 0x1; available key_mgmt 0x1
+wlan0: WPA: using KEY_MGMT 802.1X
+wlan0: WPA: AP mgmt_group_cipher 0x20 network profile mgmt_group_cipher 0x0; available mgmt_group_cipher 0x0
+wlan0: WPA: not using MGMT group cipher
+WPA: Set own WPA IE default - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 01 00 00
+RSN: Set own RSNXE default - hexdump(len=0):
+WPA: No current PMKSA - clear PMK
+wlan0: Automatic auth_alg selection: 0x1
+Added supported operating classes IE - hexdump(len=4): 3b 02 51 51
+wlan0: Trying to associate with SSID 'test-os'
+wlan0: Cancelling scan request
+wlan0: State: SCANNING -> ASSOCIATING
+nl80211: Set wlan0 operstate 0->0 (DORMANT)
+netlink: Operstate: ifindex=3 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+nl80211: Set mode ifindex 3 iftype 2 (STATION)
+nl80211: Unsubscribe mgmt frames handle 0x888888dde446b719 (mode change)
+nl80211: Subscribe to mgmt frames with non-AP handle 0x556cce3f90
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0104 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 01 04
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040b multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0b
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040c multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0c
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=040d multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 04 0d
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090b multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0b
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090c multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0c
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=090d multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 09 0d
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0409506f9a09 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=6): 04 09 50 6f 9a 09
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=7f506f9a09 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=5): 7f 50 6f 9a 09
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0409506f9a1a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=6): 04 09 50 6f 9a 1a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0800 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 08 00
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0801 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 08 01
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=12 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=1): 12
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=06 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=1): 06
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a07 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 07
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a11 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 11
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a0b multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 0b
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0a1a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 0a 1a
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1101 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 11 01
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1102 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 11 02
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0505 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 05 05
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=0500 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 05 00
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1301 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 13 01
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=1305 multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=2): 13 05
+nl80211: Register frame type=0xd0 (WLAN_FC_STYPE_ACTION) nl_handle=0x556cce3f90 match=7e506f9a1a multicast=0
+nl80211: kernel reports: Match already configured
+nl80211: Register frame command failed (type=208): ret=-114 (Operation already in progress)
+nl80211: Register frame match - hexdump(len=5): 7e 50 6f 9a 1a
+nl80211: Failed to register Action frame processing - ignore for now
+nl80211: Connect (ifindex=3)
+  * bssid_hint=00:3a:9a:f4:2c:d0
+  * freq_hint=2412
+  * SSID=test-os
+  * IEs - hexdump(len=26): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 01 00 00 3b 02 51 51
+  * WPA Versions 0x2
+  * pairwise=0xfac04
+  * group=0xfac04
+  * akm=0xfac01
+  * WANT_1X_4WAY_HS
+  * htcaps - hexdump(len=26): 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  * htcaps_mask - hexdump(len=26): 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  * vhtcaps - hexdump(len=12): 00 00 00 00 00 00 00 00 00 00 00 00
+  * vhtcaps_mask - hexdump(len=12): 00 00 00 00 00 00 00 00 00 00 00 00
+  * Auth Type 0
+nl80211: Connect request send successfully
+wlan0: Setting authentication timeout: 10 sec 0 usec
+EAPOL: External notification - EAP success=0
+EAPOL: External notification - EAP fail=0
+EAPOL: External notification - portControl=Auto
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=46
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+wlan0: Not associated - Delay processing of received EAPOL frame (state=ASSOCIATING bssid=00:00:00:00:00:00)
+nl80211: Drv Event 46 (NL80211_CMD_CONNECT) received for wlan0
+nl80211: Connect event (status=0 ignore_next_local_disconnect=0)
+nl80211: Associated on 2412 MHz
+nl80211: Associated with 00:3a:9a:f4:2c:d0
+nl80211: Operating frequency for the associated BSS from scan results: 2412 MHz
+nl80211: Associated on 2412 MHz
+nl80211: Associated with 00:3a:9a:f4:2c:d0
+nl80211: Set drv->ssid based on scan res info to 'test-os'
+wlan0: Event ASSOC (0) received
+wlan0: Association info event
+req_ies - hexdump(len=79): 00 07 74 65 73 74 2d 6f 73 01 08 82 84 8b 96 24 30 48 6c 32 04 0c 12 18 60 21 02 03 15 24 02 01 0b 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 01 00 00 dd 09 00 10 18 02 00 00 00 00 00 dd 07 00 50 f2 02 00 01 00 00 00 00 00
+resp_ies - hexdump(len=48): 01 08 82 84 8b 0c 12 96 18 24 32 04 30 48 60 6c dd 18 00 50 f2 02 01 01 81 00 03 a4 00 00 27 a4 00 00 42 43 bc 00 62 32 66 00 03 15 24 02 01 0b
+IEEE 802.11 element parse failed @6
+IEEE 802.11 element parse failed @6
+IEEE 802.11 element parse failed @6
+wlan0: freq=2412 MHz
+WPA: set own WPA/RSN IE - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 01 00 00
+wlan0: RSN: clearing own RSNXE
+Truncated IE in assoc_info - hexdump(len=6): 03 15 24 02 01 0b
+wlan0: State: ASSOCIATING -> ASSOCIATED
+nl80211: Set wlan0 operstate 0->0 (DORMANT)
+netlink: Operstate: ifindex=3 linkmode=-1 (no change), operstate=5 (IF_OPER_DORMANT)
+wlan0: Associated to a new BSS: BSSID=00:3a:9a:f4:2c:d0
+WPA: Update cipher suite selection based on IEs in driver-generated WPA/RSNE in AssocReq - hexdump(len=46): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 01 00 00 dd 09 00 10 18 02 00 00 00 00 00 dd 07 00 50 f2 02 00 01 00 00 00 00 00
+wlan0: WPA: AP key_mgmt 0x1 network key_mgmt 0x1; available key_mgmt 0x1
+wlan0: WPA: using KEY_MGMT WPA2/IEEE 802.1X/EAP and proto 2
+wlan0: WPA: AP pairwise cipher 0x10 network pairwise cipher 0x18; available pairwise cipher 0x10
+wlan0: WPA: using PTK CCMP
+wlan0: WPA: AP group cipher 0x10 network group cipher 0x18; available group cipher 0x10
+wlan0: WPA: using GTK CCMP
+wlan0: WPA: AP mgmt_group_cipher 0x20 network mgmt_group_cipher 0x0; available mgmt_group_cipher 0x20
+wlan0: WPA: STA/AP is not MFP capable; AP RSNE caps 0x28
+wlan0: WPA: not using MGMT group cipher
+wlan0: WPA: clearing AP WPA IE
+WPA: set AP RSN IE - hexdump(len=22): 30 14 01 00 00 0f ac 04 01 00 00 0f ac 04 01 00 00 0f ac 01 28 00
+wlan0: WPA: clearing AP RSNXE
+wlan0: Associated with 00:3a:9a:f4:2c:d0
+wlan0: WPA: Association event - clear replay counter
+wlan0: WPA: Clear old PTK
+TDLS: Remove peers on association
+EAPOL: External notification - portEnabled=0
+EAPOL: External notification - portValid=0
+EAPOL: External notification - portEnabled=1
+EAPOL: SUPP_PAE entering state CONNECTING
+EAPOL: SUPP_BE entering state IDLE
+EAP: EAP entering state INITIALIZE
+EAP: EAP entering state IDLE
+wlan0: Setting authentication timeout: 10 sec 0 usec
+wlan0: Cancelling scan request
+EAPOL: External notification - portValid=1
+wlan0: Process pending EAPOL frame that was received just before association notification
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+wlan0: Setting authentication timeout: 70 sec 0 usec
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_PAE entering state RESTART
+EAP: EAP entering state INITIALIZE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_PAE entering state AUTHENTICATING
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=1 method=1 vendor=0 vendorMethod=0
+EAP: EAP entering state IDENTITY
+wlan0: CTRL-EVENT-EAP-STARTED EAP authentication started
+EAP: Status notification: started (param=)
+EAP: EAP-Request Identity data - hexdump_ascii(len=36):
+     00 6e 65 74 77 6f 72 6b 69 64 3d 74 65 73 74 2d   _networkid=test-
+     6f 73 2c 6e 61 73 69 64 3d 61 70 2c 70 6f 72 74   os,nasid=ap,port
+     69 64 3d 30                                       id=0            
+EAP: using real identity - hexdump_ascii(len=3):
+     62 6f 62                                          bob             
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11003 ([UP][LOWER_UP])
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=46
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=2 method=21 vendor=0 vendorMethod=0
+EAP: EAP entering state GET_METHOD
+EAP: configuration does not allow: vendor 0 method 21
+EAP: vendor 0 method 21 not allowed
+wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=21 -> NAK
+EAP: Status notification: refuse proposed method (param=TTLS)
+EAP: Building EAP-Nak (requested type 21 vendor=0 method=0 not allowed)
+EAP: allowed methods - hexdump(len=1): 19
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=46
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=3 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state GET_METHOD
+wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=25
+EAP: Status notification: accept proposed method (param=PEAP)
+EAP: Initialize selected EAP method: vendor 0 method 25 (PEAP)
+TLS: Phase2 EAP types - hexdump(len=128): 00 00 00 00 04 00 00 00 00 00 00 00 1a 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 05 00 00 00 00 00 00 00 12 00 00 00 00 00 00 00 11 00 00 00 00 00 00 00 2f 00 00 00 00 00 00 00 17 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00 2e 00 00 00 00 00 00 00 30 00 00 00 00 00 00 00 33 00 00 00 00 00 00 00 31 00 00 00 00 00 00 00 26 00 00 00 00 00 00 00 34 00 00 00 00 00 00 00 35 00 00 00
+TLS: using phase1 config options
+wlan0: CTRL-EVENT-EAP-METHOD EAP vendor 0 method 25 (PEAP) selected
+EAP: EAP entering state METHOD
+SSL: Received packet(len=6) - Flags 0x20
+EAP-PEAP: Start (server ver=0, own ver=1)
+EAP-PEAP: Using PEAP version 0
+SSL: (where=0x10 ret=0x1)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:before SSL initialization
+OpenSSL: TX ver=0x301 content_type=256 (TLS header info/)
+OpenSSL: TX ver=0x303 content_type=22 (handshake/client hello)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS write client hello
+SSL: (where=0x1002 ret=0xffffffff)
+SSL: SSL_connect:error in SSLv3/TLS write client hello
+SSL: SSL_connect - want more data
+SSL: 184 bytes pending from ssl_out
+SSL: Using TLS version TLSv1.2
+SSL: 184 bytes left to be sent out (of total 184 bytes)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cd5ba00
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=1008
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=4 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=1004) - Flags 0xc0
+SSL: TLS Message Length: 2726
+SSL: Need 1732 bytes more input data
+SSL: Building ACK (type=25 id=4 ver=0)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cd5cee0
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=1004
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=5 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=1000) - Flags 0x40
+SSL: Need 738 bytes more input data
+SSL: Building ACK (type=25 id=5 ver=0)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cd5cee0
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=748
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=6 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=744) - Flags 0x00
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS write client hello
+OpenSSL: RX ver=0x303 content_type=22 (handshake/server hello)
+OpenSSL: Server selected cipher suite 0xc030
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS read server hello
+OpenSSL: RX ver=0x303 content_type=22 (handshake/certificate)
+OpenSSL: Peer certificate - depth 1
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            43:91:11:da:53:1d:43:53:f7:64:bd:1c:b8:0a:7e:27:a6:fc:d1:a8
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=FR, ST=RADIUS, L=BEZIERS, O=IUT/emailAddress=admin@iutbeziers.fr, CN=RTBZ Certificate Authority
+        Validity
+            Not Before: Sep 10 12:20:57 2024 GMT
+            Not After : Jul 20 12:20:57 2034 GMT
+        Subject: C=FR, ST=RADIUS, L=BEZIERS, O=IUT/emailAddress=admin@iutbeziers.fr, CN=RTBZ Certificate Authority
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:9e:8b:4e:dd:99:4d:9b:18:e4:35:9e:62:ca:14:
+                    f3:81:31:b8:ff:33:21:e7:ee:bf:23:2a:7d:4b:1e:
+                    16:d1:2e:60:41:10:7b:d2:e3:b9:1e:49:17:66:fd:
+                    ec:1f:9b:ba:8f:8c:1c:17:d1:43:94:33:ce:42:53:
+                    29:f7:cf:7e:10:c5:3c:38:58:9a:36:c7:28:08:49:
+                    f4:10:12:5e:fc:37:7d:49:8a:94:fa:8c:c9:33:32:
+                    a8:82:3a:38:9f:f2:c9:4e:23:87:ba:70:73:8d:5b:
+                    be:92:ec:0d:54:58:f2:39:e6:ab:2a:36:7c:3f:58:
+                    54:de:42:42:13:1c:2d:78:1d:21:8c:30:fc:15:00:
+                    f9:cf:60:1b:59:5a:5e:07:a3:c4:c2:ae:90:8b:04:
+                    20:05:c7:52:00:64:d2:2e:97:8a:ee:ff:df:73:2a:
+                    89:ba:1c:e9:6f:5d:60:ea:19:ab:54:38:0d:b2:71:
+                    9c:8c:34:88:a7:9d:76:9f:26:8b:50:5c:46:c0:b4:
+                    fa:83:9e:5c:f6:e9:da:7c:1f:5d:57:da:6a:ed:dc:
+                    88:a0:3b:ba:79:0f:cd:2c:da:6a:a7:7a:9f:c1:61:
+                    c4:37:21:f1:7e:7e:99:c7:37:40:59:9a:bc:49:aa:
+                    58:73:c8:e3:b1:6f:aa:e9:a5:80:19:f6:bb:57:21:
+                    0a:6b
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                F6:BA:08:D7:7A:6D:C4:A3:58:9D:34:3C:37:E0:DC:5A:32:A3:12:07
+            X509v3 Authority Key Identifier: 
+                keyid:F6:BA:08:D7:7A:6D:C4:A3:58:9D:34:3C:37:E0:DC:5A:32:A3:12:07
+                DirName:/C=FR/ST=RADIUS/L=BEZIERS/O=IUT/emailAddress=admin@iutbeziers.fr/CN=RTBZ Certificate Authority
+                serial:43:91:11:DA:53:1D:43:53:F7:64:BD:1C:B8:0A:7E:27:A6:FC:D1:A8
+            X509v3 Basic Constraints: 
+                CA:TRUE
+            X509v3 CRL Distribution Points: 
+                Full Name:
+                  URI:http://iutbeziers.fr/ca.crl
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        6e:a0:22:d2:87:e1:eb:85:92:c0:2b:2c:92:6d:ba:fe:45:fb:
+        f1:b6:66:63:d8:8d:3e:77:3a:42:81:62:8a:e8:52:6c:25:e8:
+        47:e7:8b:cd:51:10:a8:26:ed:dc:95:88:c2:08:6f:f8:75:55:
+        67:b9:7a:69:14:96:75:38:e8:c3:3a:84:2a:6c:d7:9d:c4:c5:
+        de:5c:ee:83:ae:e3:39:32:86:45:7b:1a:dd:2d:5c:41:ce:31:
+        b3:0f:4e:6d:01:dd:cb:0d:b6:d9:7d:7b:e2:a6:5c:bd:36:48:
+        b8:87:f8:08:fa:6c:11:0f:d2:9b:5d:18:3e:a5:3d:6b:d8:54:
+        57:a3:d2:c7:73:7f:e7:89:69:24:c5:ca:d9:f0:af:09:d8:7c:
+        12:f8:c4:e4:d9:4a:b2:a7:47:31:03:42:00:41:c2:a3:df:56:
+        2f:6e:ac:92:72:9b:3f:cb:5b:88:f5:bb:ea:97:33:7a:3b:73:
+        a9:f1:a6:3e:60:8e:0b:89:67:7a:76:62:0f:6e:9b:54:9b:61:
+        22:e1:7e:75:11:b4:1f:56:03:37:2c:14:2d:61:9b:c5:60:1b:
+        7f:6a:37:00:3c:ec:7f:fc:78:8e:07:69:1e:b9:ae:07:65:ba:
+        0e:18:7b:14:eb:08:e1:a9:f6:81:6b:8b:e0:ad:89:fd:cd:eb:
+        34:01:95:12
+
+wlan0: CTRL-EVENT-EAP-PEER-CERT depth=1 subject='/C=FR/ST=RADIUS/L=BEZIERS/O=IUT/emailAddress=admin@iutbeziers.fr/CN=RTBZ Certificate Authority' hash=8ea0ee84cd30bd6f70ec8f64a97ae534e5b23c96a1337d467efd98451c98ab7d
+TLS: tls_verify_cb - preverify_ok=1 err=19 (self-signed certificate in certificate chain) ca_cert_verify=0 depth=1 buf='/C=FR/ST=RADIUS/L=BEZIERS/O=IUT/emailAddress=admin@iutbeziers.fr/CN=RTBZ Certificate Authority'
+OpenSSL: Peer certificate - depth 1
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            43:91:11:da:53:1d:43:53:f7:64:bd:1c:b8:0a:7e:27:a6:fc:d1:a8
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=FR, ST=RADIUS, L=BEZIERS, O=IUT/emailAddress=admin@iutbeziers.fr, CN=RTBZ Certificate Authority
+        Validity
+            Not Before: Sep 10 12:20:57 2024 GMT
+            Not After : Jul 20 12:20:57 2034 GMT
+        Subject: C=FR, ST=RADIUS, L=BEZIERS, O=IUT/emailAddress=admin@iutbeziers.fr, CN=RTBZ Certificate Authority
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:9e:8b:4e:dd:99:4d:9b:18:e4:35:9e:62:ca:14:
+                    f3:81:31:b8:ff:33:21:e7:ee:bf:23:2a:7d:4b:1e:
+                    16:d1:2e:60:41:10:7b:d2:e3:b9:1e:49:17:66:fd:
+                    ec:1f:9b:ba:8f:8c:1c:17:d1:43:94:33:ce:42:53:
+                    29:f7:cf:7e:10:c5:3c:38:58:9a:36:c7:28:08:49:
+                    f4:10:12:5e:fc:37:7d:49:8a:94:fa:8c:c9:33:32:
+                    a8:82:3a:38:9f:f2:c9:4e:23:87:ba:70:73:8d:5b:
+                    be:92:ec:0d:54:58:f2:39:e6:ab:2a:36:7c:3f:58:
+                    54:de:42:42:13:1c:2d:78:1d:21:8c:30:fc:15:00:
+                    f9:cf:60:1b:59:5a:5e:07:a3:c4:c2:ae:90:8b:04:
+                    20:05:c7:52:00:64:d2:2e:97:8a:ee:ff:df:73:2a:
+                    89:ba:1c:e9:6f:5d:60:ea:19:ab:54:38:0d:b2:71:
+                    9c:8c:34:88:a7:9d:76:9f:26:8b:50:5c:46:c0:b4:
+                    fa:83:9e:5c:f6:e9:da:7c:1f:5d:57:da:6a:ed:dc:
+                    88:a0:3b:ba:79:0f:cd:2c:da:6a:a7:7a:9f:c1:61:
+                    c4:37:21:f1:7e:7e:99:c7:37:40:59:9a:bc:49:aa:
+                    58:73:c8:e3:b1:6f:aa:e9:a5:80:19:f6:bb:57:21:
+                    0a:6b
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                F6:BA:08:D7:7A:6D:C4:A3:58:9D:34:3C:37:E0:DC:5A:32:A3:12:07
+            X509v3 Authority Key Identifier: 
+                keyid:F6:BA:08:D7:7A:6D:C4:A3:58:9D:34:3C:37:E0:DC:5A:32:A3:12:07
+                DirName:/C=FR/ST=RADIUS/L=BEZIERS/O=IUT/emailAddress=admin@iutbeziers.fr/CN=RTBZ Certificate Authority
+                serial:43:91:11:DA:53:1D:43:53:F7:64:BD:1C:B8:0A:7E:27:A6:FC:D1:A8
+            X509v3 Basic Constraints: 
+                CA:TRUE
+            X509v3 CRL Distribution Points: 
+                Full Name:
+                  URI:http://iutbeziers.fr/ca.crl
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        6e:a0:22:d2:87:e1:eb:85:92:c0:2b:2c:92:6d:ba:fe:45:fb:
+        f1:b6:66:63:d8:8d:3e:77:3a:42:81:62:8a:e8:52:6c:25:e8:
+        47:e7:8b:cd:51:10:a8:26:ed:dc:95:88:c2:08:6f:f8:75:55:
+        67:b9:7a:69:14:96:75:38:e8:c3:3a:84:2a:6c:d7:9d:c4:c5:
+        de:5c:ee:83:ae:e3:39:32:86:45:7b:1a:dd:2d:5c:41:ce:31:
+        b3:0f:4e:6d:01:dd:cb:0d:b6:d9:7d:7b:e2:a6:5c:bd:36:48:
+        b8:87:f8:08:fa:6c:11:0f:d2:9b:5d:18:3e:a5:3d:6b:d8:54:
+        57:a3:d2:c7:73:7f:e7:89:69:24:c5:ca:d9:f0:af:09:d8:7c:
+        12:f8:c4:e4:d9:4a:b2:a7:47:31:03:42:00:41:c2:a3:df:56:
+        2f:6e:ac:92:72:9b:3f:cb:5b:88:f5:bb:ea:97:33:7a:3b:73:
+        a9:f1:a6:3e:60:8e:0b:89:67:7a:76:62:0f:6e:9b:54:9b:61:
+        22:e1:7e:75:11:b4:1f:56:03:37:2c:14:2d:61:9b:c5:60:1b:
+        7f:6a:37:00:3c:ec:7f:fc:78:8e:07:69:1e:b9:ae:07:65:ba:
+        0e:18:7b:14:eb:08:e1:a9:f6:81:6b:8b:e0:ad:89:fd:cd:eb:
+        34:01:95:12
+
+wlan0: CTRL-EVENT-EAP-PEER-CERT depth=1 subject='/C=FR/ST=RADIUS/L=BEZIERS/O=IUT/emailAddress=admin@iutbeziers.fr/CN=RTBZ Certificate Authority' hash=8ea0ee84cd30bd6f70ec8f64a97ae534e5b23c96a1337d467efd98451c98ab7d
+TLS: tls_verify_cb - preverify_ok=1 err=19 (self-signed certificate in certificate chain) ca_cert_verify=0 depth=1 buf='/C=FR/ST=RADIUS/L=BEZIERS/O=IUT/emailAddress=admin@iutbeziers.fr/CN=RTBZ Certificate Authority'
+OpenSSL: Peer certificate - depth 0
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=FR, ST=RADIUS, L=BEZIERS, O=IUT/emailAddress=admin@iutbeziers.fr, CN=RTBZ Certificate Authority
+        Validity
+            Not Before: Sep 10 12:20:57 2024 GMT
+            Not After : Jul 20 12:20:57 2034 GMT
+        Subject: C=FR, ST=RADIUS, O=IUT, CN=RTBZ Server Certificate/emailAddress=admin@iutbeziers.fr
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:af:83:10:10:c4:54:fb:44:e9:57:1f:29:bf:26:
+                    1c:27:2a:80:09:e3:e6:a6:e8:cf:1f:66:b0:d9:91:
+                    b9:e0:ab:7b:2d:d0:41:7a:d1:6b:a3:3e:2e:9e:94:
+                    2c:c2:2f:2f:57:34:35:62:7b:4f:9d:f8:e5:f0:30:
+                    52:b0:ee:54:e4:04:80:e2:ae:5b:0f:50:26:e6:2f:
+                    f3:43:c4:e6:8e:76:6f:d3:be:e9:67:8a:06:86:80:
+                    c1:0f:0d:7f:07:fd:48:5b:77:4f:a6:a3:30:b2:3a:
+                    33:bb:65:e9:6b:dd:5d:96:02:16:d6:6f:a1:fa:a7:
+                    16:23:38:f2:d9:a0:4e:d4:ee:7a:af:ee:70:de:3a:
+                    d9:02:f3:88:44:c3:cc:55:59:4d:f1:e7:cc:fc:db:
+                    0f:d1:93:7e:d0:4c:69:e0:24:a1:ac:54:db:87:84:
+                    51:68:2c:7c:bc:c7:da:20:ee:5e:28:eb:9c:de:e3:
+                    1f:c8:55:d2:0c:f4:0e:95:11:95:fa:af:e8:c6:9b:
+                    59:75:e2:ae:0f:07:c7:f2:c2:76:b4:3c:a6:f5:31:
+                    03:26:2c:6f:c6:27:a8:81:8f:98:79:9a:55:6b:8f:
+                    c0:3a:51:ec:d1:50:fe:e8:bb:ff:0f:af:c7:fb:41:
+                    0b:18:c3:69:76:11:4b:cc:da:0a:19:2d:b3:55:6f:
+                    35:99
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 CRL Distribution Points: 
+                Full Name:
+                  URI:http://www.example.com/example_ca.crl
+            X509v3 Subject Key Identifier: 
+                C6:0A:17:BB:6B:04:B0:CA:8C:20:4D:33:F9:49:27:BD:FE:10:82:62
+            X509v3 Authority Key Identifier: 
+                F6:BA:08:D7:7A:6D:C4:A3:58:9D:34:3C:37:E0:DC:5A:32:A3:12:07
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        24:69:73:70:39:06:cf:b0:c3:36:58:95:7a:22:15:60:81:d6:
+        cf:b7:b0:39:01:54:39:96:04:0b:8b:77:b6:20:35:d8:46:ef:
+        cf:42:78:18:63:03:0c:17:ed:ea:02:01:a0:c4:18:49:2d:40:
+        69:95:33:7c:62:fc:72:b8:6f:67:db:72:eb:de:43:1d:d7:54:
+        8c:62:24:3c:56:95:6a:b7:a5:ed:a8:58:c5:12:62:77:22:6d:
+        4d:59:f1:a3:0b:16:3c:03:c7:ea:eb:a6:51:3a:f4:c0:22:42:
+        6a:a4:80:d5:3e:04:70:ec:16:d1:34:14:16:92:38:13:ae:46:
+        b3:b6:a7:27:f9:d6:4c:81:6f:15:43:60:28:c4:07:6b:04:99:
+        5f:db:a0:02:31:2d:b0:61:0e:f6:82:43:f7:56:aa:19:43:8c:
+        37:9f:91:1b:78:af:e0:69:0a:68:26:ef:af:9a:01:76:ad:84:
+        53:a7:d8:02:bd:c1:1b:cc:5e:71:dc:39:79:f1:e6:cf:d1:94:
+        75:d1:72:c4:c6:72:e9:2f:4d:3d:98:cd:c8:90:64:03:2a:25:
+        e6:a3:25:3a:3b:15:dd:d0:e1:db:07:0e:52:87:7f:ad:0a:af:
+        8e:f6:ed:b7:fb:d1:45:04:9d:b1:0d:a2:fd:a8:aa:f0:95:34:
+        29:81:91:b7
+
+wlan0: CTRL-EVENT-EAP-PEER-CERT depth=0 subject='/C=FR/ST=RADIUS/O=IUT/CN=RTBZ Server Certificate/emailAddress=admin@iutbeziers.fr' hash=ae3d5b752df807592e5c8eed53a7257962041a9c2978b2fb156c7a16c407d96e
+TLS: tls_verify_cb - preverify_ok=1 err=19 (self-signed certificate in certificate chain) ca_cert_verify=0 depth=0 buf='/C=FR/ST=RADIUS/O=IUT/CN=RTBZ Server Certificate/emailAddress=admin@iutbeziers.fr'
+EAP: Status notification: remote certificate verification (param=success)
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS read server certificate
+OpenSSL: RX ver=0x303 content_type=22 (handshake/server key exchange)
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS read server key exchange
+OpenSSL: RX ver=0x303 content_type=22 (handshake/server hello done)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS read server done
+OpenSSL: TX ver=0x303 content_type=256 (TLS header info/)
+OpenSSL: TX ver=0x303 content_type=22 (handshake/client key exchange)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS write client key exchange
+OpenSSL: TX ver=0x303 content_type=256 (TLS header info/)
+OpenSSL: TX ver=0x303 content_type=20 (change cipher spec/)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS write change cipher spec
+OpenSSL: TX ver=0x303 content_type=256 (TLS header info/)
+OpenSSL: TX ver=0x303 content_type=22 (handshake/finished)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS write finished
+SSL: (where=0x1002 ret=0xffffffff)
+SSL: SSL_connect:error in SSLv3/TLS write finished
+SSL: SSL_connect - want more data
+SSL: 126 bytes pending from ssl_out
+SSL: Using TLS version TLSv1.2
+SSL: 126 bytes left to be sent out (of total 126 bytes)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cceaeb0
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=61
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=7 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=57) - Flags 0x00
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS write finished
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS read change cipher spec
+OpenSSL: RX ver=0x303 content_type=22 (handshake/finished)
+SSL: (where=0x1001 ret=0x1)
+SSL: SSL_connect:SSLv3/TLS read finished
+SSL: (where=0x20 ret=0x1)
+SSL: (where=0x1002 ret=0x1)
+SSL: 0 bytes pending from ssl_out
+OpenSSL: Handshake finished - resumed=0
+SSL: No Application Data included
+SSL: Using TLS version TLSv1.2
+SSL: No data to be sent out
+EAP-PEAP: TLS done, proceed to Phase 2
+EAP-PEAP: using label 'client EAP encryption' in key derivation
+EAP-PEAP: Derived key - hexdump(len=64): 24 4a e5 c3 db 31 e4 5b 66 85 35 6b 2b a7 cd 14 00 38 df b6 b1 87 c1 72 7c ea 56 c1 f3 6b e8 01 6c 23 73 67 29 36 3f 78 36 e8 a7 d8 b1 84 76 ef b7 69 93 e4 21 61 a8 bf 86 97 c5 90 f7 72 b3 e0
+EAP-PEAP: Derived EMSK - hexdump(len=64): ae bc ae 29 d7 fa 02 91 23 22 f5 fe fb 5c c0 0e b2 ac c3 78 b0 00 9c a6 a5 07 b1 e0 19 5d b5 6c 76 77 7c b5 92 50 9a e9 dc f6 53 f7 7a 12 cb fc 11 6c a2 69 d8 39 0f 8b c3 b7 a1 14 f4 49 ec 0e
+EAP-PEAP: Derived Session-Id - hexdump(len=65): 19 d7 d1 6d 69 18 fa 30 7b c0 d2 00 d9 72 8e f8 d9 58 11 6e 2c a4 f4 ac ef 1e 25 f8 2e cc 5b cf e5 94 10 20 5b 90 d3 bc 4e 13 c1 68 a3 97 a3 8e da f0 2c 89 d8 81 e7 df d4 f4 ec ff be 68 ed 3d 75
+SSL: Building ACK (type=25 id=7 ver=0)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cd8bc20
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=46
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=8 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=40) - Flags 0x00
+EAP-PEAP: received 34 bytes encrypted data for Phase 2
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+EAP-PEAP: Decrypted Phase 2 EAP - hexdump(len=5): 01 08 00 05 01
+EAP-PEAP: received Phase 2: code=1 identifier=8 length=5
+EAP-PEAP: Phase 2 Request: type=1
+EAP: using real identity - hexdump_ascii(len=3):
+     62 6f 62                                          bob             
+EAP-PEAP: Encrypting Phase 2 data - hexdump(len=8): 02 08 00 08 01 62 6f 62
+OpenSSL: TX ver=0x303 content_type=256 (TLS header info/)
+SSL: 33 bytes left to be sent out (of total 33 bytes)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cd5ee00
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=77
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=9 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=73) - Flags 0x00
+EAP-PEAP: received 67 bytes encrypted data for Phase 2
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+EAP-PEAP: Decrypted Phase 2 EAP - hexdump(len=38): 1a 01 09 00 25 10 c6 57 d9 53 d0 25 02 72 ca c6 ee b2 08 60 ab 6e 66 72 65 65 72 61 64 69 75 73 2d 33 2e 32 2e 31
+EAP-PEAP: received Phase 2: code=1 identifier=9 length=42
+EAP-PEAP: Phase 2 Request: type=26
+EAP-PEAP: Selected Phase 2 EAP vendor 0 method 26
+EAP-MSCHAPV2: RX identifier 9 mschapv2_id 9
+EAP-MSCHAPV2: Received challenge
+EAP-MSCHAPV2: Authentication Servername - hexdump_ascii(len=16):
+     66 72 65 65 72 61 64 69 75 73 2d 33 2e 32 2e 31   freeradius-3.2.1
+EAP-MSCHAPV2: Generating Challenge Response
+MSCHAPV2: Identity - hexdump_ascii(len=3):
+     62 6f 62                                          bob             
+MSCHAPV2: Username - hexdump_ascii(len=3):
+     62 6f 62                                          bob             
+MSCHAPV2: auth_challenge - hexdump(len=16): c6 57 d9 53 d0 25 02 72 ca c6 ee b2 08 60 ab 6e
+MSCHAPV2: peer_challenge - hexdump(len=16): e1 5b 6c 6b b7 c0 92 ce 5e d1 4d 62 36 32 fb ce
+MSCHAPV2: username - hexdump_ascii(len=3):
+     62 6f 62                                          bob             
+MSCHAPV2: password - hexdump_ascii(len=5):
+     68 65 6c 6c 6f                                    hello           
+MSCHAPV2: NT Response - hexdump(len=24): db 6b 98 70 9e 14 6f 86 58 17 e9 c6 82 01 25 41 ff 8b d8 bc d2 6a 65 f8
+MSCHAPV2: Auth Response - hexdump(len=20): c5 99 c9 08 b6 ec a3 41 c4 2d 9c 1e d4 11 65 a6 bf 7d 0b 02
+MSCHAPV2: Master Key - hexdump(len=16): cd d4 e0 80 04 de bb 3d 72 7a 7b be 61 37 54 45
+EAP-MSCHAPV2: TX identifier 9 mschapv2_id 9 (response)
+EAP-PEAP: Encrypting Phase 2 data - hexdump(len=62): 02 09 00 3e 1a 02 09 00 39 31 e1 5b 6c 6b b7 c0 92 ce 5e d1 4d 62 36 32 fb ce 00 00 00 00 00 00 00 00 db 6b 98 70 9e 14 6f 86 58 17 e9 c6 82 01 25 41 ff 8b d8 bc d2 6a 65 f8 00 62 6f 62
+OpenSSL: TX ver=0x303 content_type=256 (TLS header info/)
+SSL: 87 bytes left to be sent out (of total 87 bytes)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cd5d9a0
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=86
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=10 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=82) - Flags 0x00
+EAP-PEAP: received 76 bytes encrypted data for Phase 2
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+EAP-PEAP: Decrypted Phase 2 EAP - hexdump(len=47): 1a 03 09 00 2e 53 3d 43 35 39 39 43 39 30 38 42 36 45 43 41 33 34 31 43 34 32 44 39 43 31 45 44 34 31 31 36 35 41 36 42 46 37 44 30 42 30 32
+EAP-PEAP: received Phase 2: code=1 identifier=10 length=51
+EAP-PEAP: Phase 2 Request: type=26
+EAP-MSCHAPV2: RX identifier 10 mschapv2_id 9
+EAP-MSCHAPV2: Received success
+EAP-MSCHAPV2: Success message - hexdump_ascii(len=0):
+EAP-MSCHAPV2: Authentication succeeded
+EAP-PEAP: Encrypting Phase 2 data - hexdump(len=6): 02 0a 00 06 1a 03
+OpenSSL: TX ver=0x303 content_type=256 (TLS header info/)
+SSL: 31 bytes left to be sent out (of total 31 bytes)
+EAP: method process -> ignore=FALSE methodState=MAY_CONT decision=FAIL eapRespData=0x556cd8c400
+EAP: Session-Id - hexdump(len=65): 19 d7 d1 6d 69 18 fa 30 7b c0 d2 00 d9 72 8e f8 d9 58 11 6e 2c a4 f4 ac ef 1e 25 f8 2e cc 5b cf e5 94 10 20 5b 90 d3 bc 4e 13 c1 68 a3 97 a3 8e da f0 2c 89 d8 81 e7 df d4 f4 ec ff be 68 ed 3d 75
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=50
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Request id=11 method=25 vendor=0 vendorMethod=0
+EAP: EAP entering state METHOD
+SSL: Received packet(len=46) - Flags 0x00
+EAP-PEAP: received 40 bytes encrypted data for Phase 2
+OpenSSL: RX ver=0x303 content_type=256 (TLS header info/)
+EAP-PEAP: Decrypted Phase 2 EAP - hexdump(len=11): 01 0b 00 0b 21 80 03 00 02 00 01
+EAP-PEAP: received Phase 2: code=1 identifier=11 length=11
+EAP-PEAP: Phase 2 Request: type=33
+EAP-TLV: Received TLVs - hexdump(len=6): 80 03 00 02 00 01
+EAP-TLV: Result TLV - hexdump(len=2): 00 01
+EAP-TLV: TLV Result - Success - EAP-TLV/Phase2 Completed
+EAP-PEAP: Encrypting Phase 2 data - hexdump(len=11): 02 0b 00 0b 21 80 03 00 02 00 01
+OpenSSL: TX ver=0x303 content_type=256 (TLS header info/)
+SSL: 40 bytes left to be sent out (of total 40 bytes)
+EAP: method process -> ignore=FALSE methodState=DONE decision=UNCOND_SUCC eapRespData=0x556cd5eff0
+EAP: Session-Id - hexdump(len=65): 19 d7 d1 6d 69 18 fa 30 7b c0 d2 00 d9 72 8e f8 d9 58 11 6e 2c a4 f4 ac ef 1e 25 f8 2e cc 5b cf e5 94 10 20 5b 90 d3 bc 4e 13 c1 68 a3 97 a3 8e da f0 2c 89 d8 81 e7 df d4 f4 ec ff be 68 ed 3d 75
+EAP: EAP entering state SEND_RESPONSE
+EAP: EAP entering state IDLE
+EAPOL: SUPP_BE entering state RESPONSE
+EAPOL: txSuppRsp
+TX EAPOL: dst=00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+l2_packet_receive: src=00:3a:9a:f4:2c:d0 len=46
+wlan0: RX EAPOL from 00:3a:9a:f4:2c:d0
+EAPOL: Received EAP-Packet frame
+EAPOL: SUPP_BE entering state REQUEST
+EAPOL: getSuppRsp
+EAP: EAP entering state RECEIVED
+EAP: Received EAP-Success
+EAP: Status notification: completion (param=success)
+EAP: EAP entering state SUCCESS
+wlan0: CTRL-EVENT-EAP-SUCCESS EAP authentication completed successfully
+EAPOL: SUPP_PAE entering state AUTHENTICATED
+EAPOL: Supplicant port status: Authorized
+nl80211: Set supplicant port authorized for 00:3a:9a:f4:2c:d0
+EAPOL: SUPP_BE entering state RECEIVE
+EAPOL: SUPP_BE entering state SUCCESS
+EAPOL: SUPP_BE entering state IDLE
+EAPOL authentication completed - result=SUCCESS
+Configure PMK for driver-based RSN 4-way handshake
+EAPOL: Successfully fetched key (len=32)
+RSN: Configure PMK for driver-based 4-way handshake - hexdump(len=32): 24 4a e5 c3 db 31 e4 5b 66 85 35 6b 2b a7 cd 14 00 38 df b6 b1 87 c1 72 7c ea 56 c1 f3 6b e8 01
+wpa_driver_nl80211_set_key: ifindex=3 (wlan0) alg=0 addr=(nil) key_idx=0 set_tx=0 seq_len=0 key_len=32 key_flag=0x40
+nl80211: Set PMK to the driver for 00:3a:9a:f4:2c:d0
+nl80211: PMK - hexdump(len=32): 24 4a e5 c3 db 31 e4 5b 66 85 35 6b 2b a7 cd 14 00 38 df b6 b1 87 c1 72 7c ea 56 c1 f3 6b e8 01
+wlan0: Cancelling scan request
+wlan0: Cancelling authentication timeout
+wlan0: State: ASSOCIATED -> COMPLETED
+wlan0: Radio work 'connect'@0x556cd4eeb0 done in 0.381993 seconds
+wlan0: radio_work_free('connect'@0x556cd4eeb0): num_active_works --> 0
+wlan0: CTRL-EVENT-CONNECTED - Connection to 00:3a:9a:f4:2c:d0 completed [id=0 id_str=]
+nl80211: Set wlan0 operstate 0->1 (UP)
+netlink: Operstate: ifindex=3 linkmode=-1 (no change), operstate=6 (IF_OPER_UP)
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 operstate=6 linkmode=1 ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+EAPOL: startWhen --> 0
+EAPOL: authWhile --> 0
+nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+wlan0: nl80211: Scan trigger
+wlan0: Event SCAN_STARTED (47) received
+wlan0: External program started a scan
+nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+wlan0: nl80211: New scan results available
+nl80211: Scan probed for SSID ''
+nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462
+wlan0: Event SCAN_RESULTS (3) received
+nl80211: Received scan results (21 BSSes)
+nl80211: Scan results indicate BSS status with 00:3a:9a:f4:2c:d0 as associated
+wlan0: BSS: Start scan result update 2
+wlan0: BSS: Add new id 23 BSSID cc:db:93:d1:06:c2 SSID 'WIFI_IUTB_IOT' freq 2412
+wlan0: BSS: Add new id 24 BSSID 70:f0:96:d2:d8:02 SSID 'WIFI_IUTB_IOT' freq 2462
+BSS: last_scan_res_used=21/32
+wlan0: New scan results available (own=0 ext=1)
+wlan0: Do not use results from externally requested scan operation for network selection
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+EAPOL: idleWhile --> 0
+EAPOL: disable timer tick
+nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+wlan0: nl80211: Scan trigger
+wlan0: Event SCAN_STARTED (47) received
+wlan0: External program started a scan
+nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+wlan0: nl80211: New scan results available
+nl80211: Scan probed for SSID ''
+nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462
+wlan0: Event SCAN_RESULTS (3) received
+nl80211: Received scan results (21 BSSes)
+nl80211: Scan results indicate BSS status with 00:3a:9a:f4:2c:d0 as associated
+wlan0: BSS: Start scan result update 3
+wlan0: BSS: Add new id 25 BSSID cc:db:93:d1:06:c1 SSID 'UM-net' freq 2412
+wlan0: BSS: Remove id 17 BSSID 54:8a:ba:6b:fc:00 SSID 'eduroam' due to no match in scan
+wlan0: BSS: Remove id 22 BSSID 54:8a:ba:6b:fc:01 SSID 'UM-net' due to no match in scan
+BSS: last_scan_res_used=21/32
+wlan0: New scan results available (own=0 ext=1)
+wlan0: Do not use results from externally requested scan operation for network selection
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+wlan0: BSS: Remove id 24 BSSID 70:f0:96:d2:d8:02 SSID 'WIFI_IUTB_IOT' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 15 BSSID 54:8a:ba:6b:fc:02 SSID 'WIFI_IUTB_IOT' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 21 BSSID cc:db:93:d0:f0:01 SSID 'UM-net' due to wpa_bss_flush_by_age
+nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+wlan0: nl80211: Scan trigger
+wlan0: Event SCAN_STARTED (47) received
+wlan0: External program started a scan
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+wlan0: nl80211: New scan results available
+nl80211: Scan probed for SSID ''
+nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462
+wlan0: Event SCAN_RESULTS (3) received
+nl80211: Received scan results (23 BSSes)
+nl80211: Scan results indicate BSS status with 00:3a:9a:f4:2c:d0 as associated
+wlan0: BSS: Start scan result update 4
+wlan0: BSS: Add new id 26 BSSID 70:f0:96:d2:d8:02 SSID 'WIFI_IUTB_IOT' freq 2462
+wlan0: BSS: Add new id 27 BSSID cc:db:93:d0:f0:00 SSID 'eduroam' freq 2462
+wlan0: BSS: Add new id 28 BSSID cc:db:93:d0:f0:01 SSID 'UM-net' freq 2462
+BSS: last_scan_res_used=23/32
+wlan0: New scan results available (own=0 ext=1)
+wlan0: Do not use results from externally requested scan operation for network selection
+wlan0: BSS: Remove id 12 BSSID 00:3a:9a:f4:11:10 SSID 'QGduFBI' due to wpa_bss_flush_by_age
+nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+wlan0: nl80211: Scan trigger
+wlan0: Event SCAN_STARTED (47) received
+wlan0: External program started a scan
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+wlan0: nl80211: New scan results available
+nl80211: Scan probed for SSID ''
+nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462
+wlan0: Event SCAN_RESULTS (3) received
+nl80211: Received scan results (23 BSSes)
+nl80211: Scan results indicate BSS status with 00:3a:9a:f4:2c:d0 as associated
+wlan0: BSS: Start scan result update 5
+wlan0: BSS: Add new id 29 BSSID 00:3a:9a:f4:11:10 SSID 'QGduFBI' freq 2437
+BSS: last_scan_res_used=23/32
+wlan0: New scan results available (own=0 ext=1)
+wlan0: Do not use results from externally requested scan operation for network selection
+wlan0: BSS: Remove id 28 BSSID cc:db:93:d0:f0:01 SSID 'UM-net' due to wpa_bss_flush_by_age
+nl80211: Drv Event 33 (NL80211_CMD_TRIGGER_SCAN) received for wlan0
+wlan0: nl80211: Scan trigger
+wlan0: Event SCAN_STARTED (47) received
+wlan0: External program started a scan
+RTM_NEWLINK: ifi_index=3 ifname=wlan0 wext ifi_family=0 ifi_flags=0x11043 ([UP][RUNNING][LOWER_UP])
+nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+wlan0: nl80211: New scan results available
+nl80211: Scan probed for SSID ''
+nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462
+wlan0: Event SCAN_RESULTS (3) received
+nl80211: Received scan results (16 BSSes)
+nl80211: Scan results indicate BSS status with 00:3a:9a:f4:2c:d0 as associated
+wlan0: BSS: Start scan result update 6
+BSS: last_scan_res_used=16/32
+wlan0: New scan results available (own=0 ext=1)
+wlan0: Do not use results from externally requested scan operation for network selection
+wlan0: BSS: Remove id 5 BSSID 00:1a:30:c3:22:40 SSID 'madmatetmobzie' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 8 BSSID 00:3a:9a:1c:4d:20 SSID 'TRIBUNALMTP' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 14 BSSID 70:f0:96:d2:d8:00 SSID 'eduroam' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 16 BSSID cc:db:93:d0:f0:02 SSID 'WIFI_IUTB_IOT' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 27 BSSID cc:db:93:d0:f0:00 SSID 'eduroam' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 26 BSSID 70:f0:96:d2:d8:02 SSID 'WIFI_IUTB_IOT' due to wpa_bss_flush_by_age
+wlan0: BSS: Remove id 20 BSSID 70:f0:96:d2:d8:01 SSID 'UM-net' due to wpa_bss_flush_by_age
