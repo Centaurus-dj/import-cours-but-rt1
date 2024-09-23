@@ -219,7 +219,7 @@
 
     ce qui nous donne:
 
-    ```
+    ```txt
     SNMP table: ifTable
 
     index Index Descr             Type   Mtu      Speed    PhysAddress AdminStatus OperStatus   LastChange InOctets InUcastPkts InNUcastPkts InDiscards InErrors InUnknownProtos OutOctets OutUcastPkts OutNUcastPkts OutDiscards OutErrors OutQLen    Specific
@@ -229,7 +229,6 @@
 
     > [!NOTE]
     > La MIB est disponible à l'adresse suivante: [cric.grenoble.cnrs.fr](https://cric.grenoble.cnrs.fr/Administrateurs/Outils/MIBS/?module=IF-MIB&fournisseur=ietf)
-
 
   - la table des partitions
 
@@ -241,7 +240,7 @@
 
     ce qui nous donne:
 
-    ```
+    ```txt
     SNMP table: diskIOTable
 
     index Index    Device      NRead   NWritten Reads Writes LA1 LA5 LA15     NReadX  NWrittenX BusyTime
@@ -275,7 +274,7 @@
 
     ce qui nous donne:
 
-    ```
+    ```txt
     SNMP table: laTable
 
     index Index   Names Load Config LoadInt LoadFloat ErrorFlag ErrMessage
@@ -297,7 +296,7 @@
 
     ce qui nous donne:
 
-    ```
+    ```txt
     SNMP table: diskIOTable
 
     index Index    Device      NRead   NWritten Reads Writes LA1 LA5 LA15     NReadX  NWrittenX BusyTime
@@ -327,7 +326,6 @@
 ## 3 - Installation d’un serveur SNMP sous Linux
 
 On installe un serveur apache sous linux.
-
 
 après avoir lancé la commande suivante:
 
@@ -415,3 +413,45 @@ UCD-SNMP-MIB::prErrFixCmd.1 = STRING:
 
 ## 4 - Configurer SNMP sur les switchs CISCO
 
+On configure le switch SG-250-08 afin d'utiliser le service SNMP.
+
+- ![publicbeziers-sg250](./src/img/snmp-publicbeziers-sg250.png)
+- ![privatebeziers-sg250](./src/img/snmp-privatebeziers-sg250.png)
+
+> [!NOTE]
+> On doit aussi activer le service SNMP dans l'onglet `Security > TCP/UDP Services`
+
+## 5 - Installation d'un Browser de MIB
+
+1. Pré-requis
+
+    Nous installons [`tkmib`](https://packages.debian.org/bookworm/tkmib) qui, sous
+    debian, est directement relié à la collection `net-snmp`.
+
+2. Installation des MIBs Cisco
+
+    Nous modifions `ciscolist` et `snmp-mibs-downloader.conf` dans `/etc/snmp-mibs-downloader`:
+
+    - `ciscolist`:
+
+        Nous supprimons les MIBs suivantes:
+
+        ```conf
+        CISCO-SYS-INFO-LOG-MIB.my  CISCO-SYS-INFO-LOG-MIB
+        ```
+
+    - `snmp-mibs-downloader.conf`
+
+      Nous modifions la ligne suivante:
+
+      ```conf
+      AUTOLOAD="rfc ianarfc iana cisco"
+      ```
+
+    Nous installons maintenant les MIBs:
+
+    ```sh
+    sudo download-mibs
+    ```
+
+3.
