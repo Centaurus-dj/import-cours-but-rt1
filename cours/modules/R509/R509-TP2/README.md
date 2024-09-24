@@ -54,7 +54,7 @@ vagrant up
 
 - ### Modification des utilisateurs administrateurs
 
-    On modifie le fichier suviant:
+    On modifie le fichier suivant:
 
     - `/var/kerberos/krb5kdc/kadm5.acl`: Voir le fichier de configuration, disponible [ici](./src/kadm5.acl)
 
@@ -93,3 +93,30 @@ vagrant up
 
     On configure le client Kerberos avec le même fichier `krb5.conf` que le KDC.
 
+
+
+## Debian
+
+## Server
+
+```
+sudo apt install -y nano git dnsutils gcc make
+git clone https://gitlab.com/maradns/maradns.git maradns && cd maradns
+./configure
+CC=gcc
+export CC
+make
+sudo make install
+sudo apt install -y krb5-kdc krb5-admin-server
+/usr/sbin/kdb5_util create -s
+sudo systemctl start krb5-admin-server.service
+sudo systemctl status krb5-kdc.service
+sudo kadmin.local -q "addprinc vagrant/admin"
+kinit vagrant/admin
+klist
+```
+
+> [!NOTE]
+> Il faut penser à modifier la configuration de resolv.conf afin de pointer sur MaraDNS.
+
+## Client
