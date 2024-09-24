@@ -9,7 +9,37 @@ On installe un Box `fedora` avec vagrant:
 vagrant up
 ```
 
-## Installation de serveur Kerberos
+## Installation d'utilitaires
+
+On installe quelques utilitaires pour la suite:
+
+```sh
+dnf install -y nano bind-utils
+```
+
+## Installation de MaraDNS
+
+- ### Installation
+
+    On installe MaraDNS sur notre système:
+
+    ```sh
+    git clone https://gitlab.com/maradns/maradns.git maradns && cd maradns
+    ./configure
+    CC=gcc
+    export CC
+    make
+    sudo make install
+    cd ../
+    ```
+
+- ### Configuration
+
+    Voir le fichier de configuration de la zone MaraDNS, disponible [ici](./src/db.ao.local).
+    Voir le fichier de configuration MaraRC, disponible [ici](./src/mararc).
+
+## Installation du serveur Kerberos
+
 
 - ### Installation
 
@@ -74,10 +104,6 @@ vagrant up
     addprinc vagrant
     ```
 
-- ### Configuration des enregistrements DNS MaraDNS
-
-    Voir le fichier de configuration de la zone MaraDNS, disponible [ici](./src/db.ao.local).
-    Voir le fichier de configuration MaraRC, disponible [ici](./src/mararc).
 
 ## Installation de clients Kerberos
 
