@@ -44,6 +44,10 @@
 	path = cours/modules/R409/src/tpdocker
 	url = git@github.com:pushou/tpdocker.git
 
+[submodule "cours/modules/R509/R509-TP1/src/vagrant-win-img"]
+	path = cours/modules/R509/R509-TP1/src/vagrant-win-img
+	url = https://github.com/pushou/but-503-vagrant.git
+
 ### SAE-related submodules
 
 [submodule "cours/sae/sae-12/sae12-full-admin-right-alexis-opolka"]
@@ -89,6 +93,3 @@
 [submodule "cours/sae/sae-41"]
 	path = cours/sae/sae-41
 	url = git@github.com:alexis-opolka/sae-401.git
-[submodule "cours/modules/R509/R509-TP1/src/vagrant-win-img"]
-	path = cours/modules/R509/R509-TP1/src/vagrant-win-img
-	url = https://github.com/pushou/but-503-vagrant.git

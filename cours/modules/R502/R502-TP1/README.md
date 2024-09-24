@@ -454,4 +454,13 @@ On configure le switch SG-250-08 afin d'utiliser le service SNMP.
     sudo download-mibs
     ```
 
+    > [!NOTE]
+    > Cela n'a pas fonctionné, nous essayons donc avec le dépôt de MIBs donné par Cisco sur GitHub.
+
+    Nous récupérons le dépôt:
+
+    ```sh
+    git clone git@github.com:cisco/cisco-mibs.git
+    ```
+
 3.
