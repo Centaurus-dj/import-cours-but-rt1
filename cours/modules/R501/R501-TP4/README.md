@@ -230,4 +230,37 @@
 4. Vérifier que l’on peut faire pareil sur le réseau R501-CCMP.
 
     ```bash
+    sudo iw wlan1 scan | grep R501-CCMP -A 18 -B 9
+    ```
+    
+
+    ```txt
+    BSS c4:e9:84:13:e1:e5(on wlan1)
+        TSF: 6832788377 usec (0d, 01:53:52)
+        freq: 2417
+        beacon interval: 100 TUs
+        capability: ESS Privacy ShortSlotTime (0x0411)
+        signal: -24.00 dBm
+        last seen: 0 ms ago
+        Information elements from Probe Response frame:
+        SSID: R501-CCMP
+        Supported rates: 1.0* 2.0* 5.5* 11.0* 6.0 9.0 12.0 18.0 
+        DS Parameter set: channel 2
+        ERP: Barker_Preamble_Mode
+        Extended supported rates: 24.0 36.0 48.0 54.0 
+        RSN:	 * Version: 1
+            * Group cipher: CCMP
+            * Pairwise ciphers: CCMP
+            * Authentication suites: PSK
+            * Capabilities: 1-PTKSA-RC 1-GTKSA-RC (0x0000)
+        Supported operating classes:
+            * current operating class: 81
+        Extended capabilities:
+            * Extended Channel Switching
+            * SSID List
+            * Operating Mode Notification
+    BSS 70:f0:96:d2:e0:60(on wlan1)
+        TSF: 13760143118736 usec (159d, 06:15:43)
+        freq: 2412
+    ```
 
