@@ -139,6 +139,26 @@ Et notre vérification est désactivée:
 
 2. Clonez le "repository" suivant dans votre machine windows : [github.com/NextronSystems/APTSimulator](https://github.com/NextronSystems/APTSimulator)
 
+    On installe d'abord Git:
+
+    ```pwsh
+    winget install git.git
+    ```
+
+    On peut ensuite clone le dépot:
+
+    ```pwsh
+    git clone https://github.com/NextronSystems/APTSimulator
+    ```
+
+3. Lancez le script "APTSimulator.bat" en mode administrateur et lancez toutes les simulations d'attaques p our faire réagir l'agent
+
+    On lance le script:
+
+    ```pwsh
+    .\APTSimulator.bat
+    ```
+
 ## 4 - Agent Elastic sur un poste Linux
 
 1. Installez l'agent Elastic sur un poste Linux (VM ou physique du CloudLab) et connectez-le à votre 
