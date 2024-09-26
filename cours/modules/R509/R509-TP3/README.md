@@ -83,9 +83,9 @@ cd elastic-agent-8.15.1-windows-x86_64
 .\elastic-agent.exe install --url=https://10.202.0.229:8220 --enrollment-token=bkNvS0xaSUJSVDR5Z0xTWDR6NWo6YU1QTWViTjBSRFNUM3dKdXhrMS1WQQ==
 ```
 
-> [!NOTE]
-> On a besoin de mettre `--insecure` afin que le certificat ne soit pas vérifié avec
-> une autorité de certificats.
+Avant tout, on ajoute notre certificat en suivant les instructions Microsoft: ![learn.microsoft.com](https://learn.microsoft.com/en-us/biztalk/adapters-and-accelerators/accelerator-swift/adding-certificates-to-the-certificates-store-on-the-client)
+
+![win-agent-add-certificate](./src/img/win-agent-add-certificate.png)
 
 On peut voir qu'il a bien été connecté à notre Fleet:
 
@@ -111,7 +111,9 @@ Et notre vérification est désactivée:
 
 ![](./src/img/elastic-defend-verif-host.png)
 
-### 3.4 Retrouvez des informations sur votre p oste Windows
+### 3.4 Retrouvez des informations sur votre poste Windows
+
+![hosts-metrics](./src/img/hosts-metrics.png)
 
 1. Retrouvez les métriques systèmes de votre poste Windows dans Kibana (voir menu "hosts")
 
@@ -129,6 +131,13 @@ Et notre vérification est désactivée:
 4. Retrouvez les alertes liées à Suricata
 
     ![](./src/img/)
+
+### 3.5 - Lancez et détectez une simulation d'attaques
+
+1. Chargez et faites "enable" de toutes les règles de détection fournies en standard par Elastic.
+    Seules celles nécessitant un abonnement ne seront pas activées.
+
+2. Clonez le "repository" suivant dans votre machine windows : [github.com/NextronSystems/APTSimulator](https://github.com/NextronSystems/APTSimulator)
 
 ## 4 - Agent Elastic sur un poste Linux
 
@@ -151,3 +160,32 @@ Et notre vérification est désactivée:
 2. Installez et visualiser les tableaux de bord produits par l'intégration "audit manager". (auditd ne
     doit pas être activé sur votre poste Linux.
 
+
+    ![linux-auditd-overview](./src/img/linux-auditd-overview.png)
+
+3. Installez "Sysmon for Linux". voir [github.com/Sysinternals/SysmonForLinux/blob/main/INSTALL.md](https://github.com/Sysinternals/SysmonForLinux/blob/main/INSTALL.md)
+
+    On installe Sysmon:
+
+    ```sh
+    wget -q https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    sudo dpkg -i packages-microsoft-prod.deb
+    sudo apt-get update
+    sudo apt-get install apt-transport-https
+    sudo apt-get update
+    sudo apt-get install sysmonforlinux
+    ```
+
+    > [!NOTE]
+    > On doit lancer `sysmon`, de la manière suivante:
+    >
+    > ```sh
+    > sudo sysmon -i
+    > ```
+
+4. Installez et visualiser le tableau de b ord de l'intégration "Sysmon for Linux".
+    Ajouter `/var/log/syslog` dans les logs à collecter dans l'intégration
+
+    ![linux-sysmon-overview](./src/img/linux-sysmon-overview.png)
+    ![linux-sysmon-overview](./src/img/linux-sysmon-overview-2.png)
+    ![linux-sysmon-overview](./src/img/linux-sysmon-overview-3.png)
