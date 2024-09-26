@@ -71,7 +71,7 @@ On peut donc le renseigner de manière absolure afin de pouvoir plus tard instal
 
 ## 3 - Agent Elastic sur un poste Windows
 
-### 3.1 - Installation de l'agent Elastic sur un p oste Windows
+### 3.1 - Installation de l'agent Elastic sur un poste Windows
 
 On installe ensuite un agent Windows:
 
@@ -80,7 +80,7 @@ $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest -Uri https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.15.1-windows-x86_64.zip -OutFile elastic-agent-8.15.1-windows-x86_64.zip
 Expand-Archive .\elastic-agent-8.15.1-windows-x86_64.zip -DestinationPath .
 cd elastic-agent-8.15.1-windows-x86_64
-.\elastic-agent.exe install --url=https://10.202.0.229:8220 --enrollment-token=S3pqLUk1SUJlNXFVWXptRWxkeW86NUtsekplTk9Uc0dFNXNYekVZTUI2dw==
+.\elastic-agent.exe install --url=https://10.202.0.229:8220 --enrollment-token=bkNvS0xaSUJSVDR5Z0xTWDR6NWo6YU1QTWViTjBSRFNUM3dKdXhrMS1WQQ==
 ```
 
 > [!NOTE]
@@ -115,12 +115,20 @@ Et notre vérification est désactivée:
 
 1. Retrouvez les métriques systèmes de votre poste Windows dans Kibana (voir menu "hosts")
 
-    ![]()
+    ![win-host-metrics](./src/img/win-host-metrics.png)
 
 2. Retrouvez les métriques sur les services de votre machine Windows
+
+    ![win-services-metrics](./src/img/win-services-metrics.png)
+
 3. Retrouvez les pourcentages des différents type d'évènements windows
     ("security" , "sysmon" ...) de votre machine dans Kibana.
+
+    ![win-services-percent-metrics](./src/img/win-services-percent-metrics.png)
+
 4. Retrouvez les alertes liées à Suricata
+
+    ![](./src/img/)
 
 ## 4 - Agent Elastic sur un poste Linux
 
