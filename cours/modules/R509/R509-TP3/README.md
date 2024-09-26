@@ -139,10 +139,18 @@ Et notre vérification est désactivée:
 
 2. Clonez le "repository" suivant dans votre machine windows : [github.com/NextronSystems/APTSimulator](https://github.com/NextronSystems/APTSimulator)
 
-    On installe d'abord Git:
+    On installe d'abord Git et Sysmon:
 
     ```pwsh
     winget install git.git
+    winget install Microsoft.Sysinternals.Sysmon
+    ```
+
+    On configure Sysmon:
+
+    ```pwsh
+    .\Sysmon64.exe -m
+    .\Sysmon64.exe -i
     ```
 
     On peut ensuite clone le dépot:
@@ -151,13 +159,24 @@ Et notre vérification est désactivée:
     git clone https://github.com/NextronSystems/APTSimulator
     ```
 
-3. Lancez le script "APTSimulator.bat" en mode administrateur et lancez toutes les simulations d'attaques p our faire réagir l'agent
+3. Lancez le script "APTSimulator.bat" en mode administrateur et lancez toutes les simulations d'attaques pour faire réagir l'agent
 
     On lance le script:
 
     ```pwsh
     .\APTSimulator.bat
     ```
+
+4. Vérifiez que vous avez bien des alertes dans la partie "Security" de Kibana
+
+    On peut voir que nos alertes sont bien remontées:
+
+    ![apt-simulator-attacks-alert](./src/img/apt-simulator-attacks-alert.png)
+
+5. Créez une timeline sur l'alerte "process creation".
+    Analyser cet évènement avec Kibana pour obtenir un joli graphique.
+
+    ![]()
 
 ## 4 - Agent Elastic sur un poste Linux
 
