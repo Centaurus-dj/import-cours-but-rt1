@@ -1,8 +1,8 @@
 {
   "editor.tabSize": 2,
-  "editor.fontSize": 18,
+  "editor.fontSize": 35,
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Solarized Dark",
+  "workbench.colorTheme": "Noctis Obscuro",
   "workbench.iconTheme": "vs-seti",
   "keyboard.layout": "fr",
   "dateTime.timeZone": "Europe/Paris",
