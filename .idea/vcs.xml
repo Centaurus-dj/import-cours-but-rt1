@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cours/modules/R509/R509-TP1/src/vagrant-win-img" vcs="Git" />
   </component>
 </project>
