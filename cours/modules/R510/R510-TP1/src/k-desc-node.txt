@@ -1,0 +1,164 @@
+Name:             hello-nginx-86c5f95d4-9qfch
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             tp1k8s-worker3/172.18.0.6
+Start Time:       Fri, 27 Sep 2024 16:30:28 +0200
+Labels:           app=hello-nginx
+                  pod-template-hash=86c5f95d4
+Annotations:      <none>
+Status:           Running
+IP:               10.244.1.2
+IPs:
+  IP:           10.244.1.2
+Controlled By:  ReplicaSet/hello-nginx-86c5f95d4
+Containers:
+  nginx:
+    Container ID:   containerd://fd1f9bbf2b2ca9e811c0bb8eccc575684aa9b95f92f4cc5c9abf9f004b9d9a55
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:6d3fa425bf88bf74e0cc8cd1965c369406a447cfba3a73608879ed3ec86d273d
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 27 Sep 2024 16:30:59 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-s9t8w (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-s9t8w:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  12m   default-scheduler  Successfully assigned default/hello-nginx-86c5f95d4-9qfch to tp1k8s-worker3
+  Normal  Pulling    12m   kubelet            Pulling image "nginx"
+  Normal  Pulled     12m   kubelet            Successfully pulled image "nginx" in 30.019s (30.019s including waiting). Image size: 71027638 bytes.
+  Normal  Created    12m   kubelet            Created container nginx
+  Normal  Started    12m   kubelet            Started container nginx
+
+
+Name:             hello-nginx-86c5f95d4-p45wf
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             tp1k8s-worker/172.18.0.4
+Start Time:       Fri, 27 Sep 2024 16:30:35 +0200
+Labels:           app=hello-nginx
+                  pod-template-hash=86c5f95d4
+Annotations:      <none>
+Status:           Running
+IP:               10.244.2.2
+IPs:
+  IP:           10.244.2.2
+Controlled By:  ReplicaSet/hello-nginx-86c5f95d4
+Containers:
+  nginx:
+    Container ID:   containerd://7071dfa4a6be0081b143526daf8f624f55e70aa39c9447d088af25dd45a78cc7
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:6d3fa425bf88bf74e0cc8cd1965c369406a447cfba3a73608879ed3ec86d273d
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 27 Sep 2024 16:30:53 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-g22vt (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-g22vt:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  12m   default-scheduler  Successfully assigned default/hello-nginx-86c5f95d4-p45wf to tp1k8s-worker
+  Normal  Pulling    12m   kubelet            Pulling image "nginx"
+  Normal  Pulled     12m   kubelet            Successfully pulled image "nginx" in 17.57s (17.57s including waiting). Image size: 71027638 bytes.
+  Normal  Created    12m   kubelet            Created container nginx
+  Normal  Started    12m   kubelet            Started container nginx
+
+
+Name:             nginx-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             tp1k8s-worker2/172.18.0.5
+Start Time:       Fri, 27 Sep 2024 16:30:08 +0200
+Labels:           run=nginx-pod
+Annotations:      <none>
+Status:           Running
+IP:               10.244.3.2
+IPs:
+  IP:  10.244.3.2
+Containers:
+  nginx-pod:
+    Container ID:   containerd://592e1024837acec4f329c8707586121a22194c0afb40fc424715dedfbf552ed5
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:6d3fa425bf88bf74e0cc8cd1965c369406a447cfba3a73608879ed3ec86d273d
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 27 Sep 2024 16:30:21 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-g5gb7 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-g5gb7:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  13m   default-scheduler  Successfully assigned default/nginx-pod to tp1k8s-worker2
+  Normal  Pulling    13m   kubelet            Pulling image "nginx"
+  Normal  Pulled     12m   kubelet            Successfully pulled image "nginx" in 12.451s (12.451s including waiting). Image size: 71027638 bytes.
+  Normal  Created    12m   kubelet            Created container nginx-pod
+  Normal  Started    12m   kubelet            Started container nginx-pod
