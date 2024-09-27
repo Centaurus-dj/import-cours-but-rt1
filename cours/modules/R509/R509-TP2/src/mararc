@@ -1,6 +1,6 @@
 ### For more information see: https://maradns.samiam.org/tutorial/authoritative.html
 
 csv2 = {}
-csv2["ao.local."] = "db.ao.local"
+csv2["ao.dev."] = "db.ao.dev"
 ipv4_bind_addresses = "127.0.0.1,192.168.121.138"
 chroot_dir = "/etc/maradns"

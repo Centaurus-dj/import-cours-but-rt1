@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
         libvirt.memory = "4096"
       end
       os.vm.provision "file", source: "mararc", destination: "/home/vagrant/mararc"
-      os.vm.provision "file", source: "db.ao.local", destination: "/home/vagrant/maradns/db.ao.local"
+      os.vm.provision "file", source: "db.ao.dev", destination: "/home/vagrant/maradns/db.ao.dev"
       os.vm.provision "file", source: "resolv.conf", destination: "/home/vagrant/resolv.conf"
 
       ### Kerberos 5 Provisioning

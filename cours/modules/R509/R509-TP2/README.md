@@ -35,7 +35,7 @@ dnf install -y nano bind-utils
 
 - ### Configuration
 
-    Voir le fichier de configuration de la zone MaraDNS, disponible [ici](./src/db.ao.local).
+    Voir le fichier de configuration de la zone MaraDNS, disponible [ici](./src/db.ao.dev).
     Voir le fichier de configuration MaraRC, disponible [ici](./src/mararc).
 
 ## Installation du serveur Kerberos

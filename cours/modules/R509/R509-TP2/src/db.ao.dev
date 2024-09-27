@@ -1,0 +1,11 @@
+ao.dev. 192.168.121.138 ~
+_kerberos.ao.dev. TXT 'AO.DEV' ~
+_kerberos.ao.dev. A 192.168.121.138 ~
+krb5.ao.dev. A 192.168.121.138 ~
+_kerberos._udp.ao.dev. SRV 0 0 88 krb5.ao.dev. ~
+_kerberos._tcp.ao.dev. SRV 0 0 88 krb5.ao.dev. ~
+_kerberos-adm.ao.dev. SRV 0 0 749 krb5.ao.dev. ~
+_kerberos.ao.dev. SRV 0 0 88 krb5.ao.dev. ~
+_kerberos-master._udp.ao.dev. SRV 0 0 88 krb5.ao.dev. ~
+_kerberos-master._tcp.ao.dev. SRV 0 0 88 krb5.ao.dev. ~
+_kpasswd.ao.dev. SRV 0 0 464 krb5.ao.dev. ~
