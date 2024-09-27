@@ -205,6 +205,42 @@ ce qui nous donne:
 
   afin de générer les manifests des objets créés en mode impératif précédemment.
 
+  - On fait un `deployment`:
+
+    ```sh
+    k create deployment --dry-run=client -o yaml --image nginx nginx  
+    ```
+
+    donne:
+
+    ```yml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+      name: nginx
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: nginx
+      strategy: {}
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - image: nginx
+            name: nginx
+            resources: {}
+    status: {}
+    ```
+
+
 4. Créer via la commande Kubectl et l'option `--from-literal` une `configmap` nommée
   `maconfigmap` avec les couples clefs/valeurs suivants:
 
@@ -213,6 +249,309 @@ ce qui nous donne:
 
   Affichez ensuite les valeurs.
 
+  - Pour créer la configmap, on fait:
+
+    ```sh
+    k create configmap maconfigmap --from-literal=k8s=lepresent --from-literal=virt=legacy
+    ```
+
+  - Pour voir notre configmap, on fait:
+
+    ```sh
+    k get configmap maconfigmap -o jsonpath='{.data}'
+    ```
+
+    Ce qui nous donne:
+
+    ```json
+    {"k8s":"lepresent","virt":"legacy"}
+    ```
+
 
 5. Créer de même un secret nommé `monsecret` avec la valeur `mdp=torototo` et 
   affichez le "décodé" (il est en base 64).
+
+  - Pour créer un secret, on fait :
+
+    ```sh
+    k create secret generic monsecret --from-literal=mdp=torototo
+    ```
+
+  - Pour le voir, on fait :
+
+    ```sh
+    k get secret monsecret -o jsonpath='{.data}'
+    ```
+
+    ce qui nous donne:
+
+    ```json
+    {"mdp":"dG9yb3RvdG8="}
+    ```
+
+  - Pour le décoder, on fait:
+
+    ```sh
+    echo 'dG9yb3RvdG8=' | base64 --decode
+    ```
+
+    qui nous donne:
+
+    ```txt
+    torototo
+    ```
+
+  - En une seule fois, on peut faire:
+
+    ```sh
+    k get secret monsecret -o jsonpath='{.data.mdp}' | base64 --decode
+    ```
+
+    qui nous donne:
+
+    ```txt
+    torototo
+    ```
+
+### 4.2 - Les "PODS" l'unité atomique de Kubernetes
+
+#### 4.2.1 - Opérations basiques sur les PODS
+
+1. Générez la configuration d'un pod debian à l'aide de la commande suivante:
+
+  ```sh
+  k run --dry-run=client debianpod --image=registry.iutbeziers.fr/debianiut:latest -o yaml > monpremierpod.yml
+  ```
+
+  qui nous donne:
+
+  ```yml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: null
+    labels:
+      run: debianpod
+    name: debianpod
+  spec:
+    containers:
+    - image: registry.iutbeziers.fr/debianiut:latest
+      name: debianpod
+      resources: {}
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
+  status: {}
+  ```
+
+  - Créez ce manifest sur votre cluster afin de créer votre premier pod avec "kubectl create".
+
+    On fait:
+
+    ```sh
+    k create -f monpremierpod.yml
+    ```
+
+    On peut vérifier qu'il existe bien en faisant:
+
+    ```sh
+    k get pods debianpod
+    ```
+
+    ce qui nous donne:
+
+    ```sh
+    NAME        READY   STATUS              RESTARTS   AGE
+    debianpod   0/1     ContainerCreating   0          10s
+    ```
+
+2. Vérifiez l'état de votre pod
+
+  On peut vérifier son état en faisant:
+
+  ```sh
+  k get pods debianpod -o wide
+  ```
+
+  ```sh
+  NAME        READY   STATUS    RESTARTS   AGE    IP           NODE            NOMINATED NODE   READINESS GATES
+  debianpod   1/1     Running   0          2m2s   10.244.2.3   tp1k8s-worker   <none>           <none>
+  ```
+
+3. Sur quel noeud votre pod s'exécute-t-il ?
+
+  Il s'exécute sur le noeud: `tp1k8s-worker`.
+
+
+4. Dans quel NameSpace votre Pod s'exécute-t-il ?
+
+  On peut récupérer notre namespace en faisant:
+
+  ```sh
+  k get pods debianpod -o json | jq ".metadata.namespace"
+  ```
+
+  ou
+
+  ```sh
+  k get pods debianpod -o jsonpath='{.metadata.namespace}'
+  ```
+
+  Il s'exécute dans le namespace: `default`.
+
+5. Accédez au container en utilisant "kubectl exec".
+  Démarrez un server apache dans le container
+
+  On fait:
+
+  ```sh
+  k exec -it debianpod -- /bin/bash
+  apt install -y apache2
+  service apache2 start
+  ```
+
+6. Pouvez-vous accéder au serveur web Apache qui s'exécute dans ce Pod ?
+  Accéder au serveur Apache depuis votre client Kubernetes en utilisant
+  `kubectl port-forward`. Quel est le principe de cette commande ?
+
+  On ne peut normalement pas accéder au serveur en dehors du pod.
+
+  - Avec un cURL sur le pod:
+
+    ```sh
+    curl -I http://localhost:80
+    ```
+
+    donne:
+
+    ```http
+    HTTP/1.1 200 OK
+    Date: Fri, 27 Sep 2024 15:36:21 GMT
+    Server: Apache/2.4.62 (Debian)
+    Last-Modified: Fri, 27 Sep 2024 15:32:39 GMT
+    ETag: "29cd-6231b90b69e04"
+    Accept-Ranges: bytes
+    Content-Length: 10701
+    Vary: Accept-Encoding
+    Content-Type: text/html
+    ```
+
+  - Avec un cURL sur la machine:
+
+    ```sh
+    curl -I http://10.244.2.3:80 -vv
+    ```
+
+    donne:
+
+    ```http
+    *   Trying 10.244.2.3:80...
+    ^C
+    ```
+
+  On forward le port de la manière suivante:
+
+  ```sh
+  k port-forward <host-port>:<pod-port>
+  ```
+
+  ce qui fait:
+
+  ```
+  k port-forward 8080:80 &
+  ```
+
+  nous permettant d'obtenir les résultats suivant, en faisant:
+
+  ```sh
+  curl -I http://localhost:8080
+  ```
+
+  nous donnant:
+
+  ```http
+  HTTP/1.1 200 OK
+  Date: Fri, 27 Sep 2024 15:41:07 GMT
+  Server: Apache/2.4.62 (Debian)
+  Last-Modified: Fri, 27 Sep 2024 15:32:39 GMT
+  ETag: "29cd-6231b90b69e04"
+  Accept-Ranges: bytes
+  Content-Length: 10701
+  Vary: Accept-Encoding
+  Content-Type: text/html
+  ```
+
+#### 4.2.2 - Manipulation des Pods
+
+1. Supprimez le pod et recréez-le cette fois-ci en utilisant un `kubectl apply -f votre-manifeste`.
+  Quelle est la différence entre "apply" et "create" ?
+
+  On fait:
+
+  ```sh
+  k delete pods debianpod
+  k apply -f monpremierpod.yml
+  ```
+
+
+  - Apply
+
+    > Apply a configuration to a resource by file name or stdin. The resource name must be specified. \
+    > This resource will be created if it doesn't exist yet. \
+    > To use 'apply', always create the resource initially with either 'apply' or 'create --save-config'
+
+  - Create
+
+    > Create a resource from a file or from stdin.
+
+  | Apply                                                                                    | Create                                                        |
+  | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+  | Crée à partir d'un fichier ou de `stdin` si la ressource n'existe pas, sinon mets à jour | Crée dans tous les cas, peu importe s'il existe une ressource |
+
+2. Recréer le POD avec en sus[^1] un container issu d'une image busybox. Rattachez-vous au pod via
+  "kubectl exec" en précisant avec l'option -c le container nom donné au container busybox
+
+  On ajoute à notre fichier YAML:
+
+  ```yml
+  - image: registry.iutbeziers.fr/busybox:latest
+    name: busypod
+    resources: {}
+  ```
+
+  ce qui fait:
+
+  ```yml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: null
+    labels:
+      run: debianpod
+    name: debianpod
+  spec:
+    containers:
+    - name: debianpod
+      image: registry.iutbeziers.fr/debianiut:latest
+      resources: {}
+    - name: busybox
+      image: registry.iutbeziers.fr/busybox:latest
+      resources: {}
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
+  status: {}
+  ```
+
+  On peut les recréer:
+
+  ```sh
+  k delete pods debianpod
+  k apply -f monpremierpod.yml
+  ```
+
+[^1]: En plus
+  
+
+3. Modifiez le manifeste du pod afin de limiter le cpu et la mémoire consommer par ce pod via des "limits"
+
+4. Générer un autre pod sur un autre "node" K8s et effectuez un traceroute entre les deux pods.
+  Quelles différences constatez-vous avec la gestion réseaux des containers Docker ?
