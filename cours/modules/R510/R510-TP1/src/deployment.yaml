@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debianpod-deployment
+  labels:
+    app: debianpod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: debianpod
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: debianpod
+      name: debianpod
+    spec:
+      containers:
+      - name: debianpod
+        image: registry.iutbeziers.fr/debianiut:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      - name: busypod
+        image: registry.iutbeziers.fr/busybox:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        stdin: true
+        tty: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      nodeName: tp1k8s-worker
+    status: {}
