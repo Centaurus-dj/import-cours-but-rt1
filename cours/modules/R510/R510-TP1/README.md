@@ -9,8 +9,8 @@
 - On installe Go:
 
   ```sh
-  wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
-  tar -xf go1.23.1.linux-amd64.tar.gz -C /usr/local/
+  wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz /tmp
+  tar -xf /tmp/go1.23.1.linux-amd64.tar.gz -C /usr/local/
   export PATH=$PATH:/usr/local/go/bin
   go version
   ```
@@ -855,3 +855,5 @@ ce qui nous donne:
 
   On constate que l'on accède aux pods via les noeuds sur lesquels ils se situent,
   contrairement à Docker où tous les containers se trouvent dans le même réseau.
+
+
